@@ -38,9 +38,5 @@ public class StringUtils extends org.apache.commons.lang.StringUtils{
         return bf.toString();
     }
 
-    public static String getDomainName(String str) {
-        return "";
-    }
-
 
 }

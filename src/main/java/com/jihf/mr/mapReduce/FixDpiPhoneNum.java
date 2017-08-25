@@ -91,9 +91,6 @@ public class FixDpiPhoneNum {
                 }
             }
 
-            String domainName = StringUtils.getDomainName(fixData);
-
-
             // 取手机号
             String phoneTemp = StringUtils.getTelnum(fixData);
             if (!StringUtils.strIsEmpty(phoneTemp)) {

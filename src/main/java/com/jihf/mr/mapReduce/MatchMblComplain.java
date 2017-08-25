@@ -1,11 +1,10 @@
 package com.jihf.mr.mapReduce;
 
 import com.jihf.mr.constants.Config;
-import com.jihf.mr.utils.HDFSFileUtils;
-import com.jihf.mr.utils.JobUtils;
-import com.jihf.mr.utils.MD5Utils;
+import com.jihf.mr.utils.*;
 import com.jihf.mr.utils.StringUtils;
 import com.sun.codemodel.internal.JForEach;
+import org.apache.commons.lang.*;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
@@ -22,6 +21,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +38,29 @@ import static com.jihf.mr.utils.StringUtils.strIsEmpty;
  * Mail：jihaifeng@raiyi.com
  */
 public class MatchMblComplain {
-//    public static final Text CDR_DATA = new Text("cdrData");
-//    public static final Text DPI_DATA = new Text("dpiData");
+    private static Matcher matcher = new Matcher(true);
+    private static List<String> matchCdrList = new ArrayList<String>();
+    private static List<String> matchHostList = new ArrayList<String>();
 
     /**
      * make the MobileCdrData as the input data one
      */
     public static class cdrMblMapper extends Mapper<LongWritable, Text, Text, Text> {
+        private Text mapKey = new Text();
+        private Text mapVal = new Text();
+
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            if (matchCdrList.size() == 0) {
+                matchCdrList.add("12300");
+                matchCdrList.add("12321");
+            }
+            for (int i = 0; i < matchCdrList.size(); i++) {
+                matcher.addPattern(MD5Utils.EncoderByMd5(matchCdrList.get(i)), i);
+            }
+
+        }
+
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] datas = getSplitData(value, 45);
@@ -54,29 +72,53 @@ public class MatchMblComplain {
                 String third_rarty = datas[6];
                 String callDuration = datas[9];
                 String imei = datas[39];
-                String phoneComplain = null;
+//                String phoneComplain = null;
                 String phone1 = null;
                 String phone2 = null;
-                if (!strIsEmpty(other_rarty)) {
-                    phone1 = getMatcherPhone(other_rarty);
-                }
-                if (!strIsEmpty(third_rarty)) {
-                    phone2 = getMatcherPhone(third_rarty);
-                }
-                if (!strIsEmpty(phone1)) {
-                    phoneComplain = phone1;
-                } else if (!strIsEmpty(phone2)) {
-                    phoneComplain = phone2;
-                }
 
-                if (!strIsEmpty(phoneComplain)) {
+//                if (!strIsEmpty(other_rarty)) {
+//                    phone1 = getMatcherPhone(other_rarty);
+//                }
+//                if (!strIsEmpty(third_rarty)) {
+//                    phone2 = getMatcherPhone(third_rarty);
+//                }
+//
+//                if (!strIsEmpty(phone1)) {
+//                    phoneComplain = phone1;
+//                } else if (!strIsEmpty(phone2)) {
+//                    phoneComplain = phone2;
+//                }
+//                if (!strIsEmpty(phoneComplain)) {
+//
+//                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s|%s|%s"
+//                            , imsi
+//                            , imei
+//                            , phoneComplain
+//                            , callType
+//                            , callDuration)));
+//                }
+                Matcher.MatchResult[] matchResults = null;
+                if (!StringUtils.strIsEmpty(other_rarty)) {
+                    matchResults = matcher.match(other_rarty);
+                }
+                if ((null == matchResults || matchResults.length == 0) && !StringUtils.strIsEmpty(third_rarty)) {
+                    matchResults = matcher.match(third_rarty);
+                }
+                if (null != matchResults && matchResults.length != 0) {
+                    for (Matcher.MatchResult result : matchResults) {
+                        String complainNum = result.data.toString();
+                        if (!StringUtils.strIsEmpty(complainNum)) {
+                            mapKey.set(msisdn);
+                            mapVal.set(String.format("%s|%s|%s|%s|%s"
+                                    , imsi
+                                    , imei
+                                    , complainNum
+                                    , callType
+                                    , callDuration));
+                            context.write(mapKey, mapVal);
+                        }
 
-                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s|%s|%s"
-                            , imsi
-                            , imei
-                            , phoneComplain
-                            , callType
-                            , callDuration)));
+                    }
                 }
 
             }
@@ -89,6 +131,21 @@ public class MatchMblComplain {
      * make the MobileDpiData as the input data two
      */
     public static class dpiMblMapper extends Mapper<LongWritable, Text, Text, Text> {
+        private Text mapKey = new Text();
+        private Text mapVal = new Text();
+
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            if (matchHostList.size() == 0) {
+                matchHostList.add("jbzs.12321.cn/12321SMSReport/");
+                matchHostList.add("c.interface.gootion.com/ws/v2/numbermark");
+            }
+            for (int i = 0; i < matchHostList.size(); i++) {
+                matcher.addPattern(matchHostList.get(i).toUpperCase(), i);
+            }
+
+        }
+
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] datas = getSplitData(value, 40);
@@ -96,20 +153,59 @@ public class MatchMblComplain {
                 String imsi = datas[0];
                 String msisdn = datas[1];
                 String imei = datas[2];
+                String destination = datas[29];
                 String domainName = datas[30];
                 String host = datas[31];
                 String hostComplain = null;
-                if (isComplainHost(domainName)) {
-                    hostComplain = domainName;
+//                if (isComplainHost(domainName)) {
+//                    hostComplain = domainName;
+//                }
+//                if (StringUtils.strIsEmpty(hostComplain) && isComplainHost(host)) {
+//                    hostComplain = host;
+//                }
+//                if (!StringUtils.strIsEmpty(msisdn) && !StringUtils.strIsEmpty(hostComplain)) {
+//                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s"
+//                            , imsi
+//                            , imei
+//                            , hostComplain)));
+//                }
+
+                Matcher.MatchResult[] matchResults = null;
+
+
+                if (!StringUtils.strIsEmpty(destination)) {
+                    // 获取 destination带path值 ,去掉参数
+                    int index = destination.indexOf("HTTP://");
+                    if (index != -1) {
+                        destination = destination.substring(index + 7);
+                    }
+                    index = destination.indexOf("?");
+                    if (index != -1) {
+                        destination = destination.substring(0, index);
+                    }
+                    matchResults = matcher.match(destination);
                 }
-                if (StringUtils.strIsEmpty(hostComplain) && isComplainHost(host)) {
-                    hostComplain = host;
+
+                if ((null == matchResults || matchResults.length == 0) && !StringUtils.strIsEmpty(domainName)) {
+                    matchResults = matcher.match(domainName);
                 }
-                if (!StringUtils.strIsEmpty(msisdn) && !StringUtils.strIsEmpty(hostComplain)) {
-                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s"
-                            , imsi
-                            , imei
-                            , hostComplain)));
+
+                if ((null == matchResults || matchResults.length == 0) && !StringUtils.strIsEmpty(host)) {
+                    matchResults = matcher.match(host);
+                }
+                if (null != matchResults && matchResults.length != 0) {
+                    for (Matcher.MatchResult result : matchResults) {
+                        String complainHost = result.data.toString();
+                        if (!StringUtils.strIsEmpty(complainHost)) {
+                            mapKey.set(msisdn);
+                            mapVal.set(String.format("%s|%s|%s"
+                                    , imsi
+                                    , imei
+                                    , complainHost));
+                            context.write(mapKey, mapVal);
+                        }
+
+                    }
                 }
 
             }
