@@ -5,10 +5,7 @@ import com.jihf.mr.utils.HDFSFileUtils;
 import com.jihf.mr.utils.JobUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
-import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -30,6 +27,17 @@ import java.io.IOException;
 public class MblDpiHostSort {
     private static final IntWritable NUM = new IntWritable(1);
 
+    public static class myComparator extends IntWritable.Comparator {
+
+        @SuppressWarnings("rawtypes")
+        public int compare(WritableComparable a, WritableComparable b) {
+            return -super.compare(a, b);
+        }
+
+        public int compare(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
+            return -super.compare(b1, s1, l1, b2, s2, l2);
+        }
+    }
 
     public static class hostMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
         @Override
@@ -82,14 +90,14 @@ public class MblDpiHostSort {
         @Override
         protected void reduce(IntWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             for (Text text : values) {
-                context.write(NullWritable.get(), new Text(key + "|" + text));
+                context.write(NullWritable.get(), new Text(text + "|" + key));
             }
         }
     }
 
     public static void main(String[] args) {
         // 判空
-        String input1 = Config.MOBILE_DPI_INPUT;
+        String input1 = Config.MOBILE_DPI_INPUT+"MBLDPI4G.2017042807_141.1493334008930.lzo_deflate";
         String output = Config.MOBILE_DPI_OUTPUT;
         if (null != args && args.length != 0) {
             if (args.length == 1) {
@@ -156,6 +164,8 @@ public class MblDpiHostSort {
             // 自定义reduce的输出数据类型
             job2.setOutputKeyClass(NullWritable.class);
             job2.setOutputValueClass(Text.class);
+
+            job2.setSortComparatorClass(myComparator.class);
 
             FileInputFormat.addInputPath(job2, new Path(output));
 

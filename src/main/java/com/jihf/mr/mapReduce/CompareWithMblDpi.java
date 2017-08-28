@@ -236,10 +236,10 @@ public class CompareWithMblDpi {
                 }
 
             }
-            if (flag1 && flag2) {
-                for (String ht : hosts) {
-                    output.write(new Text(String.format("%s|%s|%s", phone, phoneMd5, ht)), new Text(), "result");
-                }
+            if (flag1 && flag2 && phone.length() == 11) {
+//                for (String ht : hosts) {
+                    output.write(new Text(String.format("%s|%s", phone, hosts.toString())), new Text(), "result");
+//                }
 
             } else if (flag1) {
                 for (String ht : hosts) {

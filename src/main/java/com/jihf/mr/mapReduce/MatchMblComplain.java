@@ -54,6 +54,14 @@ public class MatchMblComplain {
             if (matchCdrList.size() == 0) {
                 matchCdrList.add("12300");
                 matchCdrList.add("12321");
+                matchCdrList.add("12315");
+//                matchCdrList.add("10000");
+//                matchCdrList.add("10001");
+                 // raiyi 投诉电话
+                matchCdrList.add("4008518832");
+                matchCdrList.add("4006198838");
+                matchCdrList.add("4008232468");
+
             }
             for (int i = 0; i < matchCdrList.size(); i++) {
                 matcher.addPattern(MD5Utils.EncoderByMd5(matchCdrList.get(i)), i);
@@ -76,27 +84,6 @@ public class MatchMblComplain {
                 String phone1 = null;
                 String phone2 = null;
 
-//                if (!strIsEmpty(other_rarty)) {
-//                    phone1 = getMatcherPhone(other_rarty);
-//                }
-//                if (!strIsEmpty(third_rarty)) {
-//                    phone2 = getMatcherPhone(third_rarty);
-//                }
-//
-//                if (!strIsEmpty(phone1)) {
-//                    phoneComplain = phone1;
-//                } else if (!strIsEmpty(phone2)) {
-//                    phoneComplain = phone2;
-//                }
-//                if (!strIsEmpty(phoneComplain)) {
-//
-//                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s|%s|%s"
-//                            , imsi
-//                            , imei
-//                            , phoneComplain
-//                            , callType
-//                            , callDuration)));
-//                }
                 Matcher.MatchResult[] matchResults = null;
                 if (!StringUtils.strIsEmpty(other_rarty)) {
                     matchResults = matcher.match(other_rarty);
@@ -106,7 +93,7 @@ public class MatchMblComplain {
                 }
                 if (null != matchResults && matchResults.length != 0) {
                     for (Matcher.MatchResult result : matchResults) {
-                        String complainNum = result.data.toString();
+                        String complainNum = matchCdrList.get(Integer.parseInt(result.data.toString()));
                         if (!StringUtils.strIsEmpty(complainNum)) {
                             mapKey.set(msisdn);
                             mapVal.set(String.format("%s|%s|%s|%s|%s"
@@ -195,7 +182,7 @@ public class MatchMblComplain {
                 }
                 if (null != matchResults && matchResults.length != 0) {
                     for (Matcher.MatchResult result : matchResults) {
-                        String complainHost = result.data.toString();
+                        String complainHost = result.pattern;
                         if (!StringUtils.strIsEmpty(complainHost)) {
                             mapKey.set(msisdn);
                             mapVal.set(String.format("%s|%s|%s"
@@ -286,8 +273,9 @@ public class MatchMblComplain {
 
             long score = getCdrScore(cdrDataCount, host);
             if (score > 0) {
-                String data = String.format("%s|%s|%s|%s|%s|%s"
+                String data = String.format("%s|%s|%s|%s|%s|%s|%s"
                         , phoneMd5
+                        , complainNumList.toString()
                         , callDurationTotal
                         , callDurationMax
                         , cdrDataCount

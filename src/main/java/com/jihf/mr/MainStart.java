@@ -26,11 +26,21 @@ public class MainStart {
               手机号MD5|设备imei|设备imsi|投诉电话总时长|投诉电话最大时长|投诉电话次数|投诉域名访问次数|投诉电话和投诉域名的总得分(S=A*x+B*y+(5-C)*z 中的 A*x+B*y)
              */
             driver.addClass("matchMblComplain", MatchMblComplain.class, "count the num of host visited in mobile dpi.");
+            // hadoop jar datac-1.7.jar  mblDpiHostSort <mblDpiFolder outputFolder>
+            /*
+            hostVisitTimes|host
+             */
+            driver.addClass("mblDpiHostSort", MblDpiHostSort.class, "count the num of host visited in mobile dpi.");
+            // hadoop jar datac-1.7.jar  matchMblCdrComplain <mblCdrFolder outputFolder>
 
+            driver.addClass("sortComplainUserHost", SortComplainUserHost.class, "aaa");
+            driver.addClass("sortData", SortData.class, "aaa");
+
+            driver.addClass("matchMblCdrComplain", MatchMblCdrComplain.class, "filter the complain phoneNum from mobile data.");
             driver.addClass("fixDpiPhoneNum", FixDpiPhoneNum.class, "filter the phoneNum from fixDpi data.");
             driver.addClass("fixCdrComplain", FixCdrComplain.class, "filter the complain phoneNum from fixCdr data.");
-            driver.addClass("matchMblCdrComplain", MatchMblCdrComplain.class, "filter the complain phoneNum from mobile data.");
-            driver.addClass("mblDpiHostSort", MblDpiHostSort.class, "count the num of host visited in mobile dpi.");
+
+
 
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("readExcel", ReadExcel.class, "read the phoneNum form Excel.");

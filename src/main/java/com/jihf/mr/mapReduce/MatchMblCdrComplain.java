@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Func：固网语音数据匹配投诉电话
+ * Func：移网语音数据匹配投诉电话
  * Desc:
  * Author：JHF
  * Data：2017-08-16 14:32
@@ -214,17 +214,17 @@ public class MatchMblCdrComplain {
         try {
 
             String input1 = Config.MOBILE_CDR_INPUT;
-//            String input2 = "jihaifeng/testNum/6-7月phoneNum.txt";
+            String input2 = "jihaifeng/testNum/6-7月phoneNum.txt";
             String output = Config.MOBILE_CDR_OUTPUT;
             if (null != args && args.length != 0) {
                 if (args.length == 1) {
-//                    input2 = args[0];
+                    input2 = args[0];
                 } else if (args.length == 2) {
                     input1 = args[0];
-//                    input2 = args[1];
+                    input2 = args[1];
                 } else if (args.length == 3) {
                     input1 = args[0];
-//                    input2 = args[1];
+                    input2 = args[1];
                     output = args[2];
                 } else {
                     JobUtils.exit("the num of parameter is illegal.");
@@ -248,14 +248,14 @@ public class MatchMblCdrComplain {
             // MultipleInputs类添加文件路径
             MultipleInputs.addInputPath(job, new Path(input1),
                     TextInputFormat.class, cdrMblMapper.class);
-//            MultipleInputs.addInputPath(job, new Path(input2),
-//                    TextInputFormat.class, cdrMblMapper2.class);
+            MultipleInputs.addInputPath(job, new Path(input2),
+                    TextInputFormat.class, cdrMblMapper2.class);
 
             FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
 
             System.out.println("\n==================================\n");
             System.out.println("输入目录：" + input1);
-//            System.out.println("输入目录：" + input2);
+            System.out.println("输入目录：" + input2);
             System.out.println("输出目录：" + output);
             System.out.println("\n==================================\n");
 
