@@ -80,9 +80,6 @@ public class MatchMblComplain {
                 String third_rarty = datas[6];
                 String callDuration = datas[9];
                 String imei = datas[39];
-//                String phoneComplain = null;
-                String phone1 = null;
-                String phone2 = null;
 
                 Matcher.MatchResult[] matchResults = null;
                 if (!StringUtils.strIsEmpty(other_rarty)) {
@@ -124,11 +121,15 @@ public class MatchMblComplain {
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
             if (matchHostList.size() == 0) {
-                matchHostList.add("jbzs.12321.cn/12321SMSReport/");
-                matchHostList.add("c.interface.gootion.com/ws/v2/numbermark");
+                matchHostList.add("jbzs.12321.cn");
+                matchHostList.add("c.interface.gootion.com");
+                matchHostList.add("12321");
+                matchHostList.add("110.360.cn");
+                matchHostList.add("c.interface.at321.cn");
+                matchHostList.add("data.haoma.sogou.com");
             }
             for (int i = 0; i < matchHostList.size(); i++) {
-                matcher.addPattern(matchHostList.get(i).toUpperCase(), i);
+                matcher.addPattern(matchHostList.get(i), i);
             }
 
         }
@@ -144,18 +145,6 @@ public class MatchMblComplain {
                 String domainName = datas[30];
                 String host = datas[31];
                 String hostComplain = null;
-//                if (isComplainHost(domainName)) {
-//                    hostComplain = domainName;
-//                }
-//                if (StringUtils.strIsEmpty(hostComplain) && isComplainHost(host)) {
-//                    hostComplain = host;
-//                }
-//                if (!StringUtils.strIsEmpty(msisdn) && !StringUtils.strIsEmpty(hostComplain)) {
-//                    context.write(new Text(msisdn), new Text(String.format("%s|%s|%s"
-//                            , imsi
-//                            , imei
-//                            , hostComplain)));
-//                }
 
                 Matcher.MatchResult[] matchResults = null;
 
@@ -281,30 +270,8 @@ public class MatchMblComplain {
                         , cdrDataCount
                         , dpiDataCount
                         , score);
-//                if (infoList.size() != 0) {
-//                    for (String info : infoList) {
-//                        data = String.format("%s|%s|%s|%s|%s|%s|%s"
-//                                , phoneMd5
-//                                , info
-//                                , callDurationTotal
-//                                , callDurationMax
-//                                , cdrDataCount
-//                                , dpiDataCount
-//                                , score);
-//                    }
-//                } else {
-//                    data = String.format("%s|%s|%s|%s|%s|%s|%s|%s"
-//                            , phoneMd5
-//                            , null
-//                            , null
-//                            , callDurationTotal
-//                            , callDurationMax
-//                            , cdrDataCount
-//                            , dpiDataCount
-//                            , score);
-//                }
 
-                if (null != data) {
+                if (null != data && dpiDataCount > 0) {
                     context.write(NullWritable.get(), new Text(data));
                 }
             }

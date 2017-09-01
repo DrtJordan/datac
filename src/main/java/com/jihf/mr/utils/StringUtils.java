@@ -7,9 +7,19 @@ package com.jihf.mr.utils;
  * Data：2017-08-11 09:12
  * Mail：jihaifeng@raiyi.com
  */
-public class StringUtils extends org.apache.commons.lang.StringUtils{
-    public static boolean strIsEmpty(String str) {
-        return null == str || str.trim().length() <= 0 || str.equals("null");
+public class StringUtils extends org.apache.commons.lang.StringUtils {
+    public static boolean strIsEmpty(String... str) {
+        if (null == str || str.length == 0) {
+            return true;
+        }
+        boolean flag = true;
+        for (String key : str) {
+            if (null != key && !key.equals("null") && key.trim().length() > 0) {
+                flag = false;
+            }
+
+        }
+        return flag;
     }
 
     public static boolean isNumericZidai(String str) {

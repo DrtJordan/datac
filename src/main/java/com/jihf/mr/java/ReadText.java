@@ -19,7 +19,7 @@ import java.io.FileReader;
 public class ReadText {
 
     public static void main(String[] args) {
-        File file = new File("E://excel/result.txt");
+        File file = new File("E://excel/hostResult1.txt");
         txt2String(file);
         ;
     }
@@ -36,33 +36,14 @@ public class ReadText {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
             String s = null;
+            int num = 0;
             while ((s = br.readLine()) != null) {//使用readLine方法，一次读一行
                 String[] datas = s.split("\\|", -1);
-                String hostStr = datas[1];
-                if (!StringUtils.strIsEmpty(hostStr)) {
-                    if (!hostStr.matches("\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}")
-                            && !hostStr.contains("qq.com")
-                            && !hostStr.contains("qpic.cn")
-                            && !hostStr.contains("weibo.cn")
-                            && !hostStr.contains("alipay")
-                            && !hostStr.contains("qzone")
-                            && !hostStr.contains("sina")
-                            && !hostStr.contains("letv.com")
-                            && !hostStr.contains("baidu.com")
-                            && !hostStr.contains("moji.com")
-                            && !hostStr.contains("souhu.com")
-                            && !hostStr.contains("wandoujia.com")
-                            && !hostStr.contains("kugou.com")
-                            && !hostStr.contains("meizu.com")
-                            && !hostStr.contains("flyme.cn")) {
-//                        System.out.println("hostStr：" + hostStr);
-                    }
-                    if (hostStr.contains("189")){
+                 num += Integer.parseInt(datas[5]);
 
-                        System.out.println("err：" + hostStr);
-                    }
-                }
+
             }
+            System.out.println(num);
             br.close();
         } catch (Exception e) {
             System.err.println(e);

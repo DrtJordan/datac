@@ -4,8 +4,13 @@ import com.jihf.mr.utils.Matcher;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class TestMatcher {
     private final static Matcher matcher = new Matcher(true);
+    private static List<String> matchHostList = new ArrayList<String>();
 
     @Test
     public void testMatcher() {
@@ -22,17 +27,37 @@ public class TestMatcher {
         // V.QQ.COM/*/VARIETY --> v.qq.com/x/list/variety
         // V.QQ.COM/VPLUS/* --> v.qq.com/vplus/miss, v.qq.com/vplus/miss/videos
 
-        matcher.addPattern("*12300*", 100);
 
-        matcher.addPattern("WWW.QQ.COM", 200);
-        matcher.addPattern("*.QQ.COM", 300);
-        matcher.addPattern("V.QQ.COM/*/VARIETY", 400);
-        matcher.addPattern("V.QQ.COM/VPLUS/*", 500);
-        matcher.addPattern("v.QQ.COM/VPLUS", 600);
-        Matcher.MatchResult[] q = matcher.match( "12300213123");
-        for (Matcher.MatchResult result : q) {
-            System.out.println(String.format("%s|%s|%s",  "2-233312300213123", result.data.toString(), result.pattern));
+        if (matchHostList.size() == 0) {
+            matchHostList.add("jbzs.12321.cn");
+            matchHostList.add("c.interface.gootion.com");
+            matchHostList.add("12321");
+            matchHostList.add("110.360.cn");
+            matchHostList.add("c.interface.at321.cn");
+            matchHostList.add("data.haoma.sogou.com");
+            matchHostList.add("*.qq.com");
+
         }
+        for (int i = 0; i < matchHostList.size(); i++) {
+
+        }
+        matcher.addPattern("*.qq.com", 300);
+
+        String host = "ocjstestdomain.tcdn.qq.com";
+        System.out.println(host);
+        Matcher.MatchResult[] matchResults = matcher.match(host);
+        System.out.println(matchResults.length);
+        for (Matcher.MatchResult result : matchResults) {
+            System.out.println(String.format("%s|%s", result.pattern, result.data.toString()));
+        }
+
+//        matcher.addPattern("*12300*", 100);
+//
+//        matcher.addPattern("WWW.QQ.COM", 200);
+//        matcher.addPattern("*.QQ.COM", 300);
+//        matcher.addPattern("V.QQ.COM/*/VARIETY", 400);
+//        matcher.addPattern("V.QQ.COM/VPLUS/*", 500);
+//        matcher.addPattern("v.QQ.COM/VPLUS", 600);
 //        String[] dpiUrls = {"WWW.qq.com", "film.qq.com"
 //                , "history.news.qq.com"
 //                , "v.qq.com/x/list/variety"
@@ -42,6 +67,7 @@ public class TestMatcher {
 //                , "v.qq.com/vplus/miss"
 //                , "v.qq.com/vplus/miss/videos?a=x"
 //                , "http://v.qq.com/vplus/miss/folders"
+//                ,"ocjstestdomain.tcdn.qq.com"
 //                };
 //
 //        for (String dpiUrl : dpiUrls) {
