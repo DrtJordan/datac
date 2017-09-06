@@ -8,81 +8,63 @@ import java.sql.DriverManager;
 
 public class HiveJdbcClient {
 
-    /**
-     * hiverserver 版本使用此驱动 Technorati 标记: hadoop,hive,jdbc
-     * private static String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
-     * hiverserver2 版本使用此驱动
-     */
 
-    private static String driverName = "org.apache.hive.jdbc.HiveDriver";
+    private static final String hiveUserName = "zhengzonghui";
+    private static final String hiveUserPass = "zhengzonghui";
+
+    // hiverserver 版本使用此驱动 Technorati 标记: hadoop,hive,jdbc
+    private static String hiveDriverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
+
+    // hiverserver2 版本使用此驱动
+    private static String hive2DriverName = "org.apache.hive.jdbc.HiveDriver";
+
+    // http://61.155.179.141:8889/hue/
+    private static String hostIp = "61.155.179.141:8889/accounts/login/";
+
+    // hiverserver 版本 jdbc url格式  "jdbc:hive://host:port/default"
+    private static String hiveJdbcUrl = String.format("jdbc:hive://%s", hostIp);
+    // hiverserver2 版本jdbc url格式 "jdbc:hive2://host:port/default"
+    private static String hive2JdbcUrl = String.format("jdbc:hive2://%s", hostIp);
+
 
     public static void main(String[] args) throws SQLException {
 
+
         try {
-            Class.forName(driverName);
-        } catch (ClassNotFoundException e) {
+//            loadLog4j();
+            Class.forName(hive2DriverName);
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
 
-        /*hiverserver 版本jdbc url格式*/
-        //Connection con = DriverManager.getConnection("jdbc:hive://hostip:10000/default", "", "");
+        System.out.println("hive2JdbcUrl：" + hive2JdbcUrl);
 
-        /*hiverserver2 版本jdbc url格式*/
-        Connection con = DriverManager.getConnection("jdbc:hive2://hostip:10000/default", "hive", "hive");
-        Statement stmt = con.createStatement();
-        //参数设置测试
-        //boolean resHivePropertyTest = stmt
-        //        .execute("SET tez.runtime.io.sort.mb = 128");
+        try {
+            Connection con = DriverManager.getConnection(hive2JdbcUrl, hiveUserName, hiveUserPass);
+            System.out.println("con：" + con);
 
-        boolean resHivePropertyTest = stmt
-                .execute("set hive.execution.engine=tez");
-        System.out.println(resHivePropertyTest);
+            Statement stmt = con.createStatement();
+            System.out.println("stmt：" + stmt);
 
-        String tableName = "testHiveDriverTable";
-        stmt.executeQuery("drop table " + tableName);
-        ResultSet res = stmt.executeQuery("create table " + tableName + " (key int, value string)");
+            String sql = "select fs.* from dw_sms.sms_send_record fs limit 100";
+            ResultSet res = stmt.executeQuery(sql);
 
-        //show tables
-        String sql = "show tables '" + tableName + "'";
-        System.out.println("Running: " + sql);
-        res = stmt.executeQuery(sql);
-        if (res.next()) {
-            System.out.println(res.getString(1));
-        }
-
-        //describe table
-        sql = "describe " + tableName;
-        System.out.println("Running: " + sql);
-        res = stmt.executeQuery(sql);
-        while (res.next()) {
-            System.out.println(res.getString(1) + "\t" + res.getString(2));
-        }
-
-        // load data into table
-        // NOTE: filepath has to be local to the hive server
-        // NOTE: /tmp/a.txt is a ctrl-A separated file with two fields per line
-        String filepath = "/tmp/a.txt";
-        sql = "load data local inpath '" + filepath + "' into table " + tableName;
-        System.out.println("Running: " + sql);
-        res = stmt.executeQuery(sql);
-
-        // select * query
-        sql = "select * from " + tableName;
-        System.out.println("Running: " + sql);
-        res = stmt.executeQuery(sql);
-        while (res.next()) {
-            System.out.println(String.valueOf(res.getInt(1)) + "\t" + res.getString(2));
-        }
-
-        // regular hive query
-        sql = "select count(1) from " + tableName;
-        System.out.println("Running: " + sql);
-        res = stmt.executeQuery(sql);
-        while (res.next()) {
-            System.out.println(res.getString(1));
+            while (res.next()) {
+                System.out.println(res);
+            }
+        } catch (SQLException e) {
+            System.err.println("e：" + e.getMessage());
+            e.printStackTrace();
         }
 
     }
+
+//    private static void loadLog4j() throws IOException {
+//        //加载配置文件,建议放在src下面
+//        PropertyConfigurator.configure("<a target=_blank href=file://\\log4j.properties">\\log4j.properties</a>");
+//        Properties props = new Properties();
+//        props.load(HiveJdbcClient.class.getClassLoader().getResourceAsStream("log4j.properties"));
+//    }
 
 }
