@@ -17,7 +17,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,94 +32,24 @@ public class FixDpiPhoneNum {
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String fixData = value.toString();
-            String imeiStr = null;
-            String imsiStr = null;
 
-            String[] datas = fixData.split("\005");
-            String UserAccount = StringUtils.strIsEmpty(datas[0]) ? null : datas[0];
-            String Protocol = StringUtils.strIsEmpty(datas[1]) ? null : datas[1];
-            String SourceIP = StringUtils.strIsEmpty(datas[2]) ? null : datas[2];
-            String DestinationIP = StringUtils.strIsEmpty(datas[3]) ? null : datas[3];
-            String SourcePort = StringUtils.strIsEmpty(datas[4]) ? null : datas[4];
-            String DestinationPort = StringUtils.strIsEmpty(datas[5]) ? null : datas[5];
-            String DomainName = StringUtils.strIsEmpty(datas[6]) ? null : datas[6];
-            String URL = StringUtils.strIsEmpty(datas[7]) ? null : datas[7];
-            String REFERER = StringUtils.strIsEmpty(datas[8]) ? null : datas[8];
-            String UserAgent = StringUtils.strIsEmpty(datas[9]) ? null : datas[9];
-            String Cookie = StringUtils.strIsEmpty(datas[10]) ? null : datas[10];
-            String accessTime = StringUtils.strIsEmpty(datas[11]) ? null : datas[11];
+            String[] datas = fixData.split("\005",-1);
+            if (datas.length >= 11) {
+                String UserAccount = StringUtils.strIsEmpty(datas[0]) ? null : datas[0];
+                String Protocol = StringUtils.strIsEmpty(datas[1]) ? null : datas[1];
+                String SourceIP = StringUtils.strIsEmpty(datas[2]) ? null : datas[2];
+                String DestinationIP = StringUtils.strIsEmpty(datas[3]) ? null : datas[3];
+                String SourcePort = StringUtils.strIsEmpty(datas[4]) ? null : datas[4];
+                String DestinationPort = StringUtils.strIsEmpty(datas[5]) ? null : datas[5];
+                String DomainName = StringUtils.strIsEmpty(datas[6]) ? null : datas[6];
+                String URL = StringUtils.strIsEmpty(datas[7]) ? null : datas[7];
+                String REFERER = StringUtils.strIsEmpty(datas[8]) ? null : datas[8];
+                String UserAgent = StringUtils.strIsEmpty(datas[9]) ? null : datas[9];
+                String Cookie = StringUtils.strIsEmpty(datas[10]) ? null : datas[10];
+//            String accessTime = StringUtils.strIsEmpty(datas[11]) ? null : datas[11];
 
-            context.write(new Text(String.format("%s|%s", URL, UserAgent)), new IntWritable(1));
-
-            // 取imei
-//            if (fixData.contains("imei=")) {
-//                int index = fixData.indexOf("imei=");
-//                String tempData = fixData.substring(index, fixData.length());
-//                if (!StringUtils.strIsEmpty(tempData) && tempData.length() > 5) {
-//                    int from = tempData.indexOf("=");
-//                    int to = tempData.length();
-//                    if (tempData.contains("&")) {
-//                        to = tempData.indexOf("&");
-//                    }
-//
-//                    String imeiTemp = tempData.substring(from + 1, to);
-//                    if (!StringUtils.strIsEmpty(imeiTemp) && !imeiTemp.equals("000000000000000")) {
-//                        int to1 = imeiTemp.length();
-//                        if (imeiTemp.contains(";")) {
-//                            to1 = imeiTemp.indexOf(";");
-//                        }
-//                        String imeiTemp1 = imeiTemp.substring(0, to1);
-//                        if (StringUtils.isNumericZidai(imeiTemp1) && imeiTemp1.length() == 15) {
-//                            imeiStr = imeiTemp1;
-//                        }
-//                    }
-//
-//                }
-//
-//            }
-
-            // 取imsi
-//            if (fixData.contains("imsi=")) {
-//                int index = fixData.indexOf("imsi=");
-//                String tempData = fixData.substring(index, fixData.length());
-//                if (!StringUtils.strIsEmpty(tempData) && tempData.length() > 5) {
-//                    int from = tempData.indexOf("=");
-//                    int to = tempData.length();
-//                    if (tempData.contains("&")) {
-//                        to = tempData.indexOf("&");
-//                    }
-//
-//                    String imsiTemp = tempData.substring(from + 1, to);
-//                    String imsiTemp1 = null;
-//                    if (imsiTemp.length() > 15) {
-//                        imsiTemp1 = imsiTemp.substring(0, 16);
-//
-//                    } else {
-//                        imsiTemp1 = imsiTemp;
-//                    }
-//                    if (!StringUtils.strIsEmpty(imsiTemp1) && !imsiTemp1.equals("000000000000000") && imsiTemp1.length() == 15) {
-//                        imsiStr = imsiTemp1;
-//                    }
-//
-//                }
-//            }
-
-            // 取手机号
-
-//            String phonekey = null;
-//            String phoneStr = null;
-//            Map<String, String> paramsMap = UrlHandler.URLRequest(URL);
-//            for (String mapKey : paramsMap.keySet()) {
-//                if (!StringUtils.strIsEmpty(mapKey) && !StringUtils.strIsEmpty(UrlHandler.matchMblNumKey(mapKey))) {
-//                    phonekey = UrlHandler.matchMblNumKey(mapKey);
-//                }
-//            }
-//            if (!StringUtils.strIsEmpty(phonekey)) {
-//                phoneStr = StringUtils.getTelnum(paramsMap.get(phonekey));
-//            }
-//            if (!StringUtils.strIsEmpty(phoneStr)) {
-//                context.write(new Text(phoneStr + "|" + UserAgent), new IntWritable(1));
-//            }
+                context.write(new Text(String.format("%s|%s", URL, UserAgent)), new IntWritable(1));
+            }
         }
 
 
@@ -138,16 +67,20 @@ public class FixDpiPhoneNum {
             String phoneStr = null;
             if (!StringUtils.strIsEmpty(url)) {
                 String host = UrlHandler.getHost(url);
+
                 Map<String, String> paramsMap = UrlHandler.URLRequest(url);
+
                 if (null != paramsMap && paramsMap.size() != 0) {
                     for (String mapKey : paramsMap.keySet()) {
                         if (!StringUtils.strIsEmpty(mapKey) && !StringUtils.strIsEmpty(UrlHandler.matchMblNumKey(mapKey))) {
                             phonekey = UrlHandler.matchMblNumKey(mapKey);
                         }
                     }
+
                     if (!StringUtils.strIsEmpty(phonekey)) {
                         phoneStr = StringUtils.getTelnum(paramsMap.get(phonekey));
                     }
+
                     if (!StringUtils.strIsEmpty(phoneStr)) {
                         context.write(new Text(String.format("%s|%s", phoneStr, ua)), new IntWritable(1));
                     }
@@ -186,7 +119,7 @@ public class FixDpiPhoneNum {
                 }
             }
 
-            Configuration conf = new Configuration();
+            Configuration conf = MrUtils.getRaiyiConfiguration();
 
             Job job = Job.getInstance(conf, "fixData");
             job.setJarByClass(FixDpiPhoneNum.class);
@@ -194,6 +127,7 @@ public class FixDpiPhoneNum {
             job.setMapperClass(FixMapper.class);
             job.setCombinerClass(FixCombiner.class);
             job.setReducerClass(FixReducer.class);
+            job.setNumReduceTasks(5);
 
             job.setMapOutputValueClass(Text.class);
             job.setMapOutputValueClass(IntWritable.class);

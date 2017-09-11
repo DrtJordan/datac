@@ -1,6 +1,7 @@
 package com.jihf.mr.mapReduce;
 
 import com.jihf.mr.utils.HDFSFileUtils;
+import com.jihf.mr.utils.MrUtils;
 import com.jihf.mr.utils.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;

@@ -115,7 +115,7 @@ public class MblDpiPhoneMd5 {
                 }
             }
 
-            Configuration cf = new Configuration();
+            Configuration cf = MrUtils.getRaiyiConfiguration();
 
             Job job = Job.getInstance(cf);
             job.setJobName("FilterData");

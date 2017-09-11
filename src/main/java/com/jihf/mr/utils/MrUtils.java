@@ -1,4 +1,4 @@
-package com.jihf.mr.mapReduce;
+package com.jihf.mr.utils;
 
 import org.apache.hadoop.conf.Configuration;
 

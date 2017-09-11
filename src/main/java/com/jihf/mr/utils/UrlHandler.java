@@ -22,22 +22,12 @@ public class UrlHandler {
     public static void main(String[] args) {
         init();
         System.out.println(mblNumList.size());
-
-        //        Map<String, String> paramsMap = UrlHandler.URLRequest(tt);
-//        System.out.println("paramsMap："+paramsMap);
-//        for (String mapKey : paramsMap.keySet()) {
-//            if (!StringUtils.strIsEmpty(mapKey) && !StringUtils.strIsEmpty(UrlHandler.matchMblNumKey(mapKey))) {
-//                phonekey = UrlHandler.matchMblNumKey(mapKey);
-//            }
-//        }
-//        System.out.println("phonekey："+phonekey);
-//        if (!StringUtils.strIsEmpty(phonekey)) {
-//            phoneStr = StringUtils.getTelnum(paramsMap.get(phonekey));
-//        }
-//        System.out.println("phoneStr："+phoneStr);
     }
 
     private static void init() {
+        if (null != mblNumList && mblNumList.size() != 0){
+            return;
+        }
         try {
             InputStream in = UrlHandler.class.getClassLoader().getResourceAsStream("mblNumKey.txt");
             InputStreamReader isr = new InputStreamReader(in);
