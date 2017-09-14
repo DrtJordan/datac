@@ -1,21 +1,33 @@
 package com.jihf.mr.mapReduce;
 
 import com.jihf.mr.constants.Config;
+import com.jihf.mr.mapReduce.sort.ComparatorKey;
+import com.jihf.mr.mapReduce.sort.VisitInfo;
 import com.jihf.mr.utils.HDFSFileUtils;
 import com.jihf.mr.utils.JobUtils;
+import com.jihf.mr.utils.MrUtils;
+import com.jihf.mr.utils.StringUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.chain.ChainMapper;
+import org.apache.hadoop.mapreduce.lib.chain.ChainReducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+import org.apache.hadoop.util.Tool;
+import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Func：统计移网DPI数据中用户访问网站的域名以及访问次数
@@ -24,97 +36,46 @@ import java.io.IOException;
  * Data：2017-08-09 09:26
  * Mail：jihaifeng@raiyi.com
  */
-public class MblDpiHostSort {
+public class MblDpiHostSort extends Configured implements Tool {
     private static final IntWritable NUM = new IntWritable(1);
 
-    public static class myComparator extends IntWritable.Comparator {
+    private static final String MAX_OUTPUT_NUM = "maxOutputNum";
+    private static final String MIN_VISIT_TIMES = "minVisitTimes";
 
-        @SuppressWarnings("rawtypes")
-        public int compare(WritableComparable a, WritableComparable b) {
-            return -super.compare(a, b);
-        }
-
-        public int compare(byte[] b1, int s1, int l1, byte[] b2, int s2, int l2) {
-            return -super.compare(b1, s1, l1, b2, s2, l2);
-        }
-    }
-
-    public static class hostMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-        @Override
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-
-            String data = value.toString();
-            if (strIsEmpty(data)) {
-                exit("input data is null.");
-            }
-
-            String[] datas = data.split("\\|", -1);
-            if (datas.length < 40) {
-                exit("input data has missed some field.");
-            }
-
-            String domainName = datas[30];
-            String msisdn = datas[1];
-            if (!strIsEmpty(msisdn) && !strIsEmpty(domainName)) {
-                context.write(new Text(domainName), NUM);
-            }
-
-        }
-    }
-
-
-    // 如果输入输出值的类型不是默认，需要完善泛型
-    public static class hostReducer extends Reducer<Text, IntWritable, NullWritable, Text> {
-        @Override
-        protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-            int count = 0;
-            for (IntWritable val : values) {
-                count++;
-            }
-            if (count > 0) {
-                context.write(NullWritable.get(), new Text(key + "|" + count));
-            }
-
-        }
-    }
-
-    public static class sortMapper extends Mapper<LongWritable, Text, IntWritable, Text> {
-        @Override
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            String[] split = value.toString().split("\\|", -1);
-            context.write(new IntWritable(Integer.parseInt(split[1])), new Text(split[0]));
-        }
-    }
-
-    public static class sortReducer extends Reducer<IntWritable, Text, NullWritable, Text> {
-        @Override
-        protected void reduce(IntWritable key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-            for (Text text : values) {
-                context.write(NullWritable.get(), new Text(text + "|" + key));
-            }
-        }
-    }
-
-    public static void main(String[] args) {
+    @Override
+    public int run(String[] strings) throws Exception {
         // 判空
-        String input1 = Config.MOBILE_DPI_INPUT+"MBLDPI4G.2017042807_141.1493334008930.lzo_deflate";
+        String input = Config.MOBILE_DPI_INPUT;
         String output = Config.MOBILE_DPI_OUTPUT;
-        if (null != args && args.length != 0) {
-            if (args.length == 1) {
-                input1 = args[0];
-            } else if (args.length == 2) {
-                input1 = args[0];
-                output = args[1];
+
+        Configuration cf = MrUtils.getRaiyiConfiguration();
+
+        int index = 0;
+        if (null != strings && strings.length != 0) {
+            if (StringUtils.strIsEmpty(strings)) {
+                JobUtils.exit("please input params like <mblDpiInput resultOutput 【choose：outputDataLength minVisitTimes】>");
+            }
+            if (strings.length == 2) {
+                input = strings[index++];
+                output = strings[index];
+            } else if (strings.length == 3) {
+                input = strings[index++];
+                output = strings[index++];
+                DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "100" : strings[index]), MAX_OUTPUT_NUM);
+            } else if (strings.length == 4) {
+                input = strings[index++];
+                output = strings[index++];
+                DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "100" : strings[index++]), MAX_OUTPUT_NUM);
+                DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "0" : strings[index]), MIN_VISIT_TIMES);
             } else {
-                JobUtils.exit("the num of parameter is illegal.");
+                JobUtils.exit("please input params like <mblDpiInput resultOutput 【choose：outputDataLength minVisitTimes】>");
             }
         }
 
-        String outPutSort = output + "/sort";
-        Configuration cf = new Configuration();
+
         try {
             Job job = Job.getInstance(cf);
-            job.setJobName("QQVisitJob");
+            job.setJobName("hostSort");
 
             // 通过class名称查找jar包
             job.setJarByClass(MblDpiHostSort.class);
@@ -123,90 +84,129 @@ public class MblDpiHostSort {
             job.setInputFormatClass(SequenceFileInputFormat.class);
             job.setOutputFormatClass(TextOutputFormat.class);
 
-            //
-            job.setMapperClass(hostMapper.class);
-            job.setReducerClass(hostReducer.class);
 
-            // 自定义Map的输出数据类型
+            // 自定义Map
+            job.setMapperClass(mblDpiMapper.class);
             job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(IntWritable.class);
 
-            // 自定义reduce的输出数据类型
-            job.setOutputKeyClass(Text.class);
-            job.setOutputValueClass(IntWritable.class);
+            // 自定义reduce
+            job.setReducerClass(mblDpiReducer.class);
+            job.setOutputKeyClass(NullWritable.class);
+            job.setOutputValueClass(Text.class);
 
 
             // 设置输入文件夹
-            FileInputFormat.addInputPath(job, new Path(input1));
+            FileInputFormat.addInputPath(job, new Path(input));
 
             // 设置输出文件夹
-            FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf,output));
-
-
-            Job job2 = Job.getInstance(cf);
-
-            job2.setJobName("sortJob");
-
-            // 通过class名称查找jar包
-            job2.setJarByClass(MblDpiHostSort.class);
-
-            // 设置输入文件按照什么格式被读取
-            job2.setInputFormatClass(TextInputFormat.class);
-            job2.setOutputFormatClass(TextOutputFormat.class);
-            //
-            job2.setMapperClass(sortMapper.class);
-            job2.setReducerClass(sortReducer.class);
-
-            // 自定义Map的输出数据类型
-            job2.setMapOutputKeyClass(IntWritable.class);
-            job2.setMapOutputValueClass(Text.class);
-
-            // 自定义reduce的输出数据类型
-            job2.setOutputKeyClass(NullWritable.class);
-            job2.setOutputValueClass(Text.class);
-
-            job2.setSortComparatorClass(myComparator.class);
-
-            FileInputFormat.addInputPath(job2, new Path(output));
-
-            FileOutputFormat.setOutputPath(job2,HDFSFileUtils.getPath(cf,outPutSort));
+            FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
 
             System.out.println("\n==================================\n");
-            System.out.println("输入目录：" + input1);
+            System.out.println("输入目录：" + input);
             System.out.println("输出目录：" + output);
-            System.out.println("排序后的目录：" + outPutSort);
             System.out.println("\n==================================\n");
 
             if (job.waitForCompletion(true)) {
-                System.exit(job2.waitForCompletion(true) ? 0 : 1);
+                System.exit(job.waitForCompletion(true) ? 0 : 1);
             }
         } catch (Exception e) {
-            exit(e.getMessage());
+            JobUtils.exit(e.getMessage());
             e.printStackTrace();
         }
-
-
+        return 0;
     }
 
-    // 输入文件去重
-    private static boolean isContain(Job job, String str) {
-        Path[] paths = FileInputFormat.getInputPaths(job);
-        boolean flag = false;
-        for (Path p : paths) {
-            if (p.toUri().getPath().equals(new Path(str).toString())) {
-                flag = true;
+    public static class mblDpiMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+        @Override
+        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+
+            String data = value.toString();
+            if (StringUtils.strIsEmpty(data)) {
+                JobUtils.exit("input data is null.");
             }
+
+            String[] datas = data.split("\\|", -1);
+            if (datas.length < 40) {
+                JobUtils.exit("input data has missed some field.");
+            }
+
+            String domainName = datas[30];
+            String msisdn = datas[1];
+            if (!StringUtils.strIsEmpty(msisdn, domainName)) {
+                context.write(new Text(domainName), NUM);
+            }
+
         }
-        return flag;
     }
 
-    // 异常退出
-    private static void exit(String msg) {
-        System.out.println(strIsEmpty(msg) ? "抛出异常" : msg);
-        System.exit(0);
+
+    // 如果输入输出值的类型不是默认，需要完善泛型
+    public static class mblDpiReducer extends Reducer<Text, IntWritable, NullWritable, Text> {
+        List<VisitInfo> visitList = new ArrayList<VisitInfo>();
+        // 自定义排序
+        ComparatorKey comparator = new ComparatorKey();
+        //选取访问网站次数排名前K位的url
+        int max_k = 100;
+        //低于 min_count 的值不输出
+        int min_count = 0;
+
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            Configuration conf = context.getConfiguration();
+            max_k = Integer.parseInt(DefaultStringifier.load(conf, MAX_OUTPUT_NUM, Text.class).toString());
+            min_count = Integer.parseInt(DefaultStringifier.load(conf, MIN_VISIT_TIMES, Text.class).toString());
+            ;
+        }
+
+        @Override
+        protected void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
+            String url = key.toString();
+
+            long count = 0;
+            for (IntWritable val : values) {
+                count++;
+            }
+            if (count > 0) {
+
+                if (visitList.size() < max_k && count > min_count) {
+                    if (!StringUtils.strIsEmpty(url)) {
+                        VisitInfo visitInfo = new VisitInfo(count, url);
+                        visitList.add(visitInfo);
+                    }
+                }
+
+                //边界值处理
+                if (visitList.size() >= max_k && count > min_count) {
+                    // 先排序
+                    Collections.sort(visitList, comparator);
+                    // 求出访问最小的一项
+                    VisitInfo min = visitList.get(visitList.size() - 1);
+                    Long minCount = min.getKey();//最小的值
+                    if (count > minCount) {
+                        //删除最小的  
+                        visitList.remove(visitList.size() - 1);
+                        //添加大的                    
+                        visitList.add(new VisitInfo(count, key.toString()));
+                    }
+
+                }
+
+                if (!context.nextKey()) {
+                    Collections.sort(visitList, comparator);
+                    for (VisitInfo info : visitList) {
+                        context.write(NullWritable.get(), new Text(String.format("%s|%s", info.getKey(), info.getVal())));
+                    }
+                }
+            }
+
+        }
     }
 
-    private static boolean strIsEmpty(String str) {
-        return null == str || str.trim().length() <= 0;
+    public static void main(String[] args) throws Exception {
+        int result = ToolRunner.run(new MblDpiHostSort(), args);
+        System.exit(result);
     }
+
+
 }

@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Func：固网手机号
+ * Func：
  * Desc:
  * Author：JHF
  * Data：2017-08-11 14:12
@@ -31,10 +31,6 @@ public class MatchDpiHostWithChe {
    private static Matcher matcher = new Matcher(true);
 
     public static class fixDPiMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
-
-
-
-
         @Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String fixData = value.toString();
@@ -137,14 +133,6 @@ public class MatchDpiHostWithChe {
             }
             int index = -1;
             String _tempUrl = url;
-//            if (url.startsWith("http://")) {
-//                index = 7;
-//            } else if (url.startsWith("https://")) {
-//                index = 8;
-//            }
-//            if (index != -1) {
-//                _tempUrl = url.substring(index, url.length());
-//            }
             if (!StringUtils.strIsEmpty(_tempUrl)) {
                 Matcher.MatchResult[] a = matcher.match(_tempUrl);
                 if (a.length != 0) {
