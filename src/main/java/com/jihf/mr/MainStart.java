@@ -50,12 +50,10 @@ public class MainStart {
             // out：手机号|拨打类型|msisdn|语音时长
             driver.addClass("fixCdrComplain", FixCdrComplain.class, "filter the complain phoneNum from fixCdr data.");
 
-
-
-
             //  hadoop jar datac-1.16-shaded.jar  complainData <流量数据  短信数据  电话数据  输出目录>
             // out：手机号|…过程值…|得分
             driver.addClass("complainData",ComplainData.class,"complain data");
+
 
             driver.addClass("flowData", FlowData.class, "flow data");
             driver.addClass("smsData",SmsData.class,"sms data");
@@ -66,7 +64,6 @@ public class MainStart {
 
             //  hadoop jar datac-1.16-shaded.jar  matchDpiHostWithZaoJiao <移网dpi数据  移网cdr数据>
             driver.addClass("matchDpiHostWithZaoJiao", MatchDpiHostWithZaoJiao.class,"zaojiao Data");
-
 
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("copyFile", CopyFile.class, "copyFile from HDFS.");
