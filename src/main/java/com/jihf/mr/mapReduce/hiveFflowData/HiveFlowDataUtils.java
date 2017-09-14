@@ -17,7 +17,6 @@ public class HiveFlowDataUtils {
         if (null == str || str.length < 35) {
             return null;
         }
-        int i = -1;
         HiveFlowDataBean dataBean = new HiveFlowDataBean();
 
         dataBean.uid = StringUtils.strIsEmpty(str[0]) ? null : str[0];

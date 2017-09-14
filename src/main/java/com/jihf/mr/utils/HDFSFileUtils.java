@@ -33,10 +33,20 @@ public class HDFSFileUtils {
         try {
             FileSystem fs = FileSystem.get(cf);
             if (fs.exists(path)) {
-                fs.delete(path);
+                fs.delete(path, true);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static boolean isFile(Configuration cf, Path path) {
+        try {
+            FileSystem fs = FileSystem.get(cf);
+            return fs.exists(path) && fs.isFile(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

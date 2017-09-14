@@ -43,6 +43,7 @@ public class HiveFlowDataBean {
     public  String query_rsp;
     public  String source;
     public  String source_tag;
+
     public  String p_date;
     public  String p_operators;
 }

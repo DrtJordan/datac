@@ -4,16 +4,19 @@ import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataBean;
 import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataUtils;
 import com.jihf.mr.utils.Matcher;
 import com.jihf.mr.utils.StringUtils;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
+import com.raiyi.modelV2.Complaint;
+import com.raiyi.modelV2.FlowAnalysis;
+import org.apache.avro.file.DataFileReader;
+import org.apache.avro.io.DatumReader;
+import org.apache.avro.specific.SpecificDatumReader;
 
-import javax.xml.transform.Source;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URLStreamHandler;
-import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,8 +30,14 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-        File file = new File("E://excel/002192_0");
+        File file = new File("E://excel/dw_flow");
         txt2String(file);
+//        try {
+//            long dateTime = new SimpleDateFormat("yyyyMMdd").parse("20170804").getTime();
+//        } catch (ParseException e) {
+//            System.out.println(e);
+//            e.printStackTrace();
+//        }
     }
 
     private static boolean matchChe(String url) {
@@ -74,32 +83,29 @@ public class ReadText {
         int count = 0;
         String result = null;
         try {
+
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
             String s = null;
             while ((s = br.readLine()) != null) {
-//                //使用readLine方法，一次读一行
-                String[] datas = s.split("\u0001", -1);
+                //使用readLine方法，一次读一行
+                String[] datas = s.toString().split("\u0001", -1);
                 HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
-                int day =  Integer.parseInt(flowDataBean.date.substring(8,flowDataBean.date.length()));
-                if (ll.contains(flowDataBean.mobile)) {
-                    System.out.println(String.format("%s|%s|%s|%s|%s|%s",
-                            flowDataBean.mobile,
-                            flowDataBean.flow_total,
-                            flowDataBean.flow_over,
-                            flowDataBean.flow_used,
-                            flowDataBean.main_price,
-                            day));
+                if (null != flowDataBean && !StringUtils.strIsEmpty(flowDataBean.flow_total) && !StringUtils.strIsEmpty(flowDataBean.flow_used) && !StringUtils.strIsEmpty(flowDataBean.main_price)) {
+                    if (Double.parseDouble(flowDataBean.main_price) > 0) {
+                        System.out.println(flowDataBean.main_price);
+                    }
                 }
-
-
+//                DatumReader<FlowAnalysis> reader = new SpecificDatumReader<FlowAnalysis>(FlowAnalysis.class);
+//                DataFileReader<FlowAnalysis> dataFileReader = new DataFileReader<FlowAnalysis>(file, reader);
+//                while (dataFileReader.hasNext()) {
+//                    FlowAnalysis flowAnalysis = dataFileReader.next();
+//                        System.out.println(flowAnalysis.getLogDate());
+//
+//                }
             }
-//            System.out.println(urlList.size());
-//            urlList = filterUrlList();
-//            System.out.println(urlList.size());
-            for (String url : urlList) {
-//                openPage(url);
-                System.out.println("url：" + url);
-            }
+//            for (String url : urlList) {
+//                System.out.println("url：" + url);
+//            }
 
             br.close();
         } catch (Exception e) {
@@ -108,6 +114,28 @@ public class ReadText {
         }
 
         return result;
+    }
+
+    private static boolean isUp0(long... num) {
+        boolean flag = true;
+        for (long n : num) {
+            if (n <= 0) {
+                flag = false;
+            }
+        }
+        return flag;
+    }
+
+    /*
+   * 将时间戳转换为时间
+   */
+    public static String stampToDate(String s) {
+        String res;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        long lt = new Long(s);
+        Date date = new Date(lt);
+        res = simpleDateFormat.format(date);
+        return res;
     }
 
     private static List<String> filterUrlList() {

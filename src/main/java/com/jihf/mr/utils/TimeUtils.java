@@ -13,8 +13,8 @@ import java.util.Date;
  */
 public class TimeUtils {
     /*
-* 将时间转换为时间戳
-*/
+    * 将时间转换为时间戳
+    */
     public static Long dateToStamp(String s) {
         long ts = 0;
         try {

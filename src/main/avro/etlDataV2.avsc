@@ -1,0 +1,372 @@
+{
+    "type": "record",
+    "name": "FlowAnalysis",
+    "namespace": "com.raiyi.modelV2",
+    "fields": [
+        {
+            "name": "mobile",
+            "type": "string",
+            "doc": "设备号码",
+            "default": ""
+        },
+        {
+            "name": "device_id",
+            "type": "string",
+            "doc": "脱敏设备ID"
+        },
+        {
+            "name": "mobile_md5",
+            "type": "string",
+            "doc": "设备号码md5加密",
+            "default": ""
+        },
+        {
+            "name": "mobile_imei",
+            "type": "string",
+            "doc": "设备机器码",
+            "default": ""
+        },
+        {
+            "name": "province",
+            "type": "int",
+            "doc": "省份代码",
+            "default": -1
+        },
+        {
+            "name": "province_name",
+            "type": "string",
+            "doc": "省份名称",
+            "default": ""
+        },
+        {
+            "name": "city",
+            "type": "int",
+            "doc": "城市代码",
+            "default": -1
+        },
+        {
+            "name": "city_name",
+            "type": "string",
+            "doc": "城市名称",
+            "default": ""
+        },
+        {
+            "name": "create_date",
+            "type": "string",
+            "doc": "创建日期",
+            "default": ""
+        },
+        {
+            "name": "rowversion",
+            "type": "string",
+            "doc": "",
+            "default": ""
+        },
+        {
+            "name": "query_date",
+            "type": "string",
+            "doc": "查询日期",
+            "default": ""
+        },
+        {
+            "name": "lt_query_date",
+            "type": "string",
+            "doc": "",
+            "default": ""
+        },
+        {
+            "name": "rtb_key",
+            "type": "string",
+            "doc": "云公司key",
+            "default": ""
+        },
+        {
+            "name": "rtb_province",
+            "type": "string",
+            "doc": "省份：8+省份编码前2位，例如：江苏832",
+            "default": ""
+        },
+        {
+            "name": "log_date",
+            "type": "string",
+            "doc": "云公司计算日期",
+            "default": ""
+        },
+        {
+            "name": "flow_score",
+            "type": "int",
+            "doc": "云公司计算得分",
+            "default": -1
+        },
+        {
+            "name": "net_days",
+            "type": "int",
+            "doc": "联网天数",
+            "default": -1
+        },
+        {
+            "name": "net_counts",
+            "type": "int",
+            "doc": "联网次数",
+            "default": -1
+        },
+        {
+            "name": "net_duration",
+            "type": "int",
+            "doc": "联网时长",
+            "default": -1
+        },
+        {
+            "name": "basic_fee",
+            "type": "string",
+            "doc": "资费，单位：分",
+            "default": ""
+        },
+        {
+            "name": "visit_area",
+            "type": "string",
+            "doc": "拜访地地图",
+            "default": ""
+        },
+        {
+            "name": "basic_fee_over_daily",
+            "type": "string",
+            "doc": "每天资费超出与否",
+            "default": ""
+        },
+        {
+            "name": "roaming_num_count",
+            "type": {
+                "type": "record",
+                "name": "RoamingCount",
+                "fields": [
+                    {
+                        "name": "not_roaming_count",
+                        "type": "int",
+                        "doc": "非漫游联网次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "in_province_roaming_count",
+                        "type": "int",
+                        "doc": "省内漫游联网次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "inter_province_roaming_count",
+                        "type": "int",
+                        "doc": "省际漫游联网次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "international_roaming_count",
+                        "type": "int",
+                        "doc": "国际漫游联网次数",
+                        "default": -1
+                    }
+                ]
+            },
+            "doc": "漫游联网次数比"
+        },
+        {
+            "name": "roaming_flow_ratio",
+            "type": {
+                "type": "record",
+                "name": "RoamingFlow",
+                "fields": [
+                    {
+                        "name": "not_roaming_flow",
+                        "type": "int",
+                        "doc": "非漫游流量",
+                        "default": -1
+                    },
+                    {
+                        "name": "in_province_roaming_flow",
+                        "type": "int",
+                        "doc": "省内漫游流量",
+                        "default": -1
+                    },
+                    {
+                        "name": "inter_province_roaming_flow",
+                        "type": "int",
+                        "doc": "省际漫游流量",
+                        "default": -1
+                    },
+                    {
+                        "name": "international_roaming_flow",
+                        "type": "int",
+                        "doc": "国际漫游流量",
+                        "default": -1
+                    }
+                ]
+            },
+            "doc": "漫游流量比"
+        },
+        {
+            "name": "complaint_ratio",
+            "type": {
+                "type": "record",
+                "name": "Complaint",
+                "fields": [
+                    {
+                        "name": "call_from_tele",
+                        "type": "int",
+                        "doc": "10000主叫次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "call_to_tele",
+                        "type": "int",
+                        "doc": "10000被叫次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "call_to_MIT",
+                        "type": "int",
+                        "doc": "12300次数",
+                        "default": -1
+                    },
+                    {
+                        "name": "call_to_sms",
+                        "type": "int",
+                        "doc": "12321垃圾短信投诉次数",
+                        "default": -1
+                    }
+                ]
+            },
+            "doc": "投诉比, 10000主叫：10000被叫：12300 :12321"
+        },
+        {
+            "name": "max_calltime_ratio",
+            "type": {
+                "type": "record",
+                "name": "MaxCallTime",
+                "fields": [
+                    {
+                        "name": "tele_max_call_time",
+                        "type": "int",
+                        "doc": "10000最大通话时长",
+                        "default": -1
+                    },
+                    {
+                        "name": "mit_max_call_time",
+                        "type": "int",
+                        "doc": "12300最大通话时长",
+                        "default": -1
+                    }
+                ]
+            },
+            "doc": "最大通话时长比, 10000最大通话时长：12300最大通话时长"
+        },
+        {
+            "name": "is_call_times_normal",
+            "type": "int",
+            "doc": "通话时长大于n次的次数, 标志位：0：正常  1：突增",
+            "default": -1
+        },
+        {
+            "name": "qmd",
+            "type": "string",
+            "doc": "类型",
+            "default": ""
+        },
+        {
+            "name": "result",
+            "type": "string",
+            "doc": "666原始报文",
+            "default": ""
+        },
+        {
+            "name": "s_table",
+            "type": "string",
+            "doc": "",
+            "default": ""
+        },
+        {
+            "name": "fee_add",
+            "type": "long",
+            "doc": "附加费",
+            "default": -1
+        },
+        {
+            "name": "basicfee_area",
+            "type": "string",
+            "doc": "日资费是否超出轨迹",
+            "default": ""
+        },
+        {
+            "name": "op",
+            "type": "int",
+            "doc": "加密方式",
+            "default": -1
+        },
+        {
+            "name": "flow_ratio",
+            "type": "string",
+            "doc": "日流量使用比",
+            "default": ""
+        },
+        {
+            "name": "flow_over",
+            "type": "int",
+            "doc": "预计超流量",
+            "default": -1
+        },
+        {
+            "name": "id",
+            "type": "string",
+            "doc": "id",
+            "default": ""
+        },
+        {
+            "name": "flow_size",
+            "type": "double",
+            "doc": "带入总流量",
+            "default": -1
+        },
+        {
+            "name": "flow_use",
+            "type": "double",
+            "doc": "使用流量",
+            "default": -1
+        },
+        {
+            "name": "last_mydate_visitarea",
+            "type": [
+                "null",
+                {
+                    "type": "record",
+                    "name": "LastVisit",
+                    "fields": [
+                        {
+                            "name": "last_visit_date",
+                            "type": "string",
+                            "doc": "最后一次漫游日期",
+                            "default": ""
+                        },
+                        {
+                            "name": "last_visit_area",
+                            "type": "string",
+                            "doc": "最后一次漫游地",
+                            "default": ""
+                        }
+                    ]
+                }
+            ],
+            "doc": "最后一次漫游地和漫游日期",
+            "default": null
+        },
+        {
+            "name": "province_my_area",
+            "type": "string",
+            "doc": "省内漫游日统计",
+            "default": ""
+        },
+        {
+            "name": "country_my_area",
+            "type": "string",
+            "doc": "国内漫游日统计",
+            "default": ""
+        }
+    ]
+}

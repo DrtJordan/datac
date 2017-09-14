@@ -1,6 +1,8 @@
 package com.jihf.mr;
 
 import com.jihf.mr.mapReduce.*;
+import com.jihf.mr.mapReduce.complainModel.*;
+import com.jihf.mr.mapReduce.zaojiao.MatchDpiHostWithZaoJiao;
 import org.apache.hadoop.util.ProgramDriver;
 
 /**
@@ -33,16 +35,27 @@ public class MainStart {
             driver.addClass("mblDpiHostSort", MblDpiHostSort.class, "count the num of host visited in mobile dpi.");
             // hadoop jar datac-1.7.jar  matchMblCdrComplain <mblCdrFolder outputFolder>
 
-            driver.addClass("sortComplainUserHost", SortComplainUserHost.class, "aaa");
-            driver.addClass("sortData", SortData.class, "aaa");
-            driver.addClass("matchDpiHostWithChe", MatchDpiHostWithChe.class, "aaa");
-            driver.addClass("matchMblHostComplain", MatchMblHostComplain.class, "aaa");
+            driver.addClass("sortComplainUserHost", SortComplainUserHost.class, "complain sort");
+            driver.addClass("sortData", SortData.class, "sort");
+            driver.addClass("matchDpiHostWithChe", MatchDpiHostWithChe.class, "matchDpiHostWithChe");
+            driver.addClass("matchMblHostComplain", MatchMblHostComplain.class, "matchMblHostComplain");
             // 投诉用户中拨打投诉电话的
             driver.addClass("matchMblCdrComplain", MatchMblCdrComplain.class, "filter the complain phoneNum from mobile data.");
             // hadoop jar datac-1.9.jar   fixDpiPhoneNum  <input>  <output>
             driver.addClass("fixDpiPhoneNum", FixDpiPhoneNum.class, "filter the phoneNum from fixDpi data.");
             driver.addClass("fixCdrComplain", FixCdrComplain.class, "filter the complain phoneNum from fixCdr data.");
-            driver.addClass("flowData", FlowData.class, "aaaa");
+
+
+            driver.addClass("flowData", FlowData.class, "flow data");
+            driver.addClass("smsData",SmsData.class,"sms data");
+            driver.addClass("etlData", EtlData.class, "etl data");
+
+            //  hadoop jar datac-1.16-shaded.jar  complainData <流量数据  短信数据  电话数据  输出目录>
+            driver.addClass("complainData",ComplainData.class,"complain data");
+            //  hadoop jar datac-1.16-shaded.jar  complainData <样本手机号  流量数据  短信数据  电话数据  输出目录>
+            driver.addClass("matchComplainData",MatchComplainData.class,"complain data");
+            //  hadoop jar datac-1.16-shaded.jar  matchDpiHostWithZaoJiao <移网dpi数据  移网cdr数据>
+            driver.addClass("matchDpiHostWithZaoJiao", MatchDpiHostWithZaoJiao.class,"zaojiao Data");
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("countData", CountData.class, "count data times.");
             exitCode = driver.run(args);
