@@ -1,12 +1,8 @@
 package com.jihf.mr.java;
 
-import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataBean;
-import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataUtils;
-import com.jihf.mr.utils.HDFSFileUtils;
 import com.jihf.mr.utils.Matcher;
 import com.jihf.mr.utils.StringUtils;
-import com.raiyi.dpiModel.DpiResult;
-import com.raiyi.dpiModel.HostPair;
+import model.DpiResult;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.specific.SpecificDatumReader;

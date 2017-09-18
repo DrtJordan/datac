@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "DpiResult",
-    "namespace": "com.raiyi.dpiModel",
+    "namespace": "model",
     "fields": [
         {
             "name": "phone_number",

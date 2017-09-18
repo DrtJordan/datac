@@ -10,13 +10,9 @@ import org.apache.avro.mapred.AvroKey;
 import org.apache.avro.mapreduce.AvroKeyInputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -29,63 +25,58 @@ import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Func：
  * Desc:
  * Author：JHF
- * Data：2017-09-08 10:54
+ * Data：2017-09-18 14:55
  * Mail：jihaifeng@raiyi.com
  */
-public class MatchComplainData extends Configured implements Tool {
+public class GetComplainData extends Configured implements Tool {
     public static final String TAG_test = "0";
     public static final String TAG_URL = "1";
     public static final String TAG_ETL = "2";
 
-    public static List<String> pathList = new ArrayList<String>();
-
     @Override
     public int run(String[] args) throws Exception {
-        try {
-            //  hadoop jar datac-1.16-shaded.jar  complainData <样本手机号  Dpi数据  etl数据  输出目录>
-            String input1 = "jihaifeng/20170909/phoneNum_20170909.txt";
-            String input2 = "jihaifeng/20170909/jiangsu_dpi_0909.avro";
-            String input3 = "jihaifeng/20170909/mobile_flow_20170909.txt";
-            String output = Config.MOBILE_DPI_OUTPUT;
-            if (null != args && args.length != 0) {
-                if (args.length == 4) {
-                    input1 = args[0];
-                    input2 = args[1];
-                    input3 = args[2];
-                    output = args[3];
-                } else {
-                    JobUtils.exit("the num of parameter is illegal.");
-                }
+        //  hadoop jar datac-1.16-shaded.jar  complainData <Dpi数据  etl数据  输出目录>
+        String input1 = "jihaifeng/20170909/jiangsu_dpi_0909.avro";
+        String input2 = "jihaifeng/20170909/mobile_flow_20170909.txt";
+        String output = Config.MOBILE_DPI_OUTPUT;
+        if (null != args && args.length != 0) {
+            if (args.length == 2) {
+                input1 = args[0];
+                input2 = args[1];
+            } else if (args.length == 3) {
+                input1 = args[0];
+                input2 = args[1];
+                output = args[2];
+            } else {
+                JobUtils.exit("the num of parameter is illegal.");
             }
-            Configuration cf = MrUtils.getRaiyiConfiguration();
-            Job job = Job.getInstance(cf, "hiveData");
-            job.setJarByClass(MatchComplainData.class);
+        }
+        Configuration cf = MrUtils.getRaiyiConfiguration();
+        Job job = Job.getInstance(cf, "hiveData");
+        job.setJarByClass(GetComplainData.class);
 
 
-            job.setOutputFormatClass(TextOutputFormat.class);
+        job.setOutputFormatClass(TextOutputFormat.class);
 
-            job.setMapOutputKeyClass(Text.class);
-            job.setMapOutputValueClass(Text.class);
+        job.setMapOutputKeyClass(Text.class);
+        job.setMapOutputValueClass(Text.class);
 
-            job.setReducerClass(complainDataReduce.class);
-            job.setOutputKeyClass(NullWritable.class);
-            job.setOutputValueClass(Text.class);
+        job.setReducerClass(complainDataReduce.class);
+        job.setOutputKeyClass(NullWritable.class);
+        job.setOutputValueClass(Text.class);
 
 
-            // MultipleInputs类添加文件路径
-            MultipleInputs.addInputPath(job, new Path(input1),
-                    TextInputFormat.class, phoneNumMap.class);
-            MultipleInputs.addInputPath(job, new Path(input2),
-                    AvroKeyInputFormat.class, dpiDataMap.class);
-            MultipleInputs.addInputPath(job, new Path(input3),
-                    AvroKeyInputFormat.class, etlDataMap.class);
+        // MultipleInputs类添加文件路径
+        MultipleInputs.addInputPath(job, new Path(input1),
+                AvroKeyInputFormat.class, dpiDataMap.class);
+        MultipleInputs.addInputPath(job, new Path(input2),
+                AvroKeyInputFormat.class, etlDataMap.class);
 
 //            initInputPath(cf, job, input1, TextInputFormat.class, phoneNumMap.class);
 //            initInputPath(cf, job, input2, TextInputFormat.class, flowDataMap.class);
@@ -93,83 +84,17 @@ public class MatchComplainData extends Configured implements Tool {
 //            initInputPath(cf, job, input4, AvroKeyInputFormat.class, etlDataMap.class);
 
 
-            FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
+        FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
 
-            System.out.println("\n==================================\n");
-            System.out.println("输入目录：" + input1);
-            System.out.println("输入目录：" + input2);
-            System.out.println("输入目录：" + input3);
-            System.out.println("输出目录：" + output);
-            System.out.println("\n==================================\n");
+        System.out.println("\n==================================\n");
+        System.out.println("输入目录：" + input1);
+        System.out.println("输入目录：" + input2);
+        System.out.println("输出目录：" + output);
+        System.out.println("\n==================================\n");
 
-            System.out.println(job.waitForCompletion(true) ? 0 : 1);
+        System.out.println(job.waitForCompletion(true) ? 0 : 1);
 
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
         return 0;
-    }
-
-
-    private void initInputPath(Configuration cf, Job job, String input, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (input.contains("&")) {
-            String[] inputs = input.split("&", -1);
-            for (String in : inputs) {
-                Path path = new Path(in);
-                if (HDFSFileUtils.isFile(cf, path)) {
-                    MultipleInputs.addInputPath(job, path, inputFormatClass, mapperClass);
-                } else {
-                    iteratorAddFiles(cf, job, path, inputFormatClass, mapperClass);
-                }
-
-            }
-        } else if (input.contains("|")) {
-
-        }
-    }
-
-
-    public static void iteratorAddFiles(Configuration conf, Job job, Path path, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (isObjectNull(conf, job, path, inputFormatClass, mapperClass)) {
-            JobUtils.exit("failure to addInputPath");
-        }
-        try {
-            FileSystem hdfs = FileSystem.get(conf);
-            //获取文件列表
-            FileStatus[] files = hdfs.listStatus(path);
-
-            //展示文件信息
-            for (FileStatus file : files) {
-                try {
-                    if (file.isDirectory()) {
-                        //递归调用
-                        iteratorAddFiles(conf, job, file.getPath(), inputFormatClass, mapperClass);
-                    } else if (file.isFile() && !file.getPath().getName().equals("_SUCCESS")) {
-                        MultipleInputs.addInputPath(job, file.getPath(), inputFormatClass, mapperClass);
-                        pathList.add(file.getPath().toString());
-                    }
-                } catch (Exception e) {
-                    JobUtils.exit("iteratorAddFiles e：" + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            JobUtils.exit("e：" + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * 样本手机号
-     */
-    public static class phoneNumMap extends Mapper<LongWritable, Text, Text, Text> {
-        @Override
-        protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            if (!StringUtils.strIsEmpty(value.toString()))
-                context.write(value, new Text(TAG_test));
-        }
     }
 
     /**
@@ -231,18 +156,18 @@ public class MatchComplainData extends Configured implements Tool {
     public static class etlDataMap extends Mapper<AvroKey<FlowAnalysis>, NullWritable, Text, Text> {
         @Override
         protected void map(AvroKey<FlowAnalysis> key, NullWritable value, Context context) throws IOException, InterruptedException {
-                Complaint complaint = key.datum().getComplaintRatio();
-                String mobile = null != key.datum().getMobile() ? key.datum().getMobile().toString() : null;
-                int callFromTel = null != complaint ? complaint.getCallFromTele() : 0;
-                int callToTel = null != complaint ? complaint.getCallToTele() : 0;
-                String queryDate = null != key.datum().getQueryDate() ? key.datum().getQueryDate().toString() : null;
-                if (!StringUtils.strIsEmpty(mobile)) {
-                    context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s",
-                            TAG_ETL,
-                            queryDate,
-                            callFromTel,
-                            callToTel)));
-                }
+            Complaint complaint = key.datum().getComplaintRatio();
+            String mobile = null != key.datum().getMobile() ? key.datum().getMobile().toString() : null;
+            int callFromTel = null != complaint ? complaint.getCallFromTele() : 0;
+            int callToTel = null != complaint ? complaint.getCallToTele() : 0;
+            String queryDate = null != key.datum().getQueryDate() ? key.datum().getQueryDate().toString() : null;
+            if (!StringUtils.strIsEmpty(mobile)) {
+                context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s",
+                        TAG_ETL,
+                        queryDate,
+                        callFromTel,
+                        callToTel)));
+            }
         }
     }
 
@@ -254,6 +179,7 @@ public class MatchComplainData extends Configured implements Tool {
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
 
             boolean flag1 = false;
+            boolean flag2 = false;
             // DPI域名访问次数
             int urlCount = 0;
 
@@ -266,13 +192,10 @@ public class MatchComplainData extends Configured implements Tool {
                 String[] datas = val.toString().split("\\|", -1);
                 String tag = datas[0];
 
-                if (tag.equals(TAG_test)) {
-                    flag1 = true;
-                }
-
                 // DPI数据
                 if (tag.equals(TAG_URL)) {
                     urlCount += Integer.parseInt(datas[2]);
+                    flag1 = true;
                 }
 
                 // 电话数据
@@ -285,6 +208,7 @@ public class MatchComplainData extends Configured implements Tool {
                             callFrom = StringUtils.strIsEmpty(datas[3]) ? -1 : Integer.parseInt(datas[3]);
                             maxTime = dateTime;
                         }
+                        flag2 = true;
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -300,7 +224,7 @@ public class MatchComplainData extends Configured implements Tool {
             long s3 = 10 * C;
             long s4 = isUp0(A, C) ? 10 * A * C : 0;
             double score = s1 + s2 + s3 + s4;
-            if (!StringUtils.strIsEmpty(key.toString()) && flag1 && score > 0) {
+            if (!StringUtils.strIsEmpty(key.toString()) && flag1 && flag2) {
                 context.write(NullWritable.get(), new Text(String.format("%s|%s|%s|%s|%s",
                         key,
                         A,
@@ -322,18 +246,8 @@ public class MatchComplainData extends Configured implements Tool {
 
     }
 
-    private static boolean isObjectNull(Object... objets) {
-        boolean flag = false;
-        for (Object obj : objets) {
-            if (null == obj) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-
     public static void main(String[] args) throws Exception {
-        int exitCode = ToolRunner.run(new MatchComplainData(), args);
+        int exitCode = ToolRunner.run(new GetComplainData(), args);
         System.exit(exitCode);
     }
 }

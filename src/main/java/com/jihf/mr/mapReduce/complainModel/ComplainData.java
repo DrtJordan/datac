@@ -6,8 +6,8 @@ import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataUtils;
 import com.jihf.mr.mapReduce.hiveSMSData.HiveSmsDataBean;
 import com.jihf.mr.mapReduce.hiveSMSData.HiveSmsDataUtils;
 import com.jihf.mr.utils.*;
-import com.raiyi.etlModelV2.Complaint;
-import com.raiyi.etlModelV2.FlowAnalysis;
+import com.raiyi.modelV2.Complaint;
+import com.raiyi.modelV2.FlowAnalysis;
 import org.apache.avro.mapred.AvroKey;
 import org.apache.avro.mapreduce.AvroKeyInputFormat;
 import org.apache.hadoop.conf.Configuration;
@@ -183,7 +183,6 @@ public class ComplainData extends Configured implements Tool {
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] datas = value.toString().split("\u0001", -1);
             HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
-            try {
                 int day = Integer.parseInt(flowDataBean.date.substring(8, flowDataBean.date.length())) - 1;
                 context.write(new Text(flowDataBean.mobile),
                         new Text(String.format("%s|%s|%s|%s|%s",
@@ -192,9 +191,6 @@ public class ComplainData extends Configured implements Tool {
                                 flowDataBean.flow_used,
                                 flowDataBean.main_price,
                                 day)));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
 

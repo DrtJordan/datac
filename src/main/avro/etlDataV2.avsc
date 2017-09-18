@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "FlowAnalysis",
-    "namespace": "com.raiyi.etlModelV2",
+    "namespace": "com.raiyi.modelV2",
     "fields": [
         {
             "name": "mobile",
@@ -366,6 +366,62 @@
             "name": "country_my_area",
             "type": "string",
             "doc": "国内漫游日统计",
+            "default": ""
+        },
+        {
+            "name": "imsi",
+            "type": "string",
+            "doc": "国际移动用户识别码",
+            "default": ""
+        },
+        {
+            "name": "prov_offer_id",
+            "type": [
+                "null",
+                {
+                    "type": "record",
+                    "name": "ProvOfferId",
+                    "fields": [
+                        {
+                            "name": "offer_id_1",
+                            "type": "string",
+                            "doc": "套餐ID1",
+                            "default": ""
+                        },
+                        {
+                            "name": "offer_id_2",
+                            "type": "string",
+                            "doc": "套餐ID2",
+                            "default": ""
+                        },
+                        {
+                            "name": "offer_id_3",
+                            "type": "string",
+                            "doc": "套餐ID3",
+                            "default": ""
+                        },
+                        {
+                            "name": "offer_id_4",
+                            "type": "string",
+                            "doc": "套餐ID4",
+                            "default": ""
+                        },
+                        {
+                            "name": "offer_id_5",
+                            "type": "string",
+                            "doc": "套餐ID5",
+                            "default": ""
+                        }
+                    ]
+                }
+            ],
+            "doc": "套餐ID",
+            "default": null
+        },
+        {
+            "name": "user_tag",
+            "type": "string",
+            "doc": "用户标签",
             "default": ""
         }
     ]

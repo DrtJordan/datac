@@ -52,18 +52,22 @@ public class MainStart {
 
             //  hadoop jar datac-1.16-shaded.jar  complainData <流量数据  短信数据  电话数据  输出目录>
             // out：手机号|…过程值…|得分
-            driver.addClass("complainData",ComplainData.class,"complain data");
+            driver.addClass("complainData", ComplainData.class, "complain data");
 
 
             driver.addClass("flowData", FlowData.class, "flow data");
-            driver.addClass("smsData",SmsData.class,"sms data");
+            driver.addClass("smsData", SmsData.class, "sms data");
             driver.addClass("etlData", EtlData.class, "etl data");
 
             //  hadoop jar datac-1.16-shaded.jar  complainData <样本手机号  Dpi数据  etl数据  输出目录>
-            driver.addClass("matchComplainData",MatchComplainData.class,"complain data");
+            driver.addClass("matchComplainData", MatchComplainData.class, "complain data");
 
             //  hadoop jar datac-1.16-shaded.jar  matchDpiHostWithZaoJiao <移网dpi数据  移网cdr数据>
-            driver.addClass("matchDpiHostWithZaoJiao", MatchDpiHostWithZaoJiao.class,"zaojiao Data");
+            driver.addClass("matchDpiHostWithZaoJiao", MatchDpiHostWithZaoJiao.class, "zaojiao Data");
+
+            driver.addClass("dpiData", DpiData.class, "hive DpiData");
+
+            driver.addClass("getComplainData",GetComplainData.class,"Get ComplainPhone");
 
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("copyFile", CopyFile.class, "copyFile from HDFS.");
