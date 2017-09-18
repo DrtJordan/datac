@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.model;  
+package com.raiyi.etlModelV2;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingFlow\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"非漫游流量\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省内漫游流量\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省际漫游流量\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"国际漫游流量\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingFlow\",\"namespace\":\"com.raiyi.etlModelV2\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"非漫游流量\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省内漫游流量\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省际漫游流量\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"国际漫游流量\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 非漫游流量 */
   @Deprecated public int not_roaming_flow;
@@ -117,18 +117,18 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /** Creates a new RoamingFlow RecordBuilder */
-  public static com.raiyi.model.RoamingFlow.Builder newBuilder() {
-    return new com.raiyi.model.RoamingFlow.Builder();
+  public static com.raiyi.etlModelV2.RoamingFlow.Builder newBuilder() {
+    return new com.raiyi.etlModelV2.RoamingFlow.Builder();
   }
   
   /** Creates a new RoamingFlow RecordBuilder by copying an existing Builder */
-  public static com.raiyi.model.RoamingFlow.Builder newBuilder(com.raiyi.model.RoamingFlow.Builder other) {
-    return new com.raiyi.model.RoamingFlow.Builder(other);
+  public static com.raiyi.etlModelV2.RoamingFlow.Builder newBuilder(com.raiyi.etlModelV2.RoamingFlow.Builder other) {
+    return new com.raiyi.etlModelV2.RoamingFlow.Builder(other);
   }
   
   /** Creates a new RoamingFlow RecordBuilder by copying an existing RoamingFlow instance */
-  public static com.raiyi.model.RoamingFlow.Builder newBuilder(com.raiyi.model.RoamingFlow other) {
-    return new com.raiyi.model.RoamingFlow.Builder(other);
+  public static com.raiyi.etlModelV2.RoamingFlow.Builder newBuilder(com.raiyi.etlModelV2.RoamingFlow other) {
+    return new com.raiyi.etlModelV2.RoamingFlow.Builder(other);
   }
   
   /**
@@ -144,17 +144,17 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.model.RoamingFlow.SCHEMA$);
+      super(com.raiyi.etlModelV2.RoamingFlow.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.model.RoamingFlow.Builder other) {
+    private Builder(com.raiyi.etlModelV2.RoamingFlow.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing RoamingFlow instance */
-    private Builder(com.raiyi.model.RoamingFlow other) {
-            super(com.raiyi.model.RoamingFlow.SCHEMA$);
+    private Builder(com.raiyi.etlModelV2.RoamingFlow other) {
+            super(com.raiyi.etlModelV2.RoamingFlow.SCHEMA$);
       if (isValidValue(fields()[0], other.not_roaming_flow)) {
         this.not_roaming_flow = data().deepCopy(fields()[0].schema(), other.not_roaming_flow);
         fieldSetFlags()[0] = true;
@@ -179,7 +179,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'not_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder setNotRoamingFlow(int value) {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder setNotRoamingFlow(int value) {
       validate(fields()[0], value);
       this.not_roaming_flow = value;
       fieldSetFlags()[0] = true;
@@ -192,7 +192,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'not_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder clearNotRoamingFlow() {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder clearNotRoamingFlow() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -203,7 +203,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'in_province_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder setInProvinceRoamingFlow(int value) {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder setInProvinceRoamingFlow(int value) {
       validate(fields()[1], value);
       this.in_province_roaming_flow = value;
       fieldSetFlags()[1] = true;
@@ -216,7 +216,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'in_province_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder clearInProvinceRoamingFlow() {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder clearInProvinceRoamingFlow() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -227,7 +227,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'inter_province_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder setInterProvinceRoamingFlow(int value) {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder setInterProvinceRoamingFlow(int value) {
       validate(fields()[2], value);
       this.inter_province_roaming_flow = value;
       fieldSetFlags()[2] = true;
@@ -240,7 +240,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'inter_province_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder clearInterProvinceRoamingFlow() {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder clearInterProvinceRoamingFlow() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -251,7 +251,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'international_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder setInternationalRoamingFlow(int value) {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder setInternationalRoamingFlow(int value) {
       validate(fields()[3], value);
       this.international_roaming_flow = value;
       fieldSetFlags()[3] = true;
@@ -264,7 +264,7 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'international_roaming_flow' field */
-    public com.raiyi.model.RoamingFlow.Builder clearInternationalRoamingFlow() {
+    public com.raiyi.etlModelV2.RoamingFlow.Builder clearInternationalRoamingFlow() {
       fieldSetFlags()[3] = false;
       return this;
     }

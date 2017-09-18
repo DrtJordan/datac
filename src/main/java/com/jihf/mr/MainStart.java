@@ -59,7 +59,7 @@ public class MainStart {
             driver.addClass("smsData",SmsData.class,"sms data");
             driver.addClass("etlData", EtlData.class, "etl data");
 
-            //  hadoop jar datac-1.16-shaded.jar  complainData <样本手机号  流量数据  短信数据  电话数据  输出目录>
+            //  hadoop jar datac-1.16-shaded.jar  complainData <样本手机号  Dpi数据  etl数据  输出目录>
             driver.addClass("matchComplainData",MatchComplainData.class,"complain data");
 
             //  hadoop jar datac-1.16-shaded.jar  matchDpiHostWithZaoJiao <移网dpi数据  移网cdr数据>

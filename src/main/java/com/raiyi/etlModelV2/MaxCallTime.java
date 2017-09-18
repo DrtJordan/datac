@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.model;  
+package com.raiyi.etlModelV2;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MaxCallTime\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MaxCallTime\",\"namespace\":\"com.raiyi.etlModelV2\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 10000最大通话时长 */
   @Deprecated public int tele_max_call_time;
@@ -77,18 +77,18 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /** Creates a new MaxCallTime RecordBuilder */
-  public static com.raiyi.model.MaxCallTime.Builder newBuilder() {
-    return new com.raiyi.model.MaxCallTime.Builder();
+  public static com.raiyi.etlModelV2.MaxCallTime.Builder newBuilder() {
+    return new com.raiyi.etlModelV2.MaxCallTime.Builder();
   }
   
   /** Creates a new MaxCallTime RecordBuilder by copying an existing Builder */
-  public static com.raiyi.model.MaxCallTime.Builder newBuilder(com.raiyi.model.MaxCallTime.Builder other) {
-    return new com.raiyi.model.MaxCallTime.Builder(other);
+  public static com.raiyi.etlModelV2.MaxCallTime.Builder newBuilder(com.raiyi.etlModelV2.MaxCallTime.Builder other) {
+    return new com.raiyi.etlModelV2.MaxCallTime.Builder(other);
   }
   
   /** Creates a new MaxCallTime RecordBuilder by copying an existing MaxCallTime instance */
-  public static com.raiyi.model.MaxCallTime.Builder newBuilder(com.raiyi.model.MaxCallTime other) {
-    return new com.raiyi.model.MaxCallTime.Builder(other);
+  public static com.raiyi.etlModelV2.MaxCallTime.Builder newBuilder(com.raiyi.etlModelV2.MaxCallTime other) {
+    return new com.raiyi.etlModelV2.MaxCallTime.Builder(other);
   }
   
   /**
@@ -102,17 +102,17 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.model.MaxCallTime.SCHEMA$);
+      super(com.raiyi.etlModelV2.MaxCallTime.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.model.MaxCallTime.Builder other) {
+    private Builder(com.raiyi.etlModelV2.MaxCallTime.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing MaxCallTime instance */
-    private Builder(com.raiyi.model.MaxCallTime other) {
-            super(com.raiyi.model.MaxCallTime.SCHEMA$);
+    private Builder(com.raiyi.etlModelV2.MaxCallTime other) {
+            super(com.raiyi.etlModelV2.MaxCallTime.SCHEMA$);
       if (isValidValue(fields()[0], other.tele_max_call_time)) {
         this.tele_max_call_time = data().deepCopy(fields()[0].schema(), other.tele_max_call_time);
         fieldSetFlags()[0] = true;
@@ -129,7 +129,7 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'tele_max_call_time' field */
-    public com.raiyi.model.MaxCallTime.Builder setTeleMaxCallTime(int value) {
+    public com.raiyi.etlModelV2.MaxCallTime.Builder setTeleMaxCallTime(int value) {
       validate(fields()[0], value);
       this.tele_max_call_time = value;
       fieldSetFlags()[0] = true;
@@ -142,7 +142,7 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'tele_max_call_time' field */
-    public com.raiyi.model.MaxCallTime.Builder clearTeleMaxCallTime() {
+    public com.raiyi.etlModelV2.MaxCallTime.Builder clearTeleMaxCallTime() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -153,7 +153,7 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Sets the value of the 'mit_max_call_time' field */
-    public com.raiyi.model.MaxCallTime.Builder setMitMaxCallTime(int value) {
+    public com.raiyi.etlModelV2.MaxCallTime.Builder setMitMaxCallTime(int value) {
       validate(fields()[1], value);
       this.mit_max_call_time = value;
       fieldSetFlags()[1] = true;
@@ -166,7 +166,7 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
     }
     
     /** Clears the value of the 'mit_max_call_time' field */
-    public com.raiyi.model.MaxCallTime.Builder clearMitMaxCallTime() {
+    public com.raiyi.etlModelV2.MaxCallTime.Builder clearMitMaxCallTime() {
       fieldSetFlags()[1] = false;
       return this;
     }

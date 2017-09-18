@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.model;  
+package com.raiyi.etlModel;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingCount\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"非漫游联网次数\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"省内漫游联网次数\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"省际漫游联网次数\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"国际漫游联网次数\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingCount\",\"namespace\":\"com.raiyi.etlModel\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"非漫游联网次数\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"省内漫游联网次数\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"省际漫游联网次数\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"国际漫游联网次数\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 非漫游联网次数 */
   @Deprecated public int not_roaming_count;
@@ -117,18 +117,18 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /** Creates a new RoamingCount RecordBuilder */
-  public static com.raiyi.model.RoamingCount.Builder newBuilder() {
-    return new com.raiyi.model.RoamingCount.Builder();
+  public static com.raiyi.etlModel.RoamingCount.Builder newBuilder() {
+    return new com.raiyi.etlModel.RoamingCount.Builder();
   }
   
   /** Creates a new RoamingCount RecordBuilder by copying an existing Builder */
-  public static com.raiyi.model.RoamingCount.Builder newBuilder(com.raiyi.model.RoamingCount.Builder other) {
-    return new com.raiyi.model.RoamingCount.Builder(other);
+  public static com.raiyi.etlModel.RoamingCount.Builder newBuilder(com.raiyi.etlModel.RoamingCount.Builder other) {
+    return new com.raiyi.etlModel.RoamingCount.Builder(other);
   }
   
   /** Creates a new RoamingCount RecordBuilder by copying an existing RoamingCount instance */
-  public static com.raiyi.model.RoamingCount.Builder newBuilder(com.raiyi.model.RoamingCount other) {
-    return new com.raiyi.model.RoamingCount.Builder(other);
+  public static com.raiyi.etlModel.RoamingCount.Builder newBuilder(com.raiyi.etlModel.RoamingCount other) {
+    return new com.raiyi.etlModel.RoamingCount.Builder(other);
   }
   
   /**
@@ -144,17 +144,17 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.model.RoamingCount.SCHEMA$);
+      super(com.raiyi.etlModel.RoamingCount.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.model.RoamingCount.Builder other) {
+    private Builder(com.raiyi.etlModel.RoamingCount.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing RoamingCount instance */
-    private Builder(com.raiyi.model.RoamingCount other) {
-            super(com.raiyi.model.RoamingCount.SCHEMA$);
+    private Builder(com.raiyi.etlModel.RoamingCount other) {
+            super(com.raiyi.etlModel.RoamingCount.SCHEMA$);
       if (isValidValue(fields()[0], other.not_roaming_count)) {
         this.not_roaming_count = data().deepCopy(fields()[0].schema(), other.not_roaming_count);
         fieldSetFlags()[0] = true;
@@ -179,7 +179,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'not_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder setNotRoamingCount(int value) {
+    public com.raiyi.etlModel.RoamingCount.Builder setNotRoamingCount(int value) {
       validate(fields()[0], value);
       this.not_roaming_count = value;
       fieldSetFlags()[0] = true;
@@ -192,7 +192,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'not_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder clearNotRoamingCount() {
+    public com.raiyi.etlModel.RoamingCount.Builder clearNotRoamingCount() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -203,7 +203,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'in_province_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder setInProvinceRoamingCount(int value) {
+    public com.raiyi.etlModel.RoamingCount.Builder setInProvinceRoamingCount(int value) {
       validate(fields()[1], value);
       this.in_province_roaming_count = value;
       fieldSetFlags()[1] = true;
@@ -216,7 +216,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'in_province_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder clearInProvinceRoamingCount() {
+    public com.raiyi.etlModel.RoamingCount.Builder clearInProvinceRoamingCount() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -227,7 +227,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'inter_province_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder setInterProvinceRoamingCount(int value) {
+    public com.raiyi.etlModel.RoamingCount.Builder setInterProvinceRoamingCount(int value) {
       validate(fields()[2], value);
       this.inter_province_roaming_count = value;
       fieldSetFlags()[2] = true;
@@ -240,7 +240,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'inter_province_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder clearInterProvinceRoamingCount() {
+    public com.raiyi.etlModel.RoamingCount.Builder clearInterProvinceRoamingCount() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -251,7 +251,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'international_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder setInternationalRoamingCount(int value) {
+    public com.raiyi.etlModel.RoamingCount.Builder setInternationalRoamingCount(int value) {
       validate(fields()[3], value);
       this.international_roaming_count = value;
       fieldSetFlags()[3] = true;
@@ -264,7 +264,7 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'international_roaming_count' field */
-    public com.raiyi.model.RoamingCount.Builder clearInternationalRoamingCount() {
+    public com.raiyi.etlModel.RoamingCount.Builder clearInternationalRoamingCount() {
       fieldSetFlags()[3] = false;
       return this;
     }

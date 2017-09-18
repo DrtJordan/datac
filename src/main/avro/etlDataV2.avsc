@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "FlowAnalysis",
-    "namespace": "com.raiyi.modelV2",
+    "namespace": "com.raiyi.etlModelV2",
     "fields": [
         {
             "name": "mobile",

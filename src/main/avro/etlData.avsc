@@ -1,7 +1,7 @@
 {
     "type": "record",
     "name": "FlowAnalysis",
-    "namespace": "com.raiyi.model",
+    "namespace": "com.raiyi.etlModel",
     "fields": [
         {
             "name": "log_date",

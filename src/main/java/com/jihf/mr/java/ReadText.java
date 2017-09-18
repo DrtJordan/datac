@@ -2,18 +2,16 @@ package com.jihf.mr.java;
 
 import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataBean;
 import com.jihf.mr.mapReduce.hiveFflowData.HiveFlowDataUtils;
+import com.jihf.mr.utils.HDFSFileUtils;
 import com.jihf.mr.utils.Matcher;
 import com.jihf.mr.utils.StringUtils;
-import com.raiyi.modelV2.Complaint;
-import com.raiyi.modelV2.FlowAnalysis;
+import com.raiyi.dpiModel.DpiResult;
+import com.raiyi.dpiModel.HostPair;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.specific.SpecificDatumReader;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.text.ParseException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +28,7 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-        File file = new File("E://excel/dw_flow");
+        File file = new File("E://excel/20170909/jiangsu_dpi_0909.avro");
         txt2String(file);
 //        try {
 //            long dateTime = new SimpleDateFormat("yyyyMMdd").parse("20170804").getTime();
@@ -42,7 +40,7 @@ public class ReadText {
 
     private static boolean matchChe(String url) {
         Matcher matcher = new Matcher(true);
-        matcher.addPattern("*.guazi.com/*/sell*", 100);
+        matcher.addPattern("*jbzs.12321.cn*", 100);
         matcher.addPattern("*.guazi.com/*/sale*", 200);
         if (StringUtils.strIsEmpty(url)) {
             return false;
@@ -88,20 +86,40 @@ public class ReadText {
             String s = null;
             while ((s = br.readLine()) != null) {
                 //使用readLine方法，一次读一行
-                String[] datas = s.toString().split("\u0001", -1);
-                HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
-                if (null != flowDataBean && !StringUtils.strIsEmpty(flowDataBean.flow_total) && !StringUtils.strIsEmpty(flowDataBean.flow_used) && !StringUtils.strIsEmpty(flowDataBean.main_price)) {
-                    if (Double.parseDouble(flowDataBean.main_price) > 0) {
-                        System.out.println(flowDataBean.main_price);
-                    }
-                }
-//                DatumReader<FlowAnalysis> reader = new SpecificDatumReader<FlowAnalysis>(FlowAnalysis.class);
-//                DataFileReader<FlowAnalysis> dataFileReader = new DataFileReader<FlowAnalysis>(file, reader);
-//                while (dataFileReader.hasNext()) {
-//                    FlowAnalysis flowAnalysis = dataFileReader.next();
-//                        System.out.println(flowAnalysis.getLogDate());
-//
+//                String[] datas = s.toString().split("\u0001", -1);
+//                HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
+//                if (null != flowDataBean && !StringUtils.strIsEmpty(flowDataBean.flow_total) && !StringUtils.strIsEmpty(flowDataBean.flow_used) && !StringUtils.strIsEmpty(flowDataBean.main_price)) {
+//                    if (Double.parseDouble(flowDataBean.main_price) > 0) {
+//                        System.out.println(flowDataBean.main_price);
+//                    }
 //                }
+
+                DatumReader<DpiResult> reader = new SpecificDatumReader<DpiResult>(DpiResult.class);
+                DataFileReader<DpiResult> dataFileReader = new DataFileReader<DpiResult>(file, reader);
+                FileWriter fw = new FileWriter("E://excel/20170909/phoneNum_20170909.txt");
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (int i = 0; i < 1000; i++) {
+                    while (dataFileReader.hasNext()) {
+                        DpiResult dpiResult = dataFileReader.next();
+//                    System.out.println(dpiResult.getPhoneNumber());
+                        if (!StringUtils.strIsEmpty(dpiResult.getPhoneNumber().toString())) {
+                            bw.write(dpiResult.getPhoneNumber().toString()+"\n");
+                        }
+                    }
+                    bw.close();
+                    fw.close();
+
+
+//                    List<HostPair> hostPairList = dpiResult.getHostFreq();
+//                    for (HostPair hostPair : hostPairList) {
+//                        if (matchChe(hostPair.getHost().toString().toLowerCase())){
+//                            System.out.println(String.format("%s",hostPair.getHost(),hostPair.getFrequency()));
+//                        }
+//
+//                    }
+
+
+                }
             }
 //            for (String url : urlList) {
 //                System.out.println("url：" + url);
@@ -115,6 +133,7 @@ public class ReadText {
 
         return result;
     }
+
 
     private static boolean isUp0(long... num) {
         boolean flag = true;

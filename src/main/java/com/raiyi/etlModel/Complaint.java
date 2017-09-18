@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.modelV2;  
+package com.raiyi.etlModel;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Complaint extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Complaint\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Complaint\",\"namespace\":\"com.raiyi.etlModel\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 10000主叫次数 */
   @Deprecated public int call_from_tele;
@@ -117,18 +117,18 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
   }
 
   /** Creates a new Complaint RecordBuilder */
-  public static com.raiyi.modelV2.Complaint.Builder newBuilder() {
-    return new com.raiyi.modelV2.Complaint.Builder();
+  public static com.raiyi.etlModel.Complaint.Builder newBuilder() {
+    return new com.raiyi.etlModel.Complaint.Builder();
   }
   
   /** Creates a new Complaint RecordBuilder by copying an existing Builder */
-  public static com.raiyi.modelV2.Complaint.Builder newBuilder(com.raiyi.modelV2.Complaint.Builder other) {
-    return new com.raiyi.modelV2.Complaint.Builder(other);
+  public static com.raiyi.etlModel.Complaint.Builder newBuilder(com.raiyi.etlModel.Complaint.Builder other) {
+    return new com.raiyi.etlModel.Complaint.Builder(other);
   }
   
   /** Creates a new Complaint RecordBuilder by copying an existing Complaint instance */
-  public static com.raiyi.modelV2.Complaint.Builder newBuilder(com.raiyi.modelV2.Complaint other) {
-    return new com.raiyi.modelV2.Complaint.Builder(other);
+  public static com.raiyi.etlModel.Complaint.Builder newBuilder(com.raiyi.etlModel.Complaint other) {
+    return new com.raiyi.etlModel.Complaint.Builder(other);
   }
   
   /**
@@ -144,17 +144,17 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.modelV2.Complaint.SCHEMA$);
+      super(com.raiyi.etlModel.Complaint.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.modelV2.Complaint.Builder other) {
+    private Builder(com.raiyi.etlModel.Complaint.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing Complaint instance */
-    private Builder(com.raiyi.modelV2.Complaint other) {
-            super(com.raiyi.modelV2.Complaint.SCHEMA$);
+    private Builder(com.raiyi.etlModel.Complaint other) {
+            super(com.raiyi.etlModel.Complaint.SCHEMA$);
       if (isValidValue(fields()[0], other.call_from_tele)) {
         this.call_from_tele = data().deepCopy(fields()[0].schema(), other.call_from_tele);
         fieldSetFlags()[0] = true;
@@ -179,7 +179,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'call_from_tele' field */
-    public com.raiyi.modelV2.Complaint.Builder setCallFromTele(int value) {
+    public com.raiyi.etlModel.Complaint.Builder setCallFromTele(int value) {
       validate(fields()[0], value);
       this.call_from_tele = value;
       fieldSetFlags()[0] = true;
@@ -192,7 +192,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'call_from_tele' field */
-    public com.raiyi.modelV2.Complaint.Builder clearCallFromTele() {
+    public com.raiyi.etlModel.Complaint.Builder clearCallFromTele() {
       fieldSetFlags()[0] = false;
       return this;
     }
@@ -203,7 +203,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'call_to_tele' field */
-    public com.raiyi.modelV2.Complaint.Builder setCallToTele(int value) {
+    public com.raiyi.etlModel.Complaint.Builder setCallToTele(int value) {
       validate(fields()[1], value);
       this.call_to_tele = value;
       fieldSetFlags()[1] = true;
@@ -216,7 +216,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'call_to_tele' field */
-    public com.raiyi.modelV2.Complaint.Builder clearCallToTele() {
+    public com.raiyi.etlModel.Complaint.Builder clearCallToTele() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -227,7 +227,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'call_to_MIT' field */
-    public com.raiyi.modelV2.Complaint.Builder setCallToMIT(int value) {
+    public com.raiyi.etlModel.Complaint.Builder setCallToMIT(int value) {
       validate(fields()[2], value);
       this.call_to_MIT = value;
       fieldSetFlags()[2] = true;
@@ -240,7 +240,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'call_to_MIT' field */
-    public com.raiyi.modelV2.Complaint.Builder clearCallToMIT() {
+    public com.raiyi.etlModel.Complaint.Builder clearCallToMIT() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -251,7 +251,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'call_to_sms' field */
-    public com.raiyi.modelV2.Complaint.Builder setCallToSms(int value) {
+    public com.raiyi.etlModel.Complaint.Builder setCallToSms(int value) {
       validate(fields()[3], value);
       this.call_to_sms = value;
       fieldSetFlags()[3] = true;
@@ -264,7 +264,7 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'call_to_sms' field */
-    public com.raiyi.modelV2.Complaint.Builder clearCallToSms() {
+    public com.raiyi.etlModel.Complaint.Builder clearCallToSms() {
       fieldSetFlags()[3] = false;
       return this;
     }

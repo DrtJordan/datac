@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.modelV2;  
+package com.raiyi.etlModelV2;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"设备号码\",\"default\":\"\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"脱敏设备ID\"},{\"name\":\"mobile_md5\",\"type\":\"string\",\"doc\":\"设备号码md5加密\",\"default\":\"\"},{\"name\":\"mobile_imei\",\"type\":\"string\",\"doc\":\"设备机器码\",\"default\":\"\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"省份代码\",\"default\":-1},{\"name\":\"province_name\",\"type\":\"string\",\"doc\":\"省份名称\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"城市代码\",\"default\":-1},{\"name\":\"city_name\",\"type\":\"string\",\"doc\":\"城市名称\",\"default\":\"\"},{\"name\":\"create_date\",\"type\":\"string\",\"doc\":\"创建日期\",\"default\":\"\"},{\"name\":\"rowversion\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"query_date\",\"type\":\"string\",\"doc\":\"查询日期\",\"default\":\"\"},{\"name\":\"lt_query_date\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"rtb_key\",\"type\":\"string\",\"doc\":\"云公司key\",\"default\":\"\"},{\"name\":\"rtb_province\",\"type\":\"string\",\"doc\":\"省份：8+省份编码前2位，例如：江苏832\",\"default\":\"\"},{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"云公司计算日期\",\"default\":\"\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"云公司计算得分\",\"default\":-1},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"联网天数\",\"default\":-1},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"联网次数\",\"default\":-1},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"联网时长\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"资费，单位：分\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"拜访地地图\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"每天资费超出与否\",\"default\":\"\"},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"非漫游联网次数\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"省内漫游联网次数\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"省际漫游联网次数\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"国际漫游联网次数\",\"default\":-1}]},\"doc\":\"漫游联网次数比\"},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"非漫游流量\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省内漫游流量\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省际漫游流量\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"国际漫游流量\",\"default\":-1}]},\"doc\":\"漫游流量比\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]},\"doc\":\"投诉比, 10000主叫：10000被叫：12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]},\"doc\":\"最大通话时长比, 10000最大通话时长：12300最大通话时长\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"通话时长大于n次的次数, 标志位：0：正常  1：突增\",\"default\":-1},{\"name\":\"qmd\",\"type\":\"string\",\"doc\":\"类型\",\"default\":\"\"},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666原始报文\",\"default\":\"\"},{\"name\":\"s_table\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"long\",\"doc\":\"附加费\",\"default\":-1},{\"name\":\"basicfee_area\",\"type\":\"string\",\"doc\":\"日资费是否超出轨迹\",\"default\":\"\"},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"加密方式\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"日流量使用比\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"预计超流量\",\"default\":-1},{\"name\":\"id\",\"type\":\"string\",\"doc\":\"id\",\"default\":\"\"},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"带入总流量\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"使用流量\",\"default\":-1},{\"name\":\"last_mydate_visitarea\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"LastVisit\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"最后一次漫游日期\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"最后一次漫游地\",\"default\":\"\"}]}],\"doc\":\"最后一次漫游地和漫游日期\",\"default\":null},{\"name\":\"province_my_area\",\"type\":\"string\",\"doc\":\"省内漫游日统计\",\"default\":\"\"},{\"name\":\"country_my_area\",\"type\":\"string\",\"doc\":\"国内漫游日统计\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.etlModelV2\",\"fields\":[{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"设备号码\",\"default\":\"\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"脱敏设备ID\"},{\"name\":\"mobile_md5\",\"type\":\"string\",\"doc\":\"设备号码md5加密\",\"default\":\"\"},{\"name\":\"mobile_imei\",\"type\":\"string\",\"doc\":\"设备机器码\",\"default\":\"\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"省份代码\",\"default\":-1},{\"name\":\"province_name\",\"type\":\"string\",\"doc\":\"省份名称\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"城市代码\",\"default\":-1},{\"name\":\"city_name\",\"type\":\"string\",\"doc\":\"城市名称\",\"default\":\"\"},{\"name\":\"create_date\",\"type\":\"string\",\"doc\":\"创建日期\",\"default\":\"\"},{\"name\":\"rowversion\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"query_date\",\"type\":\"string\",\"doc\":\"查询日期\",\"default\":\"\"},{\"name\":\"lt_query_date\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"rtb_key\",\"type\":\"string\",\"doc\":\"云公司key\",\"default\":\"\"},{\"name\":\"rtb_province\",\"type\":\"string\",\"doc\":\"省份：8+省份编码前2位，例如：江苏832\",\"default\":\"\"},{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"云公司计算日期\",\"default\":\"\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"云公司计算得分\",\"default\":-1},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"联网天数\",\"default\":-1},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"联网次数\",\"default\":-1},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"联网时长\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"资费，单位：分\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"拜访地地图\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"每天资费超出与否\",\"default\":\"\"},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"非漫游联网次数\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"省内漫游联网次数\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"省际漫游联网次数\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"国际漫游联网次数\",\"default\":-1}]},\"doc\":\"漫游联网次数比\"},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"非漫游流量\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省内漫游流量\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省际漫游流量\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"国际漫游流量\",\"default\":-1}]},\"doc\":\"漫游流量比\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]},\"doc\":\"投诉比, 10000主叫：10000被叫：12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]},\"doc\":\"最大通话时长比, 10000最大通话时长：12300最大通话时长\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"通话时长大于n次的次数, 标志位：0：正常  1：突增\",\"default\":-1},{\"name\":\"qmd\",\"type\":\"string\",\"doc\":\"类型\",\"default\":\"\"},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666原始报文\",\"default\":\"\"},{\"name\":\"s_table\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"long\",\"doc\":\"附加费\",\"default\":-1},{\"name\":\"basicfee_area\",\"type\":\"string\",\"doc\":\"日资费是否超出轨迹\",\"default\":\"\"},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"加密方式\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"日流量使用比\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"预计超流量\",\"default\":-1},{\"name\":\"id\",\"type\":\"string\",\"doc\":\"id\",\"default\":\"\"},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"带入总流量\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"使用流量\",\"default\":-1},{\"name\":\"last_mydate_visitarea\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"LastVisit\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"最后一次漫游日期\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"最后一次漫游地\",\"default\":\"\"}]}],\"doc\":\"最后一次漫游地和漫游日期\",\"default\":null},{\"name\":\"province_my_area\",\"type\":\"string\",\"doc\":\"省内漫游日统计\",\"default\":\"\"},{\"name\":\"country_my_area\",\"type\":\"string\",\"doc\":\"国内漫游日统计\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 设备号码 */
   @Deprecated public java.lang.CharSequence mobile;
@@ -54,13 +54,13 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   /** 每天资费超出与否 */
   @Deprecated public java.lang.CharSequence basic_fee_over_daily;
   /** 漫游联网次数比 */
-  @Deprecated public com.raiyi.modelV2.RoamingCount roaming_num_count;
+  @Deprecated public com.raiyi.etlModelV2.RoamingCount roaming_num_count;
   /** 漫游流量比 */
-  @Deprecated public com.raiyi.modelV2.RoamingFlow roaming_flow_ratio;
+  @Deprecated public com.raiyi.etlModelV2.RoamingFlow roaming_flow_ratio;
   /** 投诉比, 10000主叫：10000被叫：12300 :12321 */
-  @Deprecated public com.raiyi.modelV2.Complaint complaint_ratio;
+  @Deprecated public com.raiyi.etlModelV2.Complaint complaint_ratio;
   /** 最大通话时长比, 10000最大通话时长：12300最大通话时长 */
-  @Deprecated public com.raiyi.modelV2.MaxCallTime max_calltime_ratio;
+  @Deprecated public com.raiyi.etlModelV2.MaxCallTime max_calltime_ratio;
   /** 通话时长大于n次的次数, 标志位：0：正常  1：突增 */
   @Deprecated public int is_call_times_normal;
   /** 类型 */
@@ -86,7 +86,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   /** 使用流量 */
   @Deprecated public double flow_use;
   /** 最后一次漫游地和漫游日期 */
-  @Deprecated public com.raiyi.modelV2.LastVisit last_mydate_visitarea;
+  @Deprecated public com.raiyi.etlModelV2.LastVisit last_mydate_visitarea;
   /** 省内漫游日统计 */
   @Deprecated public java.lang.CharSequence province_my_area;
   /** 国内漫游日统计 */
@@ -100,7 +100,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   /**
    * All-args constructor.
    */
-  public FlowAnalysis(java.lang.CharSequence mobile, java.lang.CharSequence device_id, java.lang.CharSequence mobile_md5, java.lang.CharSequence mobile_imei, java.lang.Integer province, java.lang.CharSequence province_name, java.lang.Integer city, java.lang.CharSequence city_name, java.lang.CharSequence create_date, java.lang.CharSequence rowversion, java.lang.CharSequence query_date, java.lang.CharSequence lt_query_date, java.lang.CharSequence rtb_key, java.lang.CharSequence rtb_province, java.lang.CharSequence log_date, java.lang.Integer flow_score, java.lang.Integer net_days, java.lang.Integer net_counts, java.lang.Integer net_duration, java.lang.CharSequence basic_fee, java.lang.CharSequence visit_area, java.lang.CharSequence basic_fee_over_daily, com.raiyi.modelV2.RoamingCount roaming_num_count, com.raiyi.modelV2.RoamingFlow roaming_flow_ratio, com.raiyi.modelV2.Complaint complaint_ratio, com.raiyi.modelV2.MaxCallTime max_calltime_ratio, java.lang.Integer is_call_times_normal, java.lang.CharSequence qmd, java.lang.CharSequence result, java.lang.CharSequence s_table, java.lang.Long fee_add, java.lang.CharSequence basicfee_area, java.lang.Integer op, java.lang.CharSequence flow_ratio, java.lang.Integer flow_over, java.lang.CharSequence id, java.lang.Double flow_size, java.lang.Double flow_use, com.raiyi.modelV2.LastVisit last_mydate_visitarea, java.lang.CharSequence province_my_area, java.lang.CharSequence country_my_area) {
+  public FlowAnalysis(java.lang.CharSequence mobile, java.lang.CharSequence device_id, java.lang.CharSequence mobile_md5, java.lang.CharSequence mobile_imei, java.lang.Integer province, java.lang.CharSequence province_name, java.lang.Integer city, java.lang.CharSequence city_name, java.lang.CharSequence create_date, java.lang.CharSequence rowversion, java.lang.CharSequence query_date, java.lang.CharSequence lt_query_date, java.lang.CharSequence rtb_key, java.lang.CharSequence rtb_province, java.lang.CharSequence log_date, java.lang.Integer flow_score, java.lang.Integer net_days, java.lang.Integer net_counts, java.lang.Integer net_duration, java.lang.CharSequence basic_fee, java.lang.CharSequence visit_area, java.lang.CharSequence basic_fee_over_daily, com.raiyi.etlModelV2.RoamingCount roaming_num_count, com.raiyi.etlModelV2.RoamingFlow roaming_flow_ratio, com.raiyi.etlModelV2.Complaint complaint_ratio, com.raiyi.etlModelV2.MaxCallTime max_calltime_ratio, java.lang.Integer is_call_times_normal, java.lang.CharSequence qmd, java.lang.CharSequence result, java.lang.CharSequence s_table, java.lang.Long fee_add, java.lang.CharSequence basicfee_area, java.lang.Integer op, java.lang.CharSequence flow_ratio, java.lang.Integer flow_over, java.lang.CharSequence id, java.lang.Double flow_size, java.lang.Double flow_use, com.raiyi.etlModelV2.LastVisit last_mydate_visitarea, java.lang.CharSequence province_my_area, java.lang.CharSequence country_my_area) {
     this.mobile = mobile;
     this.device_id = device_id;
     this.mobile_md5 = mobile_md5;
@@ -218,10 +218,10 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     case 19: basic_fee = (java.lang.CharSequence)value$; break;
     case 20: visit_area = (java.lang.CharSequence)value$; break;
     case 21: basic_fee_over_daily = (java.lang.CharSequence)value$; break;
-    case 22: roaming_num_count = (com.raiyi.modelV2.RoamingCount)value$; break;
-    case 23: roaming_flow_ratio = (com.raiyi.modelV2.RoamingFlow)value$; break;
-    case 24: complaint_ratio = (com.raiyi.modelV2.Complaint)value$; break;
-    case 25: max_calltime_ratio = (com.raiyi.modelV2.MaxCallTime)value$; break;
+    case 22: roaming_num_count = (com.raiyi.etlModelV2.RoamingCount)value$; break;
+    case 23: roaming_flow_ratio = (com.raiyi.etlModelV2.RoamingFlow)value$; break;
+    case 24: complaint_ratio = (com.raiyi.etlModelV2.Complaint)value$; break;
+    case 25: max_calltime_ratio = (com.raiyi.etlModelV2.MaxCallTime)value$; break;
     case 26: is_call_times_normal = (java.lang.Integer)value$; break;
     case 27: qmd = (java.lang.CharSequence)value$; break;
     case 28: result = (java.lang.CharSequence)value$; break;
@@ -234,7 +234,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     case 35: id = (java.lang.CharSequence)value$; break;
     case 36: flow_size = (java.lang.Double)value$; break;
     case 37: flow_use = (java.lang.Double)value$; break;
-    case 38: last_mydate_visitarea = (com.raiyi.modelV2.LastVisit)value$; break;
+    case 38: last_mydate_visitarea = (com.raiyi.etlModelV2.LastVisit)value$; break;
     case 39: province_my_area = (java.lang.CharSequence)value$; break;
     case 40: country_my_area = (java.lang.CharSequence)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -574,7 +574,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   /**
    * Gets the value of the 'roaming_num_count' field.
    * 漫游联网次数比   */
-  public com.raiyi.modelV2.RoamingCount getRoamingNumCount() {
+  public com.raiyi.etlModelV2.RoamingCount getRoamingNumCount() {
     return roaming_num_count;
   }
 
@@ -582,14 +582,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'roaming_num_count' field.
    * 漫游联网次数比   * @param value the value to set.
    */
-  public void setRoamingNumCount(com.raiyi.modelV2.RoamingCount value) {
+  public void setRoamingNumCount(com.raiyi.etlModelV2.RoamingCount value) {
     this.roaming_num_count = value;
   }
 
   /**
    * Gets the value of the 'roaming_flow_ratio' field.
    * 漫游流量比   */
-  public com.raiyi.modelV2.RoamingFlow getRoamingFlowRatio() {
+  public com.raiyi.etlModelV2.RoamingFlow getRoamingFlowRatio() {
     return roaming_flow_ratio;
   }
 
@@ -597,14 +597,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'roaming_flow_ratio' field.
    * 漫游流量比   * @param value the value to set.
    */
-  public void setRoamingFlowRatio(com.raiyi.modelV2.RoamingFlow value) {
+  public void setRoamingFlowRatio(com.raiyi.etlModelV2.RoamingFlow value) {
     this.roaming_flow_ratio = value;
   }
 
   /**
    * Gets the value of the 'complaint_ratio' field.
    * 投诉比, 10000主叫：10000被叫：12300 :12321   */
-  public com.raiyi.modelV2.Complaint getComplaintRatio() {
+  public com.raiyi.etlModelV2.Complaint getComplaintRatio() {
     return complaint_ratio;
   }
 
@@ -612,14 +612,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'complaint_ratio' field.
    * 投诉比, 10000主叫：10000被叫：12300 :12321   * @param value the value to set.
    */
-  public void setComplaintRatio(com.raiyi.modelV2.Complaint value) {
+  public void setComplaintRatio(com.raiyi.etlModelV2.Complaint value) {
     this.complaint_ratio = value;
   }
 
   /**
    * Gets the value of the 'max_calltime_ratio' field.
    * 最大通话时长比, 10000最大通话时长：12300最大通话时长   */
-  public com.raiyi.modelV2.MaxCallTime getMaxCalltimeRatio() {
+  public com.raiyi.etlModelV2.MaxCallTime getMaxCalltimeRatio() {
     return max_calltime_ratio;
   }
 
@@ -627,7 +627,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'max_calltime_ratio' field.
    * 最大通话时长比, 10000最大通话时长：12300最大通话时长   * @param value the value to set.
    */
-  public void setMaxCalltimeRatio(com.raiyi.modelV2.MaxCallTime value) {
+  public void setMaxCalltimeRatio(com.raiyi.etlModelV2.MaxCallTime value) {
     this.max_calltime_ratio = value;
   }
 
@@ -814,7 +814,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   /**
    * Gets the value of the 'last_mydate_visitarea' field.
    * 最后一次漫游地和漫游日期   */
-  public com.raiyi.modelV2.LastVisit getLastMydateVisitarea() {
+  public com.raiyi.etlModelV2.LastVisit getLastMydateVisitarea() {
     return last_mydate_visitarea;
   }
 
@@ -822,7 +822,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'last_mydate_visitarea' field.
    * 最后一次漫游地和漫游日期   * @param value the value to set.
    */
-  public void setLastMydateVisitarea(com.raiyi.modelV2.LastVisit value) {
+  public void setLastMydateVisitarea(com.raiyi.etlModelV2.LastVisit value) {
     this.last_mydate_visitarea = value;
   }
 
@@ -857,18 +857,18 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
   }
 
   /** Creates a new FlowAnalysis RecordBuilder */
-  public static com.raiyi.modelV2.FlowAnalysis.Builder newBuilder() {
-    return new com.raiyi.modelV2.FlowAnalysis.Builder();
+  public static com.raiyi.etlModelV2.FlowAnalysis.Builder newBuilder() {
+    return new com.raiyi.etlModelV2.FlowAnalysis.Builder();
   }
   
   /** Creates a new FlowAnalysis RecordBuilder by copying an existing Builder */
-  public static com.raiyi.modelV2.FlowAnalysis.Builder newBuilder(com.raiyi.modelV2.FlowAnalysis.Builder other) {
-    return new com.raiyi.modelV2.FlowAnalysis.Builder(other);
+  public static com.raiyi.etlModelV2.FlowAnalysis.Builder newBuilder(com.raiyi.etlModelV2.FlowAnalysis.Builder other) {
+    return new com.raiyi.etlModelV2.FlowAnalysis.Builder(other);
   }
   
   /** Creates a new FlowAnalysis RecordBuilder by copying an existing FlowAnalysis instance */
-  public static com.raiyi.modelV2.FlowAnalysis.Builder newBuilder(com.raiyi.modelV2.FlowAnalysis other) {
-    return new com.raiyi.modelV2.FlowAnalysis.Builder(other);
+  public static com.raiyi.etlModelV2.FlowAnalysis.Builder newBuilder(com.raiyi.etlModelV2.FlowAnalysis other) {
+    return new com.raiyi.etlModelV2.FlowAnalysis.Builder(other);
   }
   
   /**
@@ -899,10 +899,10 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     private java.lang.CharSequence basic_fee;
     private java.lang.CharSequence visit_area;
     private java.lang.CharSequence basic_fee_over_daily;
-    private com.raiyi.modelV2.RoamingCount roaming_num_count;
-    private com.raiyi.modelV2.RoamingFlow roaming_flow_ratio;
-    private com.raiyi.modelV2.Complaint complaint_ratio;
-    private com.raiyi.modelV2.MaxCallTime max_calltime_ratio;
+    private com.raiyi.etlModelV2.RoamingCount roaming_num_count;
+    private com.raiyi.etlModelV2.RoamingFlow roaming_flow_ratio;
+    private com.raiyi.etlModelV2.Complaint complaint_ratio;
+    private com.raiyi.etlModelV2.MaxCallTime max_calltime_ratio;
     private int is_call_times_normal;
     private java.lang.CharSequence qmd;
     private java.lang.CharSequence result;
@@ -915,23 +915,23 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     private java.lang.CharSequence id;
     private double flow_size;
     private double flow_use;
-    private com.raiyi.modelV2.LastVisit last_mydate_visitarea;
+    private com.raiyi.etlModelV2.LastVisit last_mydate_visitarea;
     private java.lang.CharSequence province_my_area;
     private java.lang.CharSequence country_my_area;
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.modelV2.FlowAnalysis.SCHEMA$);
+      super(com.raiyi.etlModelV2.FlowAnalysis.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.modelV2.FlowAnalysis.Builder other) {
+    private Builder(com.raiyi.etlModelV2.FlowAnalysis.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing FlowAnalysis instance */
-    private Builder(com.raiyi.modelV2.FlowAnalysis other) {
-            super(com.raiyi.modelV2.FlowAnalysis.SCHEMA$);
+    private Builder(com.raiyi.etlModelV2.FlowAnalysis other) {
+            super(com.raiyi.etlModelV2.FlowAnalysis.SCHEMA$);
       if (isValidValue(fields()[0], other.mobile)) {
         this.mobile = data().deepCopy(fields()[0].schema(), other.mobile);
         fieldSetFlags()[0] = true;
@@ -1104,7 +1104,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'mobile' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setMobile(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setMobile(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.mobile = value;
       fieldSetFlags()[0] = true;
@@ -1117,7 +1117,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'mobile' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearMobile() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearMobile() {
       mobile = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -1129,7 +1129,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'device_id' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setDeviceId(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setDeviceId(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.device_id = value;
       fieldSetFlags()[1] = true;
@@ -1142,7 +1142,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'device_id' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearDeviceId() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearDeviceId() {
       device_id = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -1154,7 +1154,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'mobile_md5' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setMobileMd5(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setMobileMd5(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.mobile_md5 = value;
       fieldSetFlags()[2] = true;
@@ -1167,7 +1167,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'mobile_md5' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearMobileMd5() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearMobileMd5() {
       mobile_md5 = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -1179,7 +1179,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'mobile_imei' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setMobileImei(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setMobileImei(java.lang.CharSequence value) {
       validate(fields()[3], value);
       this.mobile_imei = value;
       fieldSetFlags()[3] = true;
@@ -1192,7 +1192,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'mobile_imei' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearMobileImei() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearMobileImei() {
       mobile_imei = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -1204,7 +1204,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'province' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setProvince(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setProvince(int value) {
       validate(fields()[4], value);
       this.province = value;
       fieldSetFlags()[4] = true;
@@ -1217,7 +1217,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'province' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearProvince() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearProvince() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -1228,7 +1228,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'province_name' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setProvinceName(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setProvinceName(java.lang.CharSequence value) {
       validate(fields()[5], value);
       this.province_name = value;
       fieldSetFlags()[5] = true;
@@ -1241,7 +1241,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'province_name' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearProvinceName() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearProvinceName() {
       province_name = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -1253,7 +1253,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'city' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setCity(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setCity(int value) {
       validate(fields()[6], value);
       this.city = value;
       fieldSetFlags()[6] = true;
@@ -1266,7 +1266,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'city' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearCity() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearCity() {
       fieldSetFlags()[6] = false;
       return this;
     }
@@ -1277,7 +1277,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'city_name' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setCityName(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setCityName(java.lang.CharSequence value) {
       validate(fields()[7], value);
       this.city_name = value;
       fieldSetFlags()[7] = true;
@@ -1290,7 +1290,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'city_name' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearCityName() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearCityName() {
       city_name = null;
       fieldSetFlags()[7] = false;
       return this;
@@ -1302,7 +1302,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'create_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setCreateDate(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setCreateDate(java.lang.CharSequence value) {
       validate(fields()[8], value);
       this.create_date = value;
       fieldSetFlags()[8] = true;
@@ -1315,7 +1315,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'create_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearCreateDate() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearCreateDate() {
       create_date = null;
       fieldSetFlags()[8] = false;
       return this;
@@ -1327,7 +1327,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'rowversion' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setRowversion(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setRowversion(java.lang.CharSequence value) {
       validate(fields()[9], value);
       this.rowversion = value;
       fieldSetFlags()[9] = true;
@@ -1340,7 +1340,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'rowversion' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearRowversion() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearRowversion() {
       rowversion = null;
       fieldSetFlags()[9] = false;
       return this;
@@ -1352,7 +1352,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'query_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setQueryDate(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setQueryDate(java.lang.CharSequence value) {
       validate(fields()[10], value);
       this.query_date = value;
       fieldSetFlags()[10] = true;
@@ -1365,7 +1365,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'query_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearQueryDate() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearQueryDate() {
       query_date = null;
       fieldSetFlags()[10] = false;
       return this;
@@ -1377,7 +1377,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'lt_query_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setLtQueryDate(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setLtQueryDate(java.lang.CharSequence value) {
       validate(fields()[11], value);
       this.lt_query_date = value;
       fieldSetFlags()[11] = true;
@@ -1390,7 +1390,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'lt_query_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearLtQueryDate() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearLtQueryDate() {
       lt_query_date = null;
       fieldSetFlags()[11] = false;
       return this;
@@ -1402,7 +1402,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'rtb_key' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setRtbKey(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setRtbKey(java.lang.CharSequence value) {
       validate(fields()[12], value);
       this.rtb_key = value;
       fieldSetFlags()[12] = true;
@@ -1415,7 +1415,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'rtb_key' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearRtbKey() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearRtbKey() {
       rtb_key = null;
       fieldSetFlags()[12] = false;
       return this;
@@ -1427,7 +1427,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'rtb_province' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setRtbProvince(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setRtbProvince(java.lang.CharSequence value) {
       validate(fields()[13], value);
       this.rtb_province = value;
       fieldSetFlags()[13] = true;
@@ -1440,7 +1440,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'rtb_province' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearRtbProvince() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearRtbProvince() {
       rtb_province = null;
       fieldSetFlags()[13] = false;
       return this;
@@ -1452,7 +1452,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'log_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setLogDate(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setLogDate(java.lang.CharSequence value) {
       validate(fields()[14], value);
       this.log_date = value;
       fieldSetFlags()[14] = true;
@@ -1465,7 +1465,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'log_date' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearLogDate() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearLogDate() {
       log_date = null;
       fieldSetFlags()[14] = false;
       return this;
@@ -1477,7 +1477,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'flow_score' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFlowScore(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFlowScore(int value) {
       validate(fields()[15], value);
       this.flow_score = value;
       fieldSetFlags()[15] = true;
@@ -1490,7 +1490,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'flow_score' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFlowScore() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFlowScore() {
       fieldSetFlags()[15] = false;
       return this;
     }
@@ -1501,7 +1501,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'net_days' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setNetDays(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setNetDays(int value) {
       validate(fields()[16], value);
       this.net_days = value;
       fieldSetFlags()[16] = true;
@@ -1514,7 +1514,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'net_days' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearNetDays() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearNetDays() {
       fieldSetFlags()[16] = false;
       return this;
     }
@@ -1525,7 +1525,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'net_counts' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setNetCounts(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setNetCounts(int value) {
       validate(fields()[17], value);
       this.net_counts = value;
       fieldSetFlags()[17] = true;
@@ -1538,7 +1538,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'net_counts' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearNetCounts() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearNetCounts() {
       fieldSetFlags()[17] = false;
       return this;
     }
@@ -1549,7 +1549,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'net_duration' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setNetDuration(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setNetDuration(int value) {
       validate(fields()[18], value);
       this.net_duration = value;
       fieldSetFlags()[18] = true;
@@ -1562,7 +1562,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'net_duration' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearNetDuration() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearNetDuration() {
       fieldSetFlags()[18] = false;
       return this;
     }
@@ -1573,7 +1573,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'basic_fee' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setBasicFee(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setBasicFee(java.lang.CharSequence value) {
       validate(fields()[19], value);
       this.basic_fee = value;
       fieldSetFlags()[19] = true;
@@ -1586,7 +1586,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'basic_fee' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearBasicFee() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearBasicFee() {
       basic_fee = null;
       fieldSetFlags()[19] = false;
       return this;
@@ -1598,7 +1598,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'visit_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setVisitArea(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setVisitArea(java.lang.CharSequence value) {
       validate(fields()[20], value);
       this.visit_area = value;
       fieldSetFlags()[20] = true;
@@ -1611,7 +1611,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'visit_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearVisitArea() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearVisitArea() {
       visit_area = null;
       fieldSetFlags()[20] = false;
       return this;
@@ -1623,7 +1623,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'basic_fee_over_daily' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setBasicFeeOverDaily(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setBasicFeeOverDaily(java.lang.CharSequence value) {
       validate(fields()[21], value);
       this.basic_fee_over_daily = value;
       fieldSetFlags()[21] = true;
@@ -1636,19 +1636,19 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'basic_fee_over_daily' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearBasicFeeOverDaily() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearBasicFeeOverDaily() {
       basic_fee_over_daily = null;
       fieldSetFlags()[21] = false;
       return this;
     }
 
     /** Gets the value of the 'roaming_num_count' field */
-    public com.raiyi.modelV2.RoamingCount getRoamingNumCount() {
+    public com.raiyi.etlModelV2.RoamingCount getRoamingNumCount() {
       return roaming_num_count;
     }
     
     /** Sets the value of the 'roaming_num_count' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setRoamingNumCount(com.raiyi.modelV2.RoamingCount value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setRoamingNumCount(com.raiyi.etlModelV2.RoamingCount value) {
       validate(fields()[22], value);
       this.roaming_num_count = value;
       fieldSetFlags()[22] = true;
@@ -1661,19 +1661,19 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'roaming_num_count' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearRoamingNumCount() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearRoamingNumCount() {
       roaming_num_count = null;
       fieldSetFlags()[22] = false;
       return this;
     }
 
     /** Gets the value of the 'roaming_flow_ratio' field */
-    public com.raiyi.modelV2.RoamingFlow getRoamingFlowRatio() {
+    public com.raiyi.etlModelV2.RoamingFlow getRoamingFlowRatio() {
       return roaming_flow_ratio;
     }
     
     /** Sets the value of the 'roaming_flow_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setRoamingFlowRatio(com.raiyi.modelV2.RoamingFlow value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setRoamingFlowRatio(com.raiyi.etlModelV2.RoamingFlow value) {
       validate(fields()[23], value);
       this.roaming_flow_ratio = value;
       fieldSetFlags()[23] = true;
@@ -1686,19 +1686,19 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'roaming_flow_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearRoamingFlowRatio() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearRoamingFlowRatio() {
       roaming_flow_ratio = null;
       fieldSetFlags()[23] = false;
       return this;
     }
 
     /** Gets the value of the 'complaint_ratio' field */
-    public com.raiyi.modelV2.Complaint getComplaintRatio() {
+    public com.raiyi.etlModelV2.Complaint getComplaintRatio() {
       return complaint_ratio;
     }
     
     /** Sets the value of the 'complaint_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setComplaintRatio(com.raiyi.modelV2.Complaint value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setComplaintRatio(com.raiyi.etlModelV2.Complaint value) {
       validate(fields()[24], value);
       this.complaint_ratio = value;
       fieldSetFlags()[24] = true;
@@ -1711,19 +1711,19 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'complaint_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearComplaintRatio() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearComplaintRatio() {
       complaint_ratio = null;
       fieldSetFlags()[24] = false;
       return this;
     }
 
     /** Gets the value of the 'max_calltime_ratio' field */
-    public com.raiyi.modelV2.MaxCallTime getMaxCalltimeRatio() {
+    public com.raiyi.etlModelV2.MaxCallTime getMaxCalltimeRatio() {
       return max_calltime_ratio;
     }
     
     /** Sets the value of the 'max_calltime_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setMaxCalltimeRatio(com.raiyi.modelV2.MaxCallTime value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setMaxCalltimeRatio(com.raiyi.etlModelV2.MaxCallTime value) {
       validate(fields()[25], value);
       this.max_calltime_ratio = value;
       fieldSetFlags()[25] = true;
@@ -1736,7 +1736,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'max_calltime_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearMaxCalltimeRatio() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearMaxCalltimeRatio() {
       max_calltime_ratio = null;
       fieldSetFlags()[25] = false;
       return this;
@@ -1748,7 +1748,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'is_call_times_normal' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setIsCallTimesNormal(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setIsCallTimesNormal(int value) {
       validate(fields()[26], value);
       this.is_call_times_normal = value;
       fieldSetFlags()[26] = true;
@@ -1761,7 +1761,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'is_call_times_normal' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearIsCallTimesNormal() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearIsCallTimesNormal() {
       fieldSetFlags()[26] = false;
       return this;
     }
@@ -1772,7 +1772,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'qmd' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setQmd(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setQmd(java.lang.CharSequence value) {
       validate(fields()[27], value);
       this.qmd = value;
       fieldSetFlags()[27] = true;
@@ -1785,7 +1785,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'qmd' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearQmd() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearQmd() {
       qmd = null;
       fieldSetFlags()[27] = false;
       return this;
@@ -1797,7 +1797,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'result' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setResult(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setResult(java.lang.CharSequence value) {
       validate(fields()[28], value);
       this.result = value;
       fieldSetFlags()[28] = true;
@@ -1810,7 +1810,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'result' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearResult() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearResult() {
       result = null;
       fieldSetFlags()[28] = false;
       return this;
@@ -1822,7 +1822,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 's_table' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setSTable(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setSTable(java.lang.CharSequence value) {
       validate(fields()[29], value);
       this.s_table = value;
       fieldSetFlags()[29] = true;
@@ -1835,7 +1835,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 's_table' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearSTable() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearSTable() {
       s_table = null;
       fieldSetFlags()[29] = false;
       return this;
@@ -1847,7 +1847,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'fee_add' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFeeAdd(long value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFeeAdd(long value) {
       validate(fields()[30], value);
       this.fee_add = value;
       fieldSetFlags()[30] = true;
@@ -1860,7 +1860,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'fee_add' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFeeAdd() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFeeAdd() {
       fieldSetFlags()[30] = false;
       return this;
     }
@@ -1871,7 +1871,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'basicfee_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setBasicfeeArea(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setBasicfeeArea(java.lang.CharSequence value) {
       validate(fields()[31], value);
       this.basicfee_area = value;
       fieldSetFlags()[31] = true;
@@ -1884,7 +1884,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'basicfee_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearBasicfeeArea() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearBasicfeeArea() {
       basicfee_area = null;
       fieldSetFlags()[31] = false;
       return this;
@@ -1896,7 +1896,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'op' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setOp(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setOp(int value) {
       validate(fields()[32], value);
       this.op = value;
       fieldSetFlags()[32] = true;
@@ -1909,7 +1909,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'op' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearOp() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearOp() {
       fieldSetFlags()[32] = false;
       return this;
     }
@@ -1920,7 +1920,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'flow_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFlowRatio(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFlowRatio(java.lang.CharSequence value) {
       validate(fields()[33], value);
       this.flow_ratio = value;
       fieldSetFlags()[33] = true;
@@ -1933,7 +1933,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'flow_ratio' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFlowRatio() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFlowRatio() {
       flow_ratio = null;
       fieldSetFlags()[33] = false;
       return this;
@@ -1945,7 +1945,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'flow_over' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFlowOver(int value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFlowOver(int value) {
       validate(fields()[34], value);
       this.flow_over = value;
       fieldSetFlags()[34] = true;
@@ -1958,7 +1958,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'flow_over' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFlowOver() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFlowOver() {
       fieldSetFlags()[34] = false;
       return this;
     }
@@ -1969,7 +1969,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'id' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setId(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setId(java.lang.CharSequence value) {
       validate(fields()[35], value);
       this.id = value;
       fieldSetFlags()[35] = true;
@@ -1982,7 +1982,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'id' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearId() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearId() {
       id = null;
       fieldSetFlags()[35] = false;
       return this;
@@ -1994,7 +1994,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'flow_size' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFlowSize(double value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFlowSize(double value) {
       validate(fields()[36], value);
       this.flow_size = value;
       fieldSetFlags()[36] = true;
@@ -2007,7 +2007,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'flow_size' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFlowSize() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFlowSize() {
       fieldSetFlags()[36] = false;
       return this;
     }
@@ -2018,7 +2018,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'flow_use' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setFlowUse(double value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setFlowUse(double value) {
       validate(fields()[37], value);
       this.flow_use = value;
       fieldSetFlags()[37] = true;
@@ -2031,18 +2031,18 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'flow_use' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearFlowUse() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearFlowUse() {
       fieldSetFlags()[37] = false;
       return this;
     }
 
     /** Gets the value of the 'last_mydate_visitarea' field */
-    public com.raiyi.modelV2.LastVisit getLastMydateVisitarea() {
+    public com.raiyi.etlModelV2.LastVisit getLastMydateVisitarea() {
       return last_mydate_visitarea;
     }
     
     /** Sets the value of the 'last_mydate_visitarea' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setLastMydateVisitarea(com.raiyi.modelV2.LastVisit value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setLastMydateVisitarea(com.raiyi.etlModelV2.LastVisit value) {
       validate(fields()[38], value);
       this.last_mydate_visitarea = value;
       fieldSetFlags()[38] = true;
@@ -2055,7 +2055,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'last_mydate_visitarea' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearLastMydateVisitarea() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearLastMydateVisitarea() {
       last_mydate_visitarea = null;
       fieldSetFlags()[38] = false;
       return this;
@@ -2067,7 +2067,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'province_my_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setProvinceMyArea(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setProvinceMyArea(java.lang.CharSequence value) {
       validate(fields()[39], value);
       this.province_my_area = value;
       fieldSetFlags()[39] = true;
@@ -2080,7 +2080,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'province_my_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearProvinceMyArea() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearProvinceMyArea() {
       province_my_area = null;
       fieldSetFlags()[39] = false;
       return this;
@@ -2092,7 +2092,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Sets the value of the 'country_my_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder setCountryMyArea(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder setCountryMyArea(java.lang.CharSequence value) {
       validate(fields()[40], value);
       this.country_my_area = value;
       fieldSetFlags()[40] = true;
@@ -2105,7 +2105,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
     }
     
     /** Clears the value of the 'country_my_area' field */
-    public com.raiyi.modelV2.FlowAnalysis.Builder clearCountryMyArea() {
+    public com.raiyi.etlModelV2.FlowAnalysis.Builder clearCountryMyArea() {
       country_my_area = null;
       fieldSetFlags()[40] = false;
       return this;
@@ -2137,10 +2137,10 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
         record.basic_fee = fieldSetFlags()[19] ? this.basic_fee : (java.lang.CharSequence) defaultValue(fields()[19]);
         record.visit_area = fieldSetFlags()[20] ? this.visit_area : (java.lang.CharSequence) defaultValue(fields()[20]);
         record.basic_fee_over_daily = fieldSetFlags()[21] ? this.basic_fee_over_daily : (java.lang.CharSequence) defaultValue(fields()[21]);
-        record.roaming_num_count = fieldSetFlags()[22] ? this.roaming_num_count : (com.raiyi.modelV2.RoamingCount) defaultValue(fields()[22]);
-        record.roaming_flow_ratio = fieldSetFlags()[23] ? this.roaming_flow_ratio : (com.raiyi.modelV2.RoamingFlow) defaultValue(fields()[23]);
-        record.complaint_ratio = fieldSetFlags()[24] ? this.complaint_ratio : (com.raiyi.modelV2.Complaint) defaultValue(fields()[24]);
-        record.max_calltime_ratio = fieldSetFlags()[25] ? this.max_calltime_ratio : (com.raiyi.modelV2.MaxCallTime) defaultValue(fields()[25]);
+        record.roaming_num_count = fieldSetFlags()[22] ? this.roaming_num_count : (com.raiyi.etlModelV2.RoamingCount) defaultValue(fields()[22]);
+        record.roaming_flow_ratio = fieldSetFlags()[23] ? this.roaming_flow_ratio : (com.raiyi.etlModelV2.RoamingFlow) defaultValue(fields()[23]);
+        record.complaint_ratio = fieldSetFlags()[24] ? this.complaint_ratio : (com.raiyi.etlModelV2.Complaint) defaultValue(fields()[24]);
+        record.max_calltime_ratio = fieldSetFlags()[25] ? this.max_calltime_ratio : (com.raiyi.etlModelV2.MaxCallTime) defaultValue(fields()[25]);
         record.is_call_times_normal = fieldSetFlags()[26] ? this.is_call_times_normal : (java.lang.Integer) defaultValue(fields()[26]);
         record.qmd = fieldSetFlags()[27] ? this.qmd : (java.lang.CharSequence) defaultValue(fields()[27]);
         record.result = fieldSetFlags()[28] ? this.result : (java.lang.CharSequence) defaultValue(fields()[28]);
@@ -2153,7 +2153,7 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
         record.id = fieldSetFlags()[35] ? this.id : (java.lang.CharSequence) defaultValue(fields()[35]);
         record.flow_size = fieldSetFlags()[36] ? this.flow_size : (java.lang.Double) defaultValue(fields()[36]);
         record.flow_use = fieldSetFlags()[37] ? this.flow_use : (java.lang.Double) defaultValue(fields()[37]);
-        record.last_mydate_visitarea = fieldSetFlags()[38] ? this.last_mydate_visitarea : (com.raiyi.modelV2.LastVisit) defaultValue(fields()[38]);
+        record.last_mydate_visitarea = fieldSetFlags()[38] ? this.last_mydate_visitarea : (com.raiyi.etlModelV2.LastVisit) defaultValue(fields()[38]);
         record.province_my_area = fieldSetFlags()[39] ? this.province_my_area : (java.lang.CharSequence) defaultValue(fields()[39]);
         record.country_my_area = fieldSetFlags()[40] ? this.country_my_area : (java.lang.CharSequence) defaultValue(fields()[40]);
         return record;

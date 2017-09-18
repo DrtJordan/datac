@@ -1,0 +1,50 @@
+{
+    "type": "record",
+    "name": "DpiResult",
+    "namespace": "model",
+    "fields": [
+        {
+            "name": "phone_number",
+            "type": "string"
+        },
+        {
+            "name": "device_id",
+            "type": "string"
+        },
+        {
+            "name": "province",
+            "type": "int"
+        },
+        {
+            "name": "log_date",
+            "type": "string"
+        },
+        {
+            "name": "user_agent",
+            "type": "string"
+        },
+        {
+            "name": "host_freq",
+            "type": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "record",
+                        "name": "HostPair",
+                        "fields": [
+                            {
+                                "name": "host",
+                                "type": "string"
+                            },
+                            {
+                                "name": "frequency",
+                                "type": "int"
+                            }
+                        ]
+                    }
+                },
+                "null"
+            ]
+        }
+    ]
+}

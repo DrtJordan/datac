@@ -3,11 +3,11 @@
  * 
  * DO NOT EDIT DIRECTLY
  */
-package com.raiyi.modelV2;  
+package com.raiyi.etlModelV2;  
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class LastVisit extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LastVisit\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"最后一次漫游日期\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"最后一次漫游地\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LastVisit\",\"namespace\":\"com.raiyi.etlModelV2\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"最后一次漫游日期\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"最后一次漫游地\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   /** 最后一次漫游日期 */
   @Deprecated public java.lang.CharSequence last_visit_date;
@@ -77,18 +77,18 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
   }
 
   /** Creates a new LastVisit RecordBuilder */
-  public static com.raiyi.modelV2.LastVisit.Builder newBuilder() {
-    return new com.raiyi.modelV2.LastVisit.Builder();
+  public static com.raiyi.etlModelV2.LastVisit.Builder newBuilder() {
+    return new com.raiyi.etlModelV2.LastVisit.Builder();
   }
   
   /** Creates a new LastVisit RecordBuilder by copying an existing Builder */
-  public static com.raiyi.modelV2.LastVisit.Builder newBuilder(com.raiyi.modelV2.LastVisit.Builder other) {
-    return new com.raiyi.modelV2.LastVisit.Builder(other);
+  public static com.raiyi.etlModelV2.LastVisit.Builder newBuilder(com.raiyi.etlModelV2.LastVisit.Builder other) {
+    return new com.raiyi.etlModelV2.LastVisit.Builder(other);
   }
   
   /** Creates a new LastVisit RecordBuilder by copying an existing LastVisit instance */
-  public static com.raiyi.modelV2.LastVisit.Builder newBuilder(com.raiyi.modelV2.LastVisit other) {
-    return new com.raiyi.modelV2.LastVisit.Builder(other);
+  public static com.raiyi.etlModelV2.LastVisit.Builder newBuilder(com.raiyi.etlModelV2.LastVisit other) {
+    return new com.raiyi.etlModelV2.LastVisit.Builder(other);
   }
   
   /**
@@ -102,17 +102,17 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
 
     /** Creates a new Builder */
     private Builder() {
-      super(com.raiyi.modelV2.LastVisit.SCHEMA$);
+      super(com.raiyi.etlModelV2.LastVisit.SCHEMA$);
     }
     
     /** Creates a Builder by copying an existing Builder */
-    private Builder(com.raiyi.modelV2.LastVisit.Builder other) {
+    private Builder(com.raiyi.etlModelV2.LastVisit.Builder other) {
       super(other);
     }
     
     /** Creates a Builder by copying an existing LastVisit instance */
-    private Builder(com.raiyi.modelV2.LastVisit other) {
-            super(com.raiyi.modelV2.LastVisit.SCHEMA$);
+    private Builder(com.raiyi.etlModelV2.LastVisit other) {
+            super(com.raiyi.etlModelV2.LastVisit.SCHEMA$);
       if (isValidValue(fields()[0], other.last_visit_date)) {
         this.last_visit_date = data().deepCopy(fields()[0].schema(), other.last_visit_date);
         fieldSetFlags()[0] = true;
@@ -129,7 +129,7 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'last_visit_date' field */
-    public com.raiyi.modelV2.LastVisit.Builder setLastVisitDate(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.LastVisit.Builder setLastVisitDate(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.last_visit_date = value;
       fieldSetFlags()[0] = true;
@@ -142,7 +142,7 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'last_visit_date' field */
-    public com.raiyi.modelV2.LastVisit.Builder clearLastVisitDate() {
+    public com.raiyi.etlModelV2.LastVisit.Builder clearLastVisitDate() {
       last_visit_date = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -154,7 +154,7 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Sets the value of the 'last_visit_area' field */
-    public com.raiyi.modelV2.LastVisit.Builder setLastVisitArea(java.lang.CharSequence value) {
+    public com.raiyi.etlModelV2.LastVisit.Builder setLastVisitArea(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.last_visit_area = value;
       fieldSetFlags()[1] = true;
@@ -167,7 +167,7 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
     }
     
     /** Clears the value of the 'last_visit_area' field */
-    public com.raiyi.modelV2.LastVisit.Builder clearLastVisitArea() {
+    public com.raiyi.etlModelV2.LastVisit.Builder clearLastVisitArea() {
       last_visit_area = null;
       fieldSetFlags()[1] = false;
       return this;
