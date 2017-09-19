@@ -10,14 +10,16 @@ import org.apache.avro.mapred.AvroKey;
 import org.apache.avro.mapreduce.AvroKeyInputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
+import org.apache.hadoop.fs.FileStatus;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.InputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
@@ -25,6 +27,7 @@ import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,15 +38,15 @@ import java.util.List;
  * Mail：jihaifeng@raiyi.com
  */
 public class GetComplainData extends Configured implements Tool {
-    public static final String TAG_test = "0";
     public static final String TAG_URL = "1";
     public static final String TAG_ETL = "2";
+    public static List<String> pathList = new ArrayList<String>();
 
     @Override
     public int run(String[] args) throws Exception {
         //  hadoop jar datac-1.16-shaded.jar  complainData <Dpi数据  etl数据  输出目录>
-        String input1 = "jihaifeng/20170909/jiangsu_dpi_0909.avro";
-        String input2 = "jihaifeng/20170909/mobile_flow_20170909.txt";
+        String input1 = "jihaifeng/testComplain/jiangsu_0904.avro";
+        String input2 = "jihaifeng/testComplain/mobile_20170912_cloud832.txt";
         String output = Config.MOBILE_DPI_OUTPUT;
         if (null != args && args.length != 0) {
             if (args.length == 2) {
@@ -73,15 +76,13 @@ public class GetComplainData extends Configured implements Tool {
 
 
         // MultipleInputs类添加文件路径
-        MultipleInputs.addInputPath(job, new Path(input1),
-                AvroKeyInputFormat.class, dpiDataMap.class);
-        MultipleInputs.addInputPath(job, new Path(input2),
-                AvroKeyInputFormat.class, etlDataMap.class);
+//        MultipleInputs.addInputPath(job, new Path(input1),
+//                AvroKeyInputFormat.class, dpiDataMap.class);
+//        MultipleInputs.addInputPath(job, new Path(input2),
+//                AvroKeyInputFormat.class, etlDataMap.class);
 
-//            initInputPath(cf, job, input1, TextInputFormat.class, phoneNumMap.class);
-//            initInputPath(cf, job, input2, TextInputFormat.class, flowDataMap.class);
-//            initInputPath(cf, job, input3, TextInputFormat.class, smsDataMap.class);
-//            initInputPath(cf, job, input4, AvroKeyInputFormat.class, etlDataMap.class);
+        HDFSFileUtils.initInputPath(cf, job, input1, AvroKeyInputFormat.class, dpiDataMap.class);
+        HDFSFileUtils.initInputPath(cf, job, input2, AvroKeyInputFormat.class, etlDataMap.class);
 
 
         FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
@@ -96,6 +97,7 @@ public class GetComplainData extends Configured implements Tool {
 
         return 0;
     }
+
 
     /**
      * Hive上的dpi数据
@@ -157,16 +159,21 @@ public class GetComplainData extends Configured implements Tool {
         @Override
         protected void map(AvroKey<FlowAnalysis> key, NullWritable value, Context context) throws IOException, InterruptedException {
             Complaint complaint = key.datum().getComplaintRatio();
-            String mobile = null != key.datum().getMobile() ? key.datum().getMobile().toString() : null;
-            int callFromTel = null != complaint ? complaint.getCallFromTele() : 0;
-            int callToTel = null != complaint ? complaint.getCallToTele() : 0;
-            String queryDate = null != key.datum().getQueryDate() ? key.datum().getQueryDate().toString() : null;
-            if (!StringUtils.strIsEmpty(mobile)) {
-                context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s",
+
+            int callTo = null != complaint ? complaint.getCallFromTele() : 0;
+            int callFrom = null != complaint ? complaint.getCallToTele() : 0;
+
+            String mobile = StringUtils.strIsEmpty(key.datum().getMobile().toString()) ? null : key.datum().getMobile().toString();
+            String queryDate = StringUtils.strIsEmpty(key.datum().getQueryDate().toString()) ? null : key.datum().getQueryDate().toString();
+            String basicFee = StringUtils.strIsEmpty(key.datum().getBasicFee().toString()) ? null : key.datum().getBasicFee().toString();
+
+            if (!StringUtils.strIsEmpty(mobile) && (callFrom > 0 || callTo > 0)) {
+                context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s|%s",
                         TAG_ETL,
                         queryDate,
-                        callFromTel,
-                        callToTel)));
+                        callTo,
+                        callFrom,
+                        basicFee)));
             }
         }
     }
@@ -187,6 +194,7 @@ public class GetComplainData extends Configured implements Tool {
             long maxTime = -1;
             int callTo = -1;
             int callFrom = -1;
+            long basicFee = -1;
 
             for (Text val : values) {
                 String[] datas = val.toString().split("\\|", -1);
@@ -208,6 +216,7 @@ public class GetComplainData extends Configured implements Tool {
                             callFrom = StringUtils.strIsEmpty(datas[3]) ? -1 : Integer.parseInt(datas[3]);
                             maxTime = dateTime;
                         }
+                        basicFee = StringUtils.strIsEmpty(datas[4]) ? -1 : Long.parseLong(datas[4]);
                         flag2 = true;
                     } catch (Exception e) {
                         e.printStackTrace();

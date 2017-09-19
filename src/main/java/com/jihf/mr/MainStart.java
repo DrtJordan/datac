@@ -67,6 +67,7 @@ public class MainStart {
 
             driver.addClass("dpiData", DpiData.class, "hive DpiData");
 
+            //  hadoop jar datac-1.16-shaded.jar  complainData <Dpi数据  etl数据  输出目录>
             driver.addClass("getComplainData",GetComplainData.class,"Get ComplainPhone");
 
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");

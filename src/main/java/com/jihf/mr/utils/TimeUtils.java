@@ -1,7 +1,10 @@
 package com.jihf.mr.utils;
 
+import org.apache.commons.lang.enums.Enum;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -51,5 +54,39 @@ public class TimeUtils {
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
+    }
+
+    /***
+     * 日期减一天、加一天
+     *
+     * @param option
+     *            传入类型 pro：日期减一天，next：日期加一天
+     * @param _date
+     *            20141124
+     * @return 减一天：20141123或(加一天：20141125)
+     */
+    public static String checkOption(String option, String _date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar cl = Calendar.getInstance();
+        Date date = null;
+
+        try {
+            date = (Date) sdf.parse(_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cl.setTime(date);
+        if ("pre".equals(option)) {
+            // 时间减一天
+            cl.add(Calendar.DAY_OF_MONTH, -1);
+
+        } else if ("next".equals(option)) {
+            // 时间加一天
+            cl.add(Calendar.DAY_OF_YEAR, 1);
+        } else {
+            // do nothing
+        }
+        date = cl.getTime();
+        return sdf.format(date);
     }
 }

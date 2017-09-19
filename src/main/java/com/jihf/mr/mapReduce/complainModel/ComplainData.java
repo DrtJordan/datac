@@ -90,9 +90,9 @@ public class ComplainData extends Configured implements Tool {
 //            MultipleInputs.addInputPath(job, new Path(input3),
 //                    AvroKeyInputFormat.class, etlDataMap.class);
 
-            initInputPath(cf, job, input1, TextInputFormat.class, flowDataMap.class);
-            initInputPath(cf, job, input2, TextInputFormat.class, smsDataMap.class);
-            initInputPath(cf, job, input3, AvroKeyInputFormat.class, etlDataMap.class);
+            HDFSFileUtils.initInputPath(cf, job, input1, TextInputFormat.class, flowDataMap.class);
+            HDFSFileUtils.initInputPath(cf, job, input2, TextInputFormat.class, smsDataMap.class);
+            HDFSFileUtils.initInputPath(cf, job, input3, AvroKeyInputFormat.class, etlDataMap.class);
 
 
             FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
@@ -114,67 +114,6 @@ public class ComplainData extends Configured implements Tool {
     }
 
 
-    private void initInputPath(Configuration cf, Job job, String input, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (input.contains("&")) {
-            // 多文件，文件目录输入
-            String[] inputs = input.split("&", -1);
-            for (String in : inputs) {
-                Path path = new Path(in);
-                if (HDFSFileUtils.isFile(cf, path)) {
-                    MultipleInputs.addInputPath(job, path, inputFormatClass, mapperClass);
-                } else {
-                    iteratorAddFiles(cf, job, path, inputFormatClass, mapperClass);
-                }
-
-            }
-        } else if (input.contains("|")) {
-            // 文件目录区域输入
-
-        }
-    }
-
-
-    public static void iteratorAddFiles(Configuration conf, Job job, Path path, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (objectIsNull(conf, job, path, inputFormatClass, mapperClass)) {
-            JobUtils.exit("failure to addInputPath");
-        }
-        try {
-            FileSystem hdfs = FileSystem.get(conf);
-            //获取文件列表
-            FileStatus[] files = hdfs.listStatus(path);
-
-            //展示文件信息
-            for (FileStatus file : files) {
-                try {
-                    if (file.isDirectory()) {
-                        //递归调用
-                        iteratorAddFiles(conf, job, file.getPath(), inputFormatClass, mapperClass);
-                    } else if (file.isFile() && !file.getPath().getName().equals("_SUCCESS")) {
-                        MultipleInputs.addInputPath(job, file.getPath(), inputFormatClass, mapperClass);
-                        pathList.add(file.getPath().toString());
-                    }
-                } catch (Exception e) {
-                    JobUtils.exit("iteratorAddFiles e：" + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            JobUtils.exit("e：" + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private static boolean objectIsNull(Object... objets) {
-        boolean flag = false;
-        for (Object obj : objets) {
-            if (null == obj) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-
-
     /**
      * 流量数据
      */
@@ -183,14 +122,14 @@ public class ComplainData extends Configured implements Tool {
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String[] datas = value.toString().split("\u0001", -1);
             HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
-                int day = Integer.parseInt(flowDataBean.date.substring(8, flowDataBean.date.length())) - 1;
-                context.write(new Text(flowDataBean.mobile),
-                        new Text(String.format("%s|%s|%s|%s|%s",
-                                TAG_FLOW,
-                                flowDataBean.flow_total,
-                                flowDataBean.flow_used,
-                                flowDataBean.main_price,
-                                day)));
+            int day = Integer.parseInt(flowDataBean.date.substring(8, flowDataBean.date.length())) - 1;
+            context.write(new Text(flowDataBean.mobile),
+                    new Text(String.format("%s|%s|%s|%s|%s",
+                            TAG_FLOW,
+                            flowDataBean.flow_total,
+                            flowDataBean.flow_used,
+                            flowDataBean.main_price,
+                            day)));
         }
     }
 
@@ -227,7 +166,7 @@ public class ComplainData extends Configured implements Tool {
             int callFromTel = complaint.getCallFromTele();
             int callToTel = complaint.getCallToTele();
             String queryDate = key.datum().getLogDate().toString();
-            int day = Integer.parseInt(queryDate.substring(5,8));
+            int day = Integer.parseInt(queryDate.substring(5, 8));
             context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s|%s|%s",
                     TAG_ETL,
                     queryDate,

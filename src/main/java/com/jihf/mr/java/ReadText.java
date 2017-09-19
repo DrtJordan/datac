@@ -1,13 +1,19 @@
 package com.jihf.mr.java;
 
-import com.jihf.mr.utils.Matcher;
-import com.jihf.mr.utils.StringUtils;
+import com.jihf.mr.utils.*;
 import model.DpiResult;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.specific.SpecificDatumReader;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.*;
+import org.apache.hadoop.mapreduce.InputFormat;
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,14 +30,53 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-        File file = new File("E://excel/20170909/jiangsu_dpi_0909.avro");
-        txt2String(file);
-//        try {
-//            long dateTime = new SimpleDateFormat("yyyyMMdd").parse("20170804").getTime();
-//        } catch (ParseException e) {
-//            System.out.println(e);
-//            e.printStackTrace();
-//        }
+//        File file = new File("E://excel/20170909/jiangsu_dpi_0909.avro");
+//        txt2String(file);
+        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
+    }
+
+    public static List<String> pathList = new ArrayList<String>();
+
+    private static boolean isObjectNull(Object... objets) {
+        boolean flag = false;
+        for (Object obj : objets) {
+            if (null == obj) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+
+    public static void iteratorAddFiles(String input) {
+        if (input.contains("{")) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            String pathStr = null;
+            // 需要处理输入区间
+            if (!input.contains("}")) {
+                JobUtils.exit("input is illegal. please input like <jihaifeng/testComplain/{20170904,20170909}/32>");
+            }
+            int startIndex = input.indexOf("{");
+            int endIndex = input.indexOf("}");
+            String _temp = input.substring(startIndex, endIndex + 1);
+            String[] params = _temp.substring(1, _temp.length() - 1).split(",", -1);
+            if (params.length != 2) {
+                System.err.println("params is illegal. please input like <jihaifeng/testComplain/{20170904,20170909}/32>");
+                return;
+            }
+            String startDate = params[0];
+            String endDate = params[1];
+            String _tempDate = startDate;
+            try {
+                while (sdf.parse(_tempDate).before(sdf.parse(endDate)) || _tempDate.equals(endDate)) {
+                    pathStr = input.replace(_temp, _tempDate);
+                    System.out.println("pathStr = " + pathStr);
+                    _tempDate = TimeUtils.checkOption("next", _tempDate);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static boolean matchChe(String url) {
@@ -99,7 +144,7 @@ public class ReadText {
                         DpiResult dpiResult = dataFileReader.next();
 //                    System.out.println(dpiResult.getPhoneNumber());
                         if (!StringUtils.strIsEmpty(dpiResult.getPhoneNumber().toString())) {
-                            bw.write(dpiResult.getPhoneNumber().toString()+"\n");
+                            bw.write(dpiResult.getPhoneNumber().toString() + "\n");
                         }
                     }
                     bw.close();

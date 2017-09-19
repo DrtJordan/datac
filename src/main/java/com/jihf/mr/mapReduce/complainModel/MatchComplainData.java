@@ -111,56 +111,6 @@ public class MatchComplainData extends Configured implements Tool {
         return 0;
     }
 
-
-    private void initInputPath(Configuration cf, Job job, String input, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (input.contains("&")) {
-            String[] inputs = input.split("&", -1);
-            for (String in : inputs) {
-                Path path = new Path(in);
-                if (HDFSFileUtils.isFile(cf, path)) {
-                    MultipleInputs.addInputPath(job, path, inputFormatClass, mapperClass);
-                } else {
-                    iteratorAddFiles(cf, job, path, inputFormatClass, mapperClass);
-                }
-
-            }
-        } else if (input.contains("|")) {
-
-        }
-    }
-
-
-    public static void iteratorAddFiles(Configuration conf, Job job, Path path, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
-        if (isObjectNull(conf, job, path, inputFormatClass, mapperClass)) {
-            JobUtils.exit("failure to addInputPath");
-        }
-        try {
-            FileSystem hdfs = FileSystem.get(conf);
-            //获取文件列表
-            FileStatus[] files = hdfs.listStatus(path);
-
-            //展示文件信息
-            for (FileStatus file : files) {
-                try {
-                    if (file.isDirectory()) {
-                        //递归调用
-                        iteratorAddFiles(conf, job, file.getPath(), inputFormatClass, mapperClass);
-                    } else if (file.isFile() && !file.getPath().getName().equals("_SUCCESS")) {
-                        MultipleInputs.addInputPath(job, file.getPath(), inputFormatClass, mapperClass);
-                        pathList.add(file.getPath().toString());
-                    }
-                } catch (Exception e) {
-                    JobUtils.exit("iteratorAddFiles e：" + e.getMessage());
-                    e.printStackTrace();
-                }
-            }
-        } catch (Exception e) {
-            JobUtils.exit("e：" + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-
     /**
      * 样本手机号
      */
@@ -231,18 +181,21 @@ public class MatchComplainData extends Configured implements Tool {
     public static class etlDataMap extends Mapper<AvroKey<FlowAnalysis>, NullWritable, Text, Text> {
         @Override
         protected void map(AvroKey<FlowAnalysis> key, NullWritable value, Context context) throws IOException, InterruptedException {
-                Complaint complaint = key.datum().getComplaintRatio();
-                String mobile = null != key.datum().getMobile() ? key.datum().getMobile().toString() : null;
-                int callFromTel = null != complaint ? complaint.getCallFromTele() : 0;
-                int callToTel = null != complaint ? complaint.getCallToTele() : 0;
-                String queryDate = null != key.datum().getQueryDate() ? key.datum().getQueryDate().toString() : null;
-                if (!StringUtils.strIsEmpty(mobile)) {
-                    context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s",
-                            TAG_ETL,
-                            queryDate,
-                            callFromTel,
-                            callToTel)));
-                }
+            Complaint complaint = key.datum().getComplaintRatio();
+            int callTo = null != complaint ? complaint.getCallFromTele() : 0;
+            int callFrom = null != complaint ? complaint.getCallToTele() : 0;
+            String mobile = StringUtils.strIsEmpty(key.datum().getMobile().toString()) ? null : key.datum().getMobile().toString();
+            String queryDate = StringUtils.strIsEmpty(key.datum().getQueryDate().toString()) ? null : key.datum().getQueryDate().toString();
+            String basicFee = StringUtils.strIsEmpty(key.datum().getBasicFee().toString()) ? null : key.datum().getBasicFee().toString();
+
+            if (!StringUtils.strIsEmpty(mobile) && (callFrom > 0 || callTo > 0)) {
+                context.write(new Text(mobile), new Text(String.format("%s|%s|%s|%s|%s",
+                        TAG_ETL,
+                        queryDate,
+                        callTo,
+                        callFrom,
+                        basicFee)));
+            }
         }
     }
 
@@ -261,6 +214,7 @@ public class MatchComplainData extends Configured implements Tool {
             long maxTime = -1;
             int callTo = -1;
             int callFrom = -1;
+            long basicFee = -1;
 
             for (Text val : values) {
                 String[] datas = val.toString().split("\\|", -1);
@@ -285,6 +239,7 @@ public class MatchComplainData extends Configured implements Tool {
                             callFrom = StringUtils.strIsEmpty(datas[3]) ? -1 : Integer.parseInt(datas[3]);
                             maxTime = dateTime;
                         }
+                        basicFee = StringUtils.strIsEmpty(datas[4]) ? -1 : Long.parseLong(datas[4]);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -320,16 +275,6 @@ public class MatchComplainData extends Configured implements Tool {
             return flag;
         }
 
-    }
-
-    private static boolean isObjectNull(Object... objets) {
-        boolean flag = false;
-        for (Object obj : objets) {
-            if (null == obj) {
-                flag = true;
-            }
-        }
-        return flag;
     }
 
     public static void main(String[] args) throws Exception {
