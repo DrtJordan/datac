@@ -133,7 +133,7 @@ public class MblDpiHostSort extends Configured implements Tool {
 
             String domainName = datas[30];
             String msisdn = datas[1];
-            if (!StringUtils.strIsEmpty(msisdn, domainName)) {
+            if (StringUtils.strIsNotEmpty( domainName)) {
                 context.write(new Text(domainName), NUM);
             }
 
@@ -156,7 +156,6 @@ public class MblDpiHostSort extends Configured implements Tool {
             Configuration conf = context.getConfiguration();
             max_k = Integer.parseInt(DefaultStringifier.load(conf, MAX_OUTPUT_NUM, Text.class).toString());
             min_count = Integer.parseInt(DefaultStringifier.load(conf, MIN_VISIT_TIMES, Text.class).toString());
-            ;
         }
 
         @Override

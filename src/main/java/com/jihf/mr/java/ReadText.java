@@ -32,7 +32,8 @@ public class ReadText {
     public static void main(String[] args) {
 //        File file = new File("E://excel/20170909/jiangsu_dpi_0909.avro");
 //        txt2String(file);
-        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
+//        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
+
     }
 
     public static List<String> pathList = new ArrayList<String>();

@@ -88,7 +88,7 @@ public class ComplainHostSort {
         } else {
             JobUtils.exit("the num of parameter is illegal.");
         }
-        if (StringUtils.strIsEmpty(input1) || StringUtils.strIsEmpty(output)) {
+        if (!StringUtils.strIsNotEmpty(input1,output)) {
             JobUtils.exit("the num of parameter is illegal.");
         }
         Configuration cf = new Configuration();

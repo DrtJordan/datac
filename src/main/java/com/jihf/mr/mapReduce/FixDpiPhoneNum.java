@@ -51,8 +51,6 @@ public class FixDpiPhoneNum {
                 context.write(new Text(String.format("%s|%s", URL, UserAgent)), new IntWritable(1));
             }
         }
-
-
     }
 
     public static class FixCombiner extends Reducer<Text, IntWritable, Text, IntWritable> {
@@ -72,7 +70,7 @@ public class FixDpiPhoneNum {
 
                 if (null != paramsMap && paramsMap.size() != 0) {
                     for (String mapKey : paramsMap.keySet()) {
-                        if (!StringUtils.strIsEmpty(mapKey) && !StringUtils.strIsEmpty(UrlHandler.matchMblNumKey(mapKey))) {
+                        if (StringUtils.strIsNotEmpty(mapKey,UrlHandler.matchMblNumKey(mapKey))) {
                             phonekey = UrlHandler.matchMblNumKey(mapKey);
                         }
                     }
@@ -129,7 +127,7 @@ public class FixDpiPhoneNum {
             job.setReducerClass(FixReducer.class);
             job.setNumReduceTasks(5);
 
-            job.setMapOutputValueClass(Text.class);
+            job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(IntWritable.class);
 
             job.setOutputKeyClass(Text.class);

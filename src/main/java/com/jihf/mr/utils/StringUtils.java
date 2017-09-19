@@ -8,6 +8,11 @@ package com.jihf.mr.utils;
  * Mail：jihaifeng@raiyi.com
  */
 public class StringUtils extends org.apache.commons.lang.StringUtils {
+    /**
+     * true = 全部为空，false = 至少有一个不为空
+     * @param str
+     * @return
+     */
     public static boolean strIsEmpty(String... str) {
         if (null == str || str.length == 0) {
             return true;
@@ -15,6 +20,24 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         boolean flag = true;
         for (String key : str) {
             if (null != key && !key.equals("null") && key.trim().length() > 0) {
+                flag = false;
+            }
+
+        }
+        return flag;
+    }
+    /**
+     * true = 全部不为空，false = 至少有一个为空
+     * @param str
+     * @return
+     */
+    public static boolean strIsNotEmpty(String... str) {
+        if (null == str || str.length == 0) {
+            return false;
+        }
+        boolean flag = true;
+        for (String key : str) {
+            if (null == key || key.equals("null") || key.trim().length() == 0) {
                 flag = false;
             }
 

@@ -70,6 +70,9 @@ public class MainStart {
             //  hadoop jar datac-1.16-shaded.jar  complainData <Dpi数据  etl数据  输出目录>
             driver.addClass("getComplainData",GetComplainData.class,"Get ComplainPhone");
 
+            // hadoop jar datac-1.16.jar  matchMblDpiUAWithComplain <样本数据  移网DPi数据  输出目录>
+            driver.addClass("matchMblDpiUAWithComplain",MatchMblDpiUAWithComplain.class,"getUa");
+
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("copyFile", CopyFile.class, "copyFile from HDFS.");
             // hadoop jar datac-1.7.jar  complainHostSort 匹配投诉号码输出的结果目录 计数后的输出目录

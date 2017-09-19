@@ -104,7 +104,7 @@ public class MatchDpiHostWithChe {
                 if (null != paramsMap && paramsMap.size() != 0) {
                     String phonekey = null;
                     for (String mapKey : paramsMap.keySet()) {
-                        if (!StringUtils.strIsEmpty(mapKey) && !StringUtils.strIsEmpty(UrlHandler.matchMblNumKey(mapKey))) {
+                        if (StringUtils.strIsNotEmpty(mapKey,UrlHandler.matchMblNumKey(mapKey)) ) {
                             phonekey = UrlHandler.matchMblNumKey(mapKey);
                         }
                     }
@@ -121,7 +121,7 @@ public class MatchDpiHostWithChe {
                     url = datas[3];
                 }
             }
-            if (!StringUtils.strIsEmpty(url) && !StringUtils.strIsEmpty(phone)) {
+            if (StringUtils.strIsNotEmpty(url,phone)) {
                 context.write(new Text(String.format("%s|%s|%s", phone, url, ua)), new IntWritable(1));
             }
 
