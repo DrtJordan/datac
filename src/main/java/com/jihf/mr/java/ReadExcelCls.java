@@ -6,7 +6,10 @@ import com.jihf.mr.utils.StringUtils;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +35,7 @@ public class ReadExcelCls {
         System.out.println("21a313123".matches("\\d+"));
     }
 
-    private  static long getScore(String callType, int count, String callDuration) {
+    private static long getScore(String callType, int count, String callDuration) {
         if (StringUtils.strIsEmpty(callDuration) || !callDuration.matches("\\d+")) {
             return -1;
         }

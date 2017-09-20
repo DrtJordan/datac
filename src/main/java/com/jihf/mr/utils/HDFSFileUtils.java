@@ -85,7 +85,7 @@ public class HDFSFileUtils {
      */
     public static void initInputPath(Configuration cf, Job job, String input, Class<? extends InputFormat> inputFormatClass, Class<? extends Mapper> mapperClass) {
         if (input.contains("{")) {
-             // 处理日期区间
+            // 处理日期区间
             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
             String pathStr = null;
             // 需要处理输入区间

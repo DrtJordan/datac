@@ -33,7 +33,7 @@ public class FixDpiPhoneNum {
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
             String fixData = value.toString();
 
-            String[] datas = fixData.split("\005",-1);
+            String[] datas = fixData.split("\005", -1);
             if (datas.length >= 11) {
                 String UserAccount = StringUtils.strIsEmpty(datas[0]) ? null : datas[0];
                 String Protocol = StringUtils.strIsEmpty(datas[1]) ? null : datas[1];
@@ -70,7 +70,7 @@ public class FixDpiPhoneNum {
 
                 if (null != paramsMap && paramsMap.size() != 0) {
                     for (String mapKey : paramsMap.keySet()) {
-                        if (StringUtils.strIsNotEmpty(mapKey,UrlHandler.matchMblNumKey(mapKey))) {
+                        if (StringUtils.strIsNotEmpty(mapKey, UrlHandler.matchMblNumKey(mapKey))) {
                             phonekey = UrlHandler.matchMblNumKey(mapKey);
                         }
                     }

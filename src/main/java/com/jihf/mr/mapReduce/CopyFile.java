@@ -3,7 +3,6 @@ package com.jihf.mr.mapReduce;
 import com.jihf.mr.utils.JobUtils;
 import com.jihf.mr.utils.StringUtils;
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -16,7 +15,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import javax.tools.Tool;
 import java.io.IOException;
 
 /**
@@ -42,7 +40,7 @@ public class CopyFile {
             }
             String[] datas = data.split("\\|", -1);
 
-            context.write(new Text("msisdn："+datas[1] + "|imsi：" + datas[0] + "|imei：" + datas[2]), NUM);
+            context.write(new Text("msisdn：" + datas[1] + "|imsi：" + datas[0] + "|imei：" + datas[2]), NUM);
         }
     }
 

@@ -140,7 +140,7 @@ public class DpiData extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        int exitCode = ToolRunner.run(new DpiData(),args);
+        int exitCode = ToolRunner.run(new DpiData(), args);
         System.exit(exitCode);
     }
 }

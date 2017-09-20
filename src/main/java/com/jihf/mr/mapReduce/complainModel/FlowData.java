@@ -76,7 +76,7 @@ public class FlowData {
                 }
             }
             int durDay = (maxDay - minDay) < 0 ? -1 : (maxDay - minDay);
-            context.write(NullWritable.get(), new Text(String.format("%s|%s|%s|%s|%s", key, flowTotal, flowUsed, durDay,mainPrice)));
+            context.write(NullWritable.get(), new Text(String.format("%s|%s|%s|%s|%s", key, flowTotal, flowUsed, durDay, mainPrice)));
 
         }
 

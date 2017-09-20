@@ -56,7 +56,7 @@ public class MainStart {
 
             // hadoop jar datac-1.16-shaded.jar  complainData <Dpi数据  etl数据  输出目录>
             // out：手机号|…过程值…|得分
-            driver.addClass("getComplainData",GetComplainData.class,"Get ComplainPhone");
+            driver.addClass("getComplainData", GetComplainData.class, "Get ComplainPhone");
 
 
             driver.addClass("flowData", FlowData.class, "flow data");
@@ -72,10 +72,8 @@ public class MainStart {
             driver.addClass("matchDpiHostWithZaoJiao", MatchDpiHostWithZaoJiao.class, "zaojiao Data");
 
 
-
-
             // hadoop jar datac-1.16.jar  matchMblDpiUAWithComplain <样本数据  移网DPi数据  输出目录>
-            driver.addClass("matchMblDpiUAWithComplain",MatchMblDpiUAWithComplain.class,"getUa");
+            driver.addClass("matchMblDpiUAWithComplain", MatchMblDpiUAWithComplain.class, "getUa");
 
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("copyFile", CopyFile.class, "copyFile from HDFS.");

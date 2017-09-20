@@ -10,6 +10,7 @@ package com.jihf.mr.utils;
 public class StringUtils extends org.apache.commons.lang.StringUtils {
     /**
      * true = 全部为空，false = 至少有一个不为空
+     *
      * @param str
      * @return
      */
@@ -26,8 +27,10 @@ public class StringUtils extends org.apache.commons.lang.StringUtils {
         }
         return flag;
     }
+
     /**
      * true = 全部不为空，false = 至少有一个为空
+     *
      * @param str
      * @return
      */

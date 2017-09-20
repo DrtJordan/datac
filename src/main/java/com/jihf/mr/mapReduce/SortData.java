@@ -74,7 +74,7 @@ public class SortData {
 
             FileInputFormat.addInputPath(job, new Path(input1));
 
-            FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(conf,output));
+            FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(conf, output));
 
             System.out.println("\n==================================\n");
             System.out.println("输入目录：" + input1);
@@ -86,6 +86,7 @@ public class SortData {
             e.printStackTrace();
         }
     }
+
     public static class myComparator extends IntWritable.Comparator {
 
         @SuppressWarnings("rawtypes")

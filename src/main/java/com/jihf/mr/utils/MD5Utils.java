@@ -1,7 +1,6 @@
 package com.jihf.mr.utils;
 
 import java.security.MessageDigest;
-import java.text.ParseException;
 
 /**
  * Func：

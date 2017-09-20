@@ -327,7 +327,7 @@ public class MatchDpiHostWithZaoJiao extends Configured implements Tool {
 
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         int exitCode = ToolRunner.run(new MatchDpiHostWithZaoJiao(), args);
         System.exit(exitCode);
     }

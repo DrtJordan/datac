@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class TestMatcher {
     private final static Matcher matcher = new Matcher(true);

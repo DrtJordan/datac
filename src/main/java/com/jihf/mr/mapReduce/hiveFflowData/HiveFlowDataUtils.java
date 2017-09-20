@@ -2,8 +2,6 @@ package com.jihf.mr.mapReduce.hiveFflowData;
 
 import com.jihf.mr.utils.StringUtils;
 
-import java.util.HashMap;
-
 /**
  * Func：
  * Desc:

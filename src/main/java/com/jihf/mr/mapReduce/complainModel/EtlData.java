@@ -84,7 +84,7 @@ public class EtlData {
                     }
 
                 }
-                context.write(NullWritable.get(), new Text(String.format("%s|%s|%s|%s", key, callTo, callFrom,basicFee)));
+                context.write(NullWritable.get(), new Text(String.format("%s|%s|%s|%s", key, callTo, callFrom, basicFee)));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

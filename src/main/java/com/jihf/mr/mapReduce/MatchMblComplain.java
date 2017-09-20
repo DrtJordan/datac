@@ -2,7 +2,6 @@ package com.jihf.mr.mapReduce;
 
 import com.jihf.mr.constants.Config;
 import com.jihf.mr.utils.*;
-import com.jihf.mr.utils.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
@@ -51,7 +50,7 @@ public class MatchMblComplain {
                 matchCdrList.add("12315");
 //                matchCdrList.add("10000");
 //                matchCdrList.add("10001");
-                 // raiyi 投诉电话
+                // raiyi 投诉电话
                 matchCdrList.add("4008518832");
                 matchCdrList.add("4006198838");
                 matchCdrList.add("4008232468");

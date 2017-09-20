@@ -11,7 +11,7 @@ import org.apache.hadoop.conf.Configuration;
  */
 public class MrUtils {
 
-    public static Configuration getConFiguration(String qName){
+    public static Configuration getConFiguration(String qName) {
         Configuration cf = new Configuration();
         cf.set("mapreduce.map.failures.maxpercent", "90");
         cf.set("mapreduce.reduce.failures.maxpercent", "90");
@@ -20,7 +20,8 @@ public class MrUtils {
         cf.set("mapreduce.job.queuename", queueName.trim());
         return cf;
     }
-    public static Configuration getRaiyiConfiguration(){
+
+    public static Configuration getRaiyiConfiguration() {
         return getConFiguration("root.vendor.ven27");
     }
 }

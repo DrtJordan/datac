@@ -73,8 +73,8 @@ public class ComplainHostSort {
                 count++;
                 data = val.toString();
             }
-            context.write(NullWritable.get(), new Text(count + "|" +host));
-       }
+            context.write(NullWritable.get(), new Text(count + "|" + host));
+        }
     }
 
 
@@ -88,7 +88,7 @@ public class ComplainHostSort {
         } else {
             JobUtils.exit("the num of parameter is illegal.");
         }
-        if (!StringUtils.strIsNotEmpty(input1,output)) {
+        if (!StringUtils.strIsNotEmpty(input1, output)) {
             JobUtils.exit("the num of parameter is illegal.");
         }
         Configuration cf = new Configuration();

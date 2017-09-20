@@ -131,7 +131,7 @@ public class MatchMblCdrComplain {
                 if (strs[0].equals(NUM)) {
                     flag1 = true;
 
-                    String complain =String.format("%s\040%s", strs[1], getCallType(strs[2]));
+                    String complain = String.format("%s\040%s", strs[1], getCallType(strs[2]));
                     if (!phoneComplain.contains(complain)) {
                         phoneComplain.add(complain);
                     }

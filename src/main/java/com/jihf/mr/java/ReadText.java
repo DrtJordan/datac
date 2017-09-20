@@ -1,19 +1,9 @@
 package com.jihf.mr.java;
 
-import com.jihf.mr.utils.*;
-import model.DpiResult;
-import org.apache.avro.file.DataFileReader;
-import org.apache.avro.io.DatumReader;
-import org.apache.avro.specific.SpecificDatumReader;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.*;
-import org.apache.hadoop.mapreduce.InputFormat;
-import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
+import com.jihf.mr.utils.Matcher;
+import com.jihf.mr.utils.StringUtils;
 
 import java.io.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,7 +42,7 @@ public class ReadText {
         ll.add("17526795488");
         int count = 0;
         String result = null;
-  StringBuffer sb_ua = new StringBuffer("");
+        StringBuffer sb_ua = new StringBuffer("");
         try {
 
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
@@ -63,7 +53,7 @@ public class ReadText {
                 String ua = datas[1];
                 if (StringUtils.strIsNotEmpty(ua)) {
                     if (!ua.toLowerCase().contains("weixi") && !ua.toLowerCase().contains("qq.com")) {
-                        sb_ua.append(ua+"\n");
+                        sb_ua.append(ua + "\n");
                     }
 //                    classifyUa(ua);
                 }
@@ -86,7 +76,7 @@ public class ReadText {
 
             }
             System.out.println(count);
-            writeUa("E://excel/host1000_1.txt",sb_ua.toString());
+            writeUa("E://excel/host1000_1.txt", sb_ua.toString());
 
 //            writeUa(path_iphone, sb_iphone.toString());
 //            writeUa(path_vivo, sb_vivo.toString());

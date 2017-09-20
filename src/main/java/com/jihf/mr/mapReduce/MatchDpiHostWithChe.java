@@ -28,7 +28,7 @@ import java.util.Map;
  * Mail：jihaifeng@raiyi.com
  */
 public class MatchDpiHostWithChe {
-   private static Matcher matcher = new Matcher(true);
+    private static Matcher matcher = new Matcher(true);
 
     public static class fixDPiMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
         @Override
@@ -84,9 +84,8 @@ public class MatchDpiHostWithChe {
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
-           initMatcher();
+            initMatcher();
         }
-
 
 
         @Override
@@ -104,7 +103,7 @@ public class MatchDpiHostWithChe {
                 if (null != paramsMap && paramsMap.size() != 0) {
                     String phonekey = null;
                     for (String mapKey : paramsMap.keySet()) {
-                        if (StringUtils.strIsNotEmpty(mapKey,UrlHandler.matchMblNumKey(mapKey)) ) {
+                        if (StringUtils.strIsNotEmpty(mapKey, UrlHandler.matchMblNumKey(mapKey))) {
                             phonekey = UrlHandler.matchMblNumKey(mapKey);
                         }
                     }
@@ -121,7 +120,7 @@ public class MatchDpiHostWithChe {
                     url = datas[3];
                 }
             }
-            if (StringUtils.strIsNotEmpty(url,phone)) {
+            if (StringUtils.strIsNotEmpty(url, phone)) {
                 context.write(new Text(String.format("%s|%s|%s", phone, url, ua)), new IntWritable(1));
             }
 
@@ -222,7 +221,8 @@ public class MatchDpiHostWithChe {
             e.printStackTrace();
         }
     }
-    private  static void initMatcher() {
+
+    private static void initMatcher() {
         matcher.addPattern("*.guazi.com/*/sell*", 100);
         matcher.addPattern("*.guazi.com/*/sale*", 200);
 //            matcher.addPattern("sta.guazi.com/we_client*", 300);
