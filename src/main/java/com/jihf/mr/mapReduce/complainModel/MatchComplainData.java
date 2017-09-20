@@ -82,15 +82,13 @@ public class MatchComplainData extends Configured implements Tool {
             // MultipleInputs类添加文件路径
             MultipleInputs.addInputPath(job, new Path(input1),
                     TextInputFormat.class, phoneNumMap.class);
-            MultipleInputs.addInputPath(job, new Path(input2),
-                    AvroKeyInputFormat.class, dpiDataMap.class);
-            MultipleInputs.addInputPath(job, new Path(input3),
-                    AvroKeyInputFormat.class, etlDataMap.class);
+//            MultipleInputs.addInputPath(job, new Path(input2),
+//                    AvroKeyInputFormat.class, dpiDataMap.class);
+//            MultipleInputs.addInputPath(job, new Path(input3),
+//                    AvroKeyInputFormat.class, etlDataMap.class);
 
-//            initInputPath(cf, job, input1, TextInputFormat.class, phoneNumMap.class);
-//            initInputPath(cf, job, input2, TextInputFormat.class, flowDataMap.class);
-//            initInputPath(cf, job, input3, TextInputFormat.class, smsDataMap.class);
-//            initInputPath(cf, job, input4, AvroKeyInputFormat.class, etlDataMap.class);
+            HDFSFileUtils.initInputPath(cf, job, input1, AvroKeyInputFormat.class, dpiDataMap.class);
+            HDFSFileUtils.initInputPath(cf, job, input2, AvroKeyInputFormat.class, etlDataMap.class);
 
 
             FileOutputFormat.setOutputPath(job, HDFSFileUtils.getPath(cf, output));
