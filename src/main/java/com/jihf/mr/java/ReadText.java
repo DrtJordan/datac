@@ -30,7 +30,7 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-        File file = new File("E://excel/ua_result.txt");
+        File file = new File("E://excel/host1000.txt");
         txt2String(file);
 //        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
 
@@ -52,17 +52,21 @@ public class ReadText {
         ll.add("17526795488");
         int count = 0;
         String result = null;
+  StringBuffer sb_ua = new StringBuffer("");
         try {
 
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
             String s = null;
-
             while ((s = br.readLine()) != null) {
                 //使用readLine方法，一次读一行
                 String[] datas = s.toString().split("\\|", -1);
                 String ua = datas[1];
-                if (StringUtils.strIsNotEmpty(ua))
-                    classifyUa(ua);
+                if (StringUtils.strIsNotEmpty(ua)) {
+                    if (!ua.toLowerCase().contains("weixi") && !ua.toLowerCase().contains("qq.com")) {
+                        sb_ua.append(ua+"\n");
+                    }
+//                    classifyUa(ua);
+                }
 
 
 //                DatumReader<DpiResult> reader = new SpecificDatumReader<DpiResult>(DpiResult.class);
@@ -81,30 +85,32 @@ public class ReadText {
 
 
             }
+            System.out.println(count);
+            writeUa("E://excel/host1000_1.txt",sb_ua.toString());
 
-            writeUa(path_iphone, sb_iphone.toString());
-            writeUa(path_vivo, sb_vivo.toString());
-            writeUa(path_xiaomi, sb_xiaomi.toString());
-            writeUa(path_huawei, sb_huawei.toString());
-            writeUa(path_oppo, sb_oppo.toString());
-            writeUa(path_nexus, sb_nexus.toString());
-            writeUa(path_le, sb_le.toString());
-            writeUa(path_sanxing, sb_sanxing.toString());
-            writeUa(path_mc, sb_mc.toString());
-            writeUa(path_aMap, sb_aMap.toString());
-            writeUa(path_other, sb_other.toString());
-
-            System.out.println("iphone:" + iphoneCount);
-            System.out.println("vivo:" + vivoCount);
-            System.out.println("xiaomi:" + xiaomiCount);
-            System.out.println("huawei:" + huaweiCount);
-            System.out.println("oppo:" + oppoCount);
-            System.out.println("nexus:" + nexusCount);
-            System.out.println("leshi:" + leCount);
-            System.out.println("sanxing:" + sanxingCount);
-            System.out.println("mc:" + mcCount);
-            System.out.println("aMap:" + aMapCount);
-            System.out.println("other:" + otherCount);
+//            writeUa(path_iphone, sb_iphone.toString());
+//            writeUa(path_vivo, sb_vivo.toString());
+//            writeUa(path_xiaomi, sb_xiaomi.toString());
+//            writeUa(path_huawei, sb_huawei.toString());
+//            writeUa(path_oppo, sb_oppo.toString());
+//            writeUa(path_nexus, sb_nexus.toString());
+//            writeUa(path_le, sb_le.toString());
+//            writeUa(path_sanxing, sb_sanxing.toString());
+//            writeUa(path_mc, sb_mc.toString());
+//            writeUa(path_aMap, sb_aMap.toString());
+//            writeUa(path_other, sb_other.toString());
+//
+//            System.out.println("iphone:" + iphoneCount);
+//            System.out.println("vivo:" + vivoCount);
+//            System.out.println("xiaomi:" + xiaomiCount);
+//            System.out.println("huawei:" + huaweiCount);
+//            System.out.println("oppo:" + oppoCount);
+//            System.out.println("nexus:" + nexusCount);
+//            System.out.println("leshi:" + leCount);
+//            System.out.println("sanxing:" + sanxingCount);
+//            System.out.println("mc:" + mcCount);
+//            System.out.println("aMap:" + aMapCount);
+//            System.out.println("other:" + otherCount);
 
 
             br.close();

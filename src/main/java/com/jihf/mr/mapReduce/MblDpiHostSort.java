@@ -41,6 +41,7 @@ public class MblDpiHostSort extends Configured implements Tool {
 
     private static final String MAX_OUTPUT_NUM = "maxOutputNum";
     private static final String MIN_VISIT_TIMES = "minVisitTimes";
+    public static final String ARGS_NUM = "paramsNum";
 
     @Override
     public int run(String[] strings) throws Exception {
@@ -51,6 +52,7 @@ public class MblDpiHostSort extends Configured implements Tool {
         Configuration cf = MrUtils.getRaiyiConfiguration();
 
         int index = 0;
+        int argNum = 0;
         if (null != strings && strings.length != 0) {
             if (StringUtils.strIsEmpty(strings)) {
                 JobUtils.exit("please input params like <mblDpiInput resultOutput 【choose：outputDataLength minVisitTimes】>");
@@ -61,17 +63,19 @@ public class MblDpiHostSort extends Configured implements Tool {
             } else if (strings.length == 3) {
                 input = strings[index++];
                 output = strings[index++];
+                argNum = 3;
                 DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "100" : strings[index]), MAX_OUTPUT_NUM);
             } else if (strings.length == 4) {
                 input = strings[index++];
                 output = strings[index++];
+                argNum = 4;
                 DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "100" : strings[index++]), MAX_OUTPUT_NUM);
                 DefaultStringifier.store(cf, new Text(StringUtils.strIsEmpty(strings[index]) ? "0" : strings[index]), MIN_VISIT_TIMES);
             } else {
                 JobUtils.exit("please input params like <mblDpiInput resultOutput 【choose：outputDataLength minVisitTimes】>");
             }
         }
-
+        DefaultStringifier.store(cf, new Text(String.valueOf(argNum)), ARGS_NUM);
 
         try {
             Job job = Job.getInstance(cf);
@@ -133,7 +137,7 @@ public class MblDpiHostSort extends Configured implements Tool {
 
             String domainName = datas[30];
             String msisdn = datas[1];
-            if (StringUtils.strIsNotEmpty( domainName)) {
+            if (StringUtils.strIsNotEmpty(domainName)) {
                 context.write(new Text(domainName), NUM);
             }
 
@@ -153,9 +157,16 @@ public class MblDpiHostSort extends Configured implements Tool {
 
         @Override
         protected void setup(Context context) throws IOException, InterruptedException {
-            Configuration conf = context.getConfiguration();
-            max_k = Integer.parseInt(DefaultStringifier.load(conf, MAX_OUTPUT_NUM, Text.class).toString());
-            min_count = Integer.parseInt(DefaultStringifier.load(conf, MIN_VISIT_TIMES, Text.class).toString());
+            if (null != context) {
+                Configuration conf = context.getConfiguration();
+                if (null != conf) {
+                    int args = Integer.parseInt(DefaultStringifier.load(conf, ARGS_NUM, Text.class).toString());
+                    if (args >= 3)
+                        max_k = Integer.parseInt(DefaultStringifier.load(conf, MAX_OUTPUT_NUM, Text.class).toString());
+                    if (args >= 3)
+                        min_count = Integer.parseInt(DefaultStringifier.load(conf, MIN_VISIT_TIMES, Text.class).toString());
+                }
+            }
         }
 
         @Override
@@ -166,39 +177,43 @@ public class MblDpiHostSort extends Configured implements Tool {
             for (IntWritable val : values) {
                 count++;
             }
-            if (count > 0) {
-
-                if (visitList.size() < max_k && count > min_count) {
-                    if (!StringUtils.strIsEmpty(url)) {
-                        VisitInfo visitInfo = new VisitInfo(count, url);
-                        visitList.add(visitInfo);
-                    }
-                }
-
-                //边界值处理
-                if (visitList.size() >= max_k && count > min_count) {
-                    // 先排序
-                    Collections.sort(visitList, comparator);
-                    // 求出访问最小的一项
-                    VisitInfo min = visitList.get(visitList.size() - 1);
-                    Long minCount = min.getKey();//最小的值
-                    if (count > minCount) {
-                        //删除最小的  
-                        visitList.remove(visitList.size() - 1);
-                        //添加大的                    
-                        visitList.add(new VisitInfo(count, key.toString()));
-                    }
-
-                }
-
-                if (!context.nextKey()) {
-                    Collections.sort(visitList, comparator);
-                    for (VisitInfo info : visitList) {
-                        context.write(NullWritable.get(), new Text(String.format("%s|%s", info.getKey(), info.getVal())));
-                    }
+            if (visitList.size() < max_k && count > min_count) {
+                if (!StringUtils.strIsEmpty(url)) {
+                    VisitInfo visitInfo = new VisitInfo(count, url);
+                    visitList.add(visitInfo);
                 }
             }
 
+            //边界值处理
+            if (visitList.size() >= max_k && count > min_count) {
+                // 先排序
+                Collections.sort(visitList, comparator);
+                // 求出访问最小的一项
+                VisitInfo min = visitList.get(visitList.size() - 1);
+                Long minCount = min.getKey();//最小的值
+                if (count > minCount) {
+                    //删除最小的
+                    visitList.remove(visitList.size() - 1);
+                    //添加大的
+                    visitList.add(new VisitInfo(count, key.toString()));
+                }
+
+            }
+//            context.nextKey();
+//            if (!context.nextKey()) {
+//                Collections.sort(visitList, comparator);
+//                for (VisitInfo info : visitList) {
+//                    context.write(NullWritable.get(), new Text(String.format("%s|%s", info.getKey(), info.getVal())));
+//                }
+//            }
+        }
+
+        @Override
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            Collections.sort(visitList, comparator);
+            for (VisitInfo info : visitList) {
+                context.write(NullWritable.get(), new Text(String.format("%s|%s", info.getKey(), info.getVal())));
+            }
         }
     }
 

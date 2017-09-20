@@ -115,12 +115,6 @@ public class MatchMblDpiUAWithComplain extends Configured implements Tool {
     }
 
     public static class uaReduce extends Reducer<Text, Text, NullWritable, Text> {
-        MultipleOutputs outputs;
-
-        @Override
-        protected void setup(Context context) throws IOException, InterruptedException {
-            outputs = new MultipleOutputs(context);
-        }
 
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
@@ -141,18 +135,13 @@ public class MatchMblDpiUAWithComplain extends Configured implements Tool {
                 }
             }
             if (flag1 && flag2 && StringUtils.strIsNotEmpty(phoneNum) && uaList.size() > 0) {
-                outputs.write(NullWritable.get(), String.format("%s|%s", phoneNum, uaList.toString()), "uaList");
                 for (String ua : uaList) {
-                    outputs.write(NullWritable.get(), String.format("%s|%s", phoneNum, ua), "ua");
+                    context.write(NullWritable.get(), new Text(String.format("%s|%s", phoneNum, ua)));
                 }
 
             }
         }
 
-        @Override
-        protected void cleanup(Context context) throws IOException, InterruptedException {
-            outputs.close();
-        }
     }
 
     public static void main(String[] args) throws Exception {
