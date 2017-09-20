@@ -30,82 +30,12 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-//        File file = new File("E://excel/20170909/jiangsu_dpi_0909.avro");
-//        txt2String(file);
+        File file = new File("E://excel/ua_result.txt");
+        txt2String(file);
 //        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
 
     }
 
-    public static List<String> pathList = new ArrayList<String>();
-
-    private static boolean isObjectNull(Object... objets) {
-        boolean flag = false;
-        for (Object obj : objets) {
-            if (null == obj) {
-                flag = true;
-            }
-        }
-        return flag;
-    }
-
-
-    public static void iteratorAddFiles(String input) {
-        if (input.contains("{")) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            String pathStr = null;
-            // 需要处理输入区间
-            if (!input.contains("}")) {
-                JobUtils.exit("input is illegal. please input like <jihaifeng/testComplain/{20170904,20170909}/32>");
-            }
-            int startIndex = input.indexOf("{");
-            int endIndex = input.indexOf("}");
-            String _temp = input.substring(startIndex, endIndex + 1);
-            String[] params = _temp.substring(1, _temp.length() - 1).split(",", -1);
-            if (params.length != 2) {
-                System.err.println("params is illegal. please input like <jihaifeng/testComplain/{20170904,20170909}/32>");
-                return;
-            }
-            String startDate = params[0];
-            String endDate = params[1];
-            String _tempDate = startDate;
-            try {
-                while (sdf.parse(_tempDate).before(sdf.parse(endDate)) || _tempDate.equals(endDate)) {
-                    pathStr = input.replace(_temp, _tempDate);
-                    System.out.println("pathStr = " + pathStr);
-                    _tempDate = TimeUtils.checkOption("next", _tempDate);
-                }
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private static boolean matchChe(String url) {
-        Matcher matcher = new Matcher(true);
-        matcher.addPattern("*jbzs.12321.cn*", 100);
-        matcher.addPattern("*.guazi.com/*/sale*", 200);
-        if (StringUtils.strIsEmpty(url)) {
-            return false;
-        }
-        int index = -1;
-        String _tempUrl = url;
-//        if (url.startsWith("http://")) {
-//            index = 7;
-//        } else if (url.startsWith("https://")) {
-//            index = 8;
-//        }
-//        if (index != -1) {
-//            _tempUrl = url.substring(index, url.length());
-//        }
-        if (!StringUtils.strIsEmpty(_tempUrl)) {
-            Matcher.MatchResult[] a = matcher.match(_tempUrl);
-            if (a.length != 0) {
-                System.out.println(url);
-                return true;
-            }
-        }
-        return false;
-    }
 
     /**
      * 读取txt文件的内容
@@ -126,46 +56,56 @@ public class ReadText {
 
             BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
             String s = null;
+
             while ((s = br.readLine()) != null) {
                 //使用readLine方法，一次读一行
-//                String[] datas = s.toString().split("\u0001", -1);
-//                HiveFlowDataBean flowDataBean = HiveFlowDataUtils.parse2FlowBean(datas);
-//                if (null != flowDataBean && !StringUtils.strIsEmpty(flowDataBean.flow_total) && !StringUtils.strIsEmpty(flowDataBean.flow_used) && !StringUtils.strIsEmpty(flowDataBean.main_price)) {
-//                    if (Double.parseDouble(flowDataBean.main_price) > 0) {
-//                        System.out.println(flowDataBean.main_price);
-//                    }
-//                }
-
-                DatumReader<DpiResult> reader = new SpecificDatumReader<DpiResult>(DpiResult.class);
-                DataFileReader<DpiResult> dataFileReader = new DataFileReader<DpiResult>(file, reader);
-                FileWriter fw = new FileWriter("E://excel/20170909/phoneNum_20170909.txt");
-                BufferedWriter bw = new BufferedWriter(fw);
-                for (int i = 0; i < 1000; i++) {
-                    while (dataFileReader.hasNext()) {
-                        DpiResult dpiResult = dataFileReader.next();
-//                    System.out.println(dpiResult.getPhoneNumber());
-                        if (!StringUtils.strIsEmpty(dpiResult.getPhoneNumber().toString())) {
-                            bw.write(dpiResult.getPhoneNumber().toString() + "\n");
-                        }
-                    }
-                    bw.close();
-                    fw.close();
+                String[] datas = s.toString().split("\\|", -1);
+                String ua = datas[1];
+                if (StringUtils.strIsNotEmpty(ua))
+                    classifyUa(ua);
 
 
-//                    List<HostPair> hostPairList = dpiResult.getHostFreq();
-//                    for (HostPair hostPair : hostPairList) {
-//                        if (matchChe(hostPair.getHost().toString().toLowerCase())){
-//                            System.out.println(String.format("%s",hostPair.getHost(),hostPair.getFrequency()));
+//                DatumReader<DpiResult> reader = new SpecificDatumReader<DpiResult>(DpiResult.class);
+//                DataFileReader<DpiResult> dataFileReader = new DataFileReader<DpiResult>(file, reader);
+//                FileWriter fw = new FileWriter("E://excel/20170909/phoneNum_20170909.txt");
+//                BufferedWriter bw = new BufferedWriter(fw);
+//                for (int i = 0; i < 1000; i++) {
+//                    while (dataFileReader.hasNext()) {
+//                        DpiResult dpiResult = dataFileReader.next();
+//                        if (!StringUtils.strIsEmpty(dpiResult.getPhoneNumber().toString())) {
+//                            bw.write(dpiResult.getPhoneNumber().toString() + "\n");
 //                        }
-//
 //                    }
+//                    bw.close();
+//                    fw.close();
 
 
-                }
             }
-//            for (String url : urlList) {
-//                System.out.println("url：" + url);
-//            }
+
+            writeUa(path_iphone, sb_iphone.toString());
+            writeUa(path_vivo, sb_vivo.toString());
+            writeUa(path_xiaomi, sb_xiaomi.toString());
+            writeUa(path_huawei, sb_huawei.toString());
+            writeUa(path_oppo, sb_oppo.toString());
+            writeUa(path_nexus, sb_nexus.toString());
+            writeUa(path_le, sb_le.toString());
+            writeUa(path_sanxing, sb_sanxing.toString());
+            writeUa(path_mc, sb_mc.toString());
+            writeUa(path_aMap, sb_aMap.toString());
+            writeUa(path_other, sb_other.toString());
+
+            System.out.println("iphone:" + iphoneCount);
+            System.out.println("vivo:" + vivoCount);
+            System.out.println("xiaomi:" + xiaomiCount);
+            System.out.println("huawei:" + huaweiCount);
+            System.out.println("oppo:" + oppoCount);
+            System.out.println("nexus:" + nexusCount);
+            System.out.println("leshi:" + leCount);
+            System.out.println("sanxing:" + sanxingCount);
+            System.out.println("mc:" + mcCount);
+            System.out.println("aMap:" + aMapCount);
+            System.out.println("other:" + otherCount);
+
 
             br.close();
         } catch (Exception e) {
@@ -174,6 +114,106 @@ public class ReadText {
         }
 
         return result;
+    }
+
+
+    private static int iphoneCount = 0;
+    private static String path_iphone = "E://excel/phone/nexus.txt";
+    private static StringBuffer sb_iphone = new StringBuffer("");
+
+    private static int vivoCount = 0;
+    private static String path_vivo = "E://excel/phone/vivo.txt";
+    private static StringBuffer sb_vivo = new StringBuffer("");
+
+    private static int xiaomiCount = 0;
+    private static String path_xiaomi = "E://excel/phone/xiaomi.txt";
+    private static StringBuffer sb_xiaomi = new StringBuffer("");
+
+    private static int huaweiCount = 0;
+    private static String path_huawei = "E://excel/phone/huawei.txt";
+    private static StringBuffer sb_huawei = new StringBuffer("");
+
+    private static int oppoCount = 0;
+    private static String path_oppo = "E://excel/phone/oppo.txt";
+    private static StringBuffer sb_oppo = new StringBuffer("");
+
+    private static int nexusCount = 0;
+    private static String path_nexus = "E://excel/phone/nexus.txt";
+    private static StringBuffer sb_nexus = new StringBuffer("");
+
+    private static int leCount = 0;
+    private static String path_le = "E://excel/phone/le.txt";
+    private static StringBuffer sb_le = new StringBuffer("");
+
+    private static int sanxingCount = 0;
+    private static String path_sanxing = "E://excel/phone/sanxing.txt";
+    private static StringBuffer sb_sanxing = new StringBuffer("");
+
+    private static int otherCount = 0;
+    private static String path_other = "E://excel/phone/other.txt";
+    private static StringBuffer sb_other = new StringBuffer("");
+
+
+    private static int mcCount = 0;
+    private static String path_mc = "E://excel/phone/mc.txt";
+    private static StringBuffer sb_mc = new StringBuffer("");
+
+    private static int aMapCount = 0;
+    private static String path_aMap = "E://excel/phone/aMap.txt";
+    private static StringBuffer sb_aMap = new StringBuffer("");
+
+    private static void classifyUa(String ua) {
+        if (ua.toLowerCase().contains("vivo")) {
+            vivoCount++;
+            sb_vivo.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("redmi") || ua.toLowerCase().contains("xiaomi") || ua.toLowerCase().contains("miui")) {
+            xiaomiCount++;
+            sb_xiaomi.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("huawei") || ua.toLowerCase().contains("honor")) {
+            huaweiCount++;
+            sb_huawei.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("oppo")) {
+            oppoCount++;
+            sb_oppo.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("nexus")) {
+            nexusCount++;
+            sb_nexus.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("iphone")) {
+            iphoneCount++;
+            sb_iphone.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("le")) {
+            leCount++;
+            sb_le.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("sm")) {
+            sanxingCount++;
+            sb_sanxing.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("micromessenger client")) {
+            mcCount++;
+            sb_mc.append(ua + "\n");
+        } else if (ua.toLowerCase().contains("amap_location_sdk_android")) {
+            aMapCount++;
+            sb_aMap.append(ua + "\n");
+        } else {
+            otherCount++;
+            sb_other.append(ua + "\n");
+        }
+
+    }
+
+    private static void writeUa(String filePath, String data) {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            bw.write(data);
+
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 

@@ -15,11 +15,14 @@ import org.apache.hadoop.mapreduce.lib.input.MultipleInputs;
 import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Func：
@@ -112,12 +115,19 @@ public class MatchMblDpiUAWithComplain extends Configured implements Tool {
     }
 
     public static class uaReduce extends Reducer<Text, Text, NullWritable, Text> {
+        MultipleOutputs outputs;
+
+        @Override
+        protected void setup(Context context) throws IOException, InterruptedException {
+            outputs = new MultipleOutputs(context);
+        }
+
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
             boolean flag1 = false;
             boolean flag2 = false;
             String phoneNum = null;
-            String ua = null;
+            List<String> uaList = new ArrayList<String>();
             for (Text val : values) {
                 String[] vals = val.toString().split("\\|", -1);
                 if (vals[0].equals(TAG_PHONE)) {
@@ -125,12 +135,23 @@ public class MatchMblDpiUAWithComplain extends Configured implements Tool {
                     phoneNum = vals[1];
                 } else if (vals[0].equals(TAG_DPI)) {
                     flag2 = true;
-                    ua = vals[1];
+                    if (!uaList.contains(vals[1])) {
+                        uaList.add(vals[1]);
+                    }
                 }
             }
-            if (flag1 && flag2 && StringUtils.strIsNotEmpty(phoneNum, ua)) {
-                context.write(NullWritable.get(), new Text(String.format("%s|%s", phoneNum, ua)));
+            if (flag1 && flag2 && StringUtils.strIsNotEmpty(phoneNum) && uaList.size() > 0) {
+                outputs.write(NullWritable.get(), String.format("%s|%s", phoneNum, uaList.toString()), "uaList");
+                for (String ua : uaList) {
+                    outputs.write(NullWritable.get(), String.format("%s|%s", phoneNum, ua), "ua");
+                }
+
             }
+        }
+
+        @Override
+        protected void cleanup(Context context) throws IOException, InterruptedException {
+            outputs.close();
         }
     }
 
