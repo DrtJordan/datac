@@ -7,55 +7,55 @@ package com.raiyi.model;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"????????\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"??????\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"???��???\",\"default\":-1},{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"?��????\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"?????��ID\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"?????��?\"},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"????????\"},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"????????\"},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"???????\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"?????????\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"????\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"????????????\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"int\",\"doc\":\"?????\",\"default\":-1},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"??????????????\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"???????????????\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"???????????????\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"????????????????\",\"default\":-1}]},\"doc\":\"??????????????\",\"default\":-1},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"??????????\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"???????????\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"???????????\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"????????????\",\"default\":-1}]},\"doc\":\"??????????\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000???��???\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000???��???\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300????\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321??????????????\",\"default\":-1}]},\"doc\":\"????, 10000???��?10000???��?12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000?????????\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300?????????\",\"default\":-1}]},\"doc\":\"???????????, 10000???????????12300?????????\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"??????????n?��????, ???��??0??????  1?????\",\"default\":-1},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"??????\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"?????????\",\"default\":-1},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"??????1:des,2:md5\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"??????????????\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"????????\",\"default\":-1},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666??????\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"数据日期\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"省份代码\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"城市代码\",\"default\":-1},{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"设备号码\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"脱敏设备ID\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"流量得分\"},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"上网天数\"},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"联网次数\"},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"联网时长\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"移动通信开销\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"拜访地\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"每天资费超出与否\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"int\",\"doc\":\"附加费\",\"default\":-1},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"非漫游联网次数\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"省内漫游联网次数\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"省际漫游联网次数\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"国际漫游联网次数\",\"default\":-1}]},\"doc\":\"漫游联网次数比\",\"default\":-1},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"非漫游流量\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省内漫游流量\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"省际漫游流量\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"国际漫游流量\",\"default\":-1}]},\"doc\":\"漫游流量比\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]},\"doc\":\"投诉比, 10000主叫：10000被叫：12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]},\"doc\":\"最大通话时长比, 10000最大通话时长：12300最大通话时长\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"通话时长大于n次的次数, 标志位：0：正常  1：突增\",\"default\":-1},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"总流量\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"使用总流量\",\"default\":-1},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"加密方式1:des,2:md5\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"流量按日使用比例\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"预计超流量\",\"default\":-1},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666原始报文\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** ???????? */
+  /** 数据日期 */
   @Deprecated public java.lang.CharSequence log_date;
-  /** ?????? */
+  /** 省份代码 */
   @Deprecated public int province;
-  /** ???��??? */
+  /** 城市代码 */
   @Deprecated public int city;
-  /** ?��???? */
+  /** 设备号码 */
   @Deprecated public java.lang.CharSequence mobile;
-  /** ?????��ID */
+  /** 脱敏设备ID */
   @Deprecated public java.lang.CharSequence device_id;
-  /** ?????��? */
+  /** 流量得分 */
   @Deprecated public int flow_score;
-  /** ???????? */
+  /** 上网天数 */
   @Deprecated public int net_days;
-  /** ???????? */
+  /** 联网次数 */
   @Deprecated public int net_counts;
-  /** ??????? */
+  /** 联网时长 */
   @Deprecated public int net_duration;
-  /** ????????? */
+  /** 移动通信开销 */
   @Deprecated public java.lang.CharSequence basic_fee;
-  /** ???? */
+  /** 拜访地 */
   @Deprecated public java.lang.CharSequence visit_area;
-  /** ???????????? */
+  /** 每天资费超出与否 */
   @Deprecated public java.lang.CharSequence basic_fee_over_daily;
-  /** ????? */
+  /** 附加费 */
   @Deprecated public int fee_add;
-  /** ?????????????? */
+  /** 漫游联网次数比 */
   @Deprecated public com.raiyi.model.RoamingCount roaming_num_count;
-  /** ?????????? */
+  /** 漫游流量比 */
   @Deprecated public com.raiyi.model.RoamingFlow roaming_flow_ratio;
-  /** ????, 10000???��?10000???��?12300 :12321 */
+  /** 投诉比, 10000主叫：10000被叫：12300 :12321 */
   @Deprecated public com.raiyi.model.Complaint complaint_ratio;
-  /** ???????????, 10000???????????12300????????? */
+  /** 最大通话时长比, 10000最大通话时长：12300最大通话时长 */
   @Deprecated public com.raiyi.model.MaxCallTime max_calltime_ratio;
-  /** ??????????n?��????, ???��??0??????  1????? */
+  /** 通话时长大于n次的次数, 标志位：0：正常  1：突增 */
   @Deprecated public int is_call_times_normal;
-  /** ?????? */
+  /** 总流量 */
   @Deprecated public double flow_size;
-  /** ????????? */
+  /** 使用总流量 */
   @Deprecated public double flow_use;
-  /** ??????1:des,2:md5 */
+  /** 加密方式1:des,2:md5 */
   @Deprecated public int op;
-  /** ?????????????? */
+  /** 流量按日使用比例 */
   @Deprecated public java.lang.CharSequence flow_ratio;
-  /** ???????? */
+  /** 预计超流量 */
   @Deprecated public int flow_over;
-  /** 666?????? */
+  /** 666原始报文 */
   @Deprecated public java.lang.CharSequence result;
 
   /**
@@ -158,14 +158,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'log_date' field.
-   * ????????   */
+   * 数据日期   */
   public java.lang.CharSequence getLogDate() {
     return log_date;
   }
 
   /**
    * Sets the value of the 'log_date' field.
-   * ????????   * @param value the value to set.
+   * 数据日期   * @param value the value to set.
    */
   public void setLogDate(java.lang.CharSequence value) {
     this.log_date = value;
@@ -173,14 +173,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'province' field.
-   * ??????   */
+   * 省份代码   */
   public java.lang.Integer getProvince() {
     return province;
   }
 
   /**
    * Sets the value of the 'province' field.
-   * ??????   * @param value the value to set.
+   * 省份代码   * @param value the value to set.
    */
   public void setProvince(java.lang.Integer value) {
     this.province = value;
@@ -188,14 +188,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'city' field.
-   * ???��???   */
+   * 城市代码   */
   public java.lang.Integer getCity() {
     return city;
   }
 
   /**
    * Sets the value of the 'city' field.
-   * ???��???   * @param value the value to set.
+   * 城市代码   * @param value the value to set.
    */
   public void setCity(java.lang.Integer value) {
     this.city = value;
@@ -203,14 +203,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'mobile' field.
-   * ?��????   */
+   * 设备号码   */
   public java.lang.CharSequence getMobile() {
     return mobile;
   }
 
   /**
    * Sets the value of the 'mobile' field.
-   * ?��????   * @param value the value to set.
+   * 设备号码   * @param value the value to set.
    */
   public void setMobile(java.lang.CharSequence value) {
     this.mobile = value;
@@ -218,14 +218,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'device_id' field.
-   * ?????��ID   */
+   * 脱敏设备ID   */
   public java.lang.CharSequence getDeviceId() {
     return device_id;
   }
 
   /**
    * Sets the value of the 'device_id' field.
-   * ?????��ID   * @param value the value to set.
+   * 脱敏设备ID   * @param value the value to set.
    */
   public void setDeviceId(java.lang.CharSequence value) {
     this.device_id = value;
@@ -233,14 +233,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_score' field.
-   * ?????��?   */
+   * 流量得分   */
   public java.lang.Integer getFlowScore() {
     return flow_score;
   }
 
   /**
    * Sets the value of the 'flow_score' field.
-   * ?????��?   * @param value the value to set.
+   * 流量得分   * @param value the value to set.
    */
   public void setFlowScore(java.lang.Integer value) {
     this.flow_score = value;
@@ -248,14 +248,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_days' field.
-   * ????????   */
+   * 上网天数   */
   public java.lang.Integer getNetDays() {
     return net_days;
   }
 
   /**
    * Sets the value of the 'net_days' field.
-   * ????????   * @param value the value to set.
+   * 上网天数   * @param value the value to set.
    */
   public void setNetDays(java.lang.Integer value) {
     this.net_days = value;
@@ -263,14 +263,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_counts' field.
-   * ????????   */
+   * 联网次数   */
   public java.lang.Integer getNetCounts() {
     return net_counts;
   }
 
   /**
    * Sets the value of the 'net_counts' field.
-   * ????????   * @param value the value to set.
+   * 联网次数   * @param value the value to set.
    */
   public void setNetCounts(java.lang.Integer value) {
     this.net_counts = value;
@@ -278,14 +278,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_duration' field.
-   * ???????   */
+   * 联网时长   */
   public java.lang.Integer getNetDuration() {
     return net_duration;
   }
 
   /**
    * Sets the value of the 'net_duration' field.
-   * ???????   * @param value the value to set.
+   * 联网时长   * @param value the value to set.
    */
   public void setNetDuration(java.lang.Integer value) {
     this.net_duration = value;
@@ -293,14 +293,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'basic_fee' field.
-   * ?????????   */
+   * 移动通信开销   */
   public java.lang.CharSequence getBasicFee() {
     return basic_fee;
   }
 
   /**
    * Sets the value of the 'basic_fee' field.
-   * ?????????   * @param value the value to set.
+   * 移动通信开销   * @param value the value to set.
    */
   public void setBasicFee(java.lang.CharSequence value) {
     this.basic_fee = value;
@@ -308,14 +308,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'visit_area' field.
-   * ????   */
+   * 拜访地   */
   public java.lang.CharSequence getVisitArea() {
     return visit_area;
   }
 
   /**
    * Sets the value of the 'visit_area' field.
-   * ????   * @param value the value to set.
+   * 拜访地   * @param value the value to set.
    */
   public void setVisitArea(java.lang.CharSequence value) {
     this.visit_area = value;
@@ -323,14 +323,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'basic_fee_over_daily' field.
-   * ????????????   */
+   * 每天资费超出与否   */
   public java.lang.CharSequence getBasicFeeOverDaily() {
     return basic_fee_over_daily;
   }
 
   /**
    * Sets the value of the 'basic_fee_over_daily' field.
-   * ????????????   * @param value the value to set.
+   * 每天资费超出与否   * @param value the value to set.
    */
   public void setBasicFeeOverDaily(java.lang.CharSequence value) {
     this.basic_fee_over_daily = value;
@@ -338,14 +338,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'fee_add' field.
-   * ?????   */
+   * 附加费   */
   public java.lang.Integer getFeeAdd() {
     return fee_add;
   }
 
   /**
    * Sets the value of the 'fee_add' field.
-   * ?????   * @param value the value to set.
+   * 附加费   * @param value the value to set.
    */
   public void setFeeAdd(java.lang.Integer value) {
     this.fee_add = value;
@@ -353,14 +353,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'roaming_num_count' field.
-   * ??????????????   */
+   * 漫游联网次数比   */
   public com.raiyi.model.RoamingCount getRoamingNumCount() {
     return roaming_num_count;
   }
 
   /**
    * Sets the value of the 'roaming_num_count' field.
-   * ??????????????   * @param value the value to set.
+   * 漫游联网次数比   * @param value the value to set.
    */
   public void setRoamingNumCount(com.raiyi.model.RoamingCount value) {
     this.roaming_num_count = value;
@@ -368,14 +368,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'roaming_flow_ratio' field.
-   * ??????????   */
+   * 漫游流量比   */
   public com.raiyi.model.RoamingFlow getRoamingFlowRatio() {
     return roaming_flow_ratio;
   }
 
   /**
    * Sets the value of the 'roaming_flow_ratio' field.
-   * ??????????   * @param value the value to set.
+   * 漫游流量比   * @param value the value to set.
    */
   public void setRoamingFlowRatio(com.raiyi.model.RoamingFlow value) {
     this.roaming_flow_ratio = value;
@@ -383,14 +383,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'complaint_ratio' field.
-   * ????, 10000???��?10000???��?12300 :12321   */
+   * 投诉比, 10000主叫：10000被叫：12300 :12321   */
   public com.raiyi.model.Complaint getComplaintRatio() {
     return complaint_ratio;
   }
 
   /**
    * Sets the value of the 'complaint_ratio' field.
-   * ????, 10000???��?10000???��?12300 :12321   * @param value the value to set.
+   * 投诉比, 10000主叫：10000被叫：12300 :12321   * @param value the value to set.
    */
   public void setComplaintRatio(com.raiyi.model.Complaint value) {
     this.complaint_ratio = value;
@@ -398,14 +398,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'max_calltime_ratio' field.
-   * ???????????, 10000???????????12300?????????   */
+   * 最大通话时长比, 10000最大通话时长：12300最大通话时长   */
   public com.raiyi.model.MaxCallTime getMaxCalltimeRatio() {
     return max_calltime_ratio;
   }
 
   /**
    * Sets the value of the 'max_calltime_ratio' field.
-   * ???????????, 10000???????????12300?????????   * @param value the value to set.
+   * 最大通话时长比, 10000最大通话时长：12300最大通话时长   * @param value the value to set.
    */
   public void setMaxCalltimeRatio(com.raiyi.model.MaxCallTime value) {
     this.max_calltime_ratio = value;
@@ -413,14 +413,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'is_call_times_normal' field.
-   * ??????????n?��????, ???��??0??????  1?????   */
+   * 通话时长大于n次的次数, 标志位：0：正常  1：突增   */
   public java.lang.Integer getIsCallTimesNormal() {
     return is_call_times_normal;
   }
 
   /**
    * Sets the value of the 'is_call_times_normal' field.
-   * ??????????n?��????, ???��??0??????  1?????   * @param value the value to set.
+   * 通话时长大于n次的次数, 标志位：0：正常  1：突增   * @param value the value to set.
    */
   public void setIsCallTimesNormal(java.lang.Integer value) {
     this.is_call_times_normal = value;
@@ -428,14 +428,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_size' field.
-   * ??????   */
+   * 总流量   */
   public java.lang.Double getFlowSize() {
     return flow_size;
   }
 
   /**
    * Sets the value of the 'flow_size' field.
-   * ??????   * @param value the value to set.
+   * 总流量   * @param value the value to set.
    */
   public void setFlowSize(java.lang.Double value) {
     this.flow_size = value;
@@ -443,14 +443,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_use' field.
-   * ?????????   */
+   * 使用总流量   */
   public java.lang.Double getFlowUse() {
     return flow_use;
   }
 
   /**
    * Sets the value of the 'flow_use' field.
-   * ?????????   * @param value the value to set.
+   * 使用总流量   * @param value the value to set.
    */
   public void setFlowUse(java.lang.Double value) {
     this.flow_use = value;
@@ -458,14 +458,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'op' field.
-   * ??????1:des,2:md5   */
+   * 加密方式1:des,2:md5   */
   public java.lang.Integer getOp() {
     return op;
   }
 
   /**
    * Sets the value of the 'op' field.
-   * ??????1:des,2:md5   * @param value the value to set.
+   * 加密方式1:des,2:md5   * @param value the value to set.
    */
   public void setOp(java.lang.Integer value) {
     this.op = value;
@@ -473,14 +473,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_ratio' field.
-   * ??????????????   */
+   * 流量按日使用比例   */
   public java.lang.CharSequence getFlowRatio() {
     return flow_ratio;
   }
 
   /**
    * Sets the value of the 'flow_ratio' field.
-   * ??????????????   * @param value the value to set.
+   * 流量按日使用比例   * @param value the value to set.
    */
   public void setFlowRatio(java.lang.CharSequence value) {
     this.flow_ratio = value;
@@ -488,14 +488,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_over' field.
-   * ????????   */
+   * 预计超流量   */
   public java.lang.Integer getFlowOver() {
     return flow_over;
   }
 
   /**
    * Sets the value of the 'flow_over' field.
-   * ????????   * @param value the value to set.
+   * 预计超流量   * @param value the value to set.
    */
   public void setFlowOver(java.lang.Integer value) {
     this.flow_over = value;
@@ -503,14 +503,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'result' field.
-   * 666??????   */
+   * 666原始报文   */
   public java.lang.CharSequence getResult() {
     return result;
   }
 
   /**
    * Sets the value of the 'result' field.
-   * 666??????   * @param value the value to set.
+   * 666原始报文   * @param value the value to set.
    */
   public void setResult(java.lang.CharSequence value) {
     this.result = value;

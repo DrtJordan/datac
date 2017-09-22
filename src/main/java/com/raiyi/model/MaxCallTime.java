@@ -7,11 +7,11 @@ package com.raiyi.model;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MaxCallTime\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000���ͨ��ʱ��\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300���ͨ��ʱ��\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"MaxCallTime\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000最大通话时长\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300最大通话时长\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** 10000���ͨ��ʱ�� */
+  /** 10000最大通话时长 */
   @Deprecated public int tele_max_call_time;
-  /** 12300���ͨ��ʱ�� */
+  /** 12300最大通话时长 */
   @Deprecated public int mit_max_call_time;
 
   /**
@@ -48,14 +48,14 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'tele_max_call_time' field.
-   * 10000���ͨ��ʱ��   */
+   * 10000最大通话时长   */
   public java.lang.Integer getTeleMaxCallTime() {
     return tele_max_call_time;
   }
 
   /**
    * Sets the value of the 'tele_max_call_time' field.
-   * 10000���ͨ��ʱ��   * @param value the value to set.
+   * 10000最大通话时长   * @param value the value to set.
    */
   public void setTeleMaxCallTime(java.lang.Integer value) {
     this.tele_max_call_time = value;
@@ -63,14 +63,14 @@ public class MaxCallTime extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'mit_max_call_time' field.
-   * 12300���ͨ��ʱ��   */
+   * 12300最大通话时长   */
   public java.lang.Integer getMitMaxCallTime() {
     return mit_max_call_time;
   }
 
   /**
    * Sets the value of the 'mit_max_call_time' field.
-   * 12300���ͨ��ʱ��   * @param value the value to set.
+   * 12300最大通话时长   * @param value the value to set.
    */
   public void setMitMaxCallTime(java.lang.Integer value) {
     this.mit_max_call_time = value;

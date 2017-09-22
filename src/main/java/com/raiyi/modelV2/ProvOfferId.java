@@ -7,17 +7,17 @@ package com.raiyi.modelV2;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ProvOfferId\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"offer_id_1\",\"type\":\"string\",\"doc\":\"Ì×²ÍID1\",\"default\":\"\"},{\"name\":\"offer_id_2\",\"type\":\"string\",\"doc\":\"Ì×²ÍID2\",\"default\":\"\"},{\"name\":\"offer_id_3\",\"type\":\"string\",\"doc\":\"Ì×²ÍID3\",\"default\":\"\"},{\"name\":\"offer_id_4\",\"type\":\"string\",\"doc\":\"Ì×²ÍID4\",\"default\":\"\"},{\"name\":\"offer_id_5\",\"type\":\"string\",\"doc\":\"Ì×²ÍID5\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"ProvOfferId\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"offer_id_1\",\"type\":\"string\",\"doc\":\"å¥—é¤ID1\",\"default\":\"\"},{\"name\":\"offer_id_2\",\"type\":\"string\",\"doc\":\"å¥—é¤ID2\",\"default\":\"\"},{\"name\":\"offer_id_3\",\"type\":\"string\",\"doc\":\"å¥—é¤ID3\",\"default\":\"\"},{\"name\":\"offer_id_4\",\"type\":\"string\",\"doc\":\"å¥—é¤ID4\",\"default\":\"\"},{\"name\":\"offer_id_5\",\"type\":\"string\",\"doc\":\"å¥—é¤ID5\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** Ì×²ÍID1 */
+  /** å¥—é¤ID1 */
   @Deprecated public java.lang.CharSequence offer_id_1;
-  /** Ì×²ÍID2 */
+  /** å¥—é¤ID2 */
   @Deprecated public java.lang.CharSequence offer_id_2;
-  /** Ì×²ÍID3 */
+  /** å¥—é¤ID3 */
   @Deprecated public java.lang.CharSequence offer_id_3;
-  /** Ì×²ÍID4 */
+  /** å¥—é¤ID4 */
   @Deprecated public java.lang.CharSequence offer_id_4;
-  /** Ì×²ÍID5 */
+  /** å¥—é¤ID5 */
   @Deprecated public java.lang.CharSequence offer_id_5;
 
   /**
@@ -63,14 +63,14 @@ public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'offer_id_1' field.
-   * Ì×²ÍID1   */
+   * å¥—é¤ID1   */
   public java.lang.CharSequence getOfferId1() {
     return offer_id_1;
   }
 
   /**
    * Sets the value of the 'offer_id_1' field.
-   * Ì×²ÍID1   * @param value the value to set.
+   * å¥—é¤ID1   * @param value the value to set.
    */
   public void setOfferId1(java.lang.CharSequence value) {
     this.offer_id_1 = value;
@@ -78,14 +78,14 @@ public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'offer_id_2' field.
-   * Ì×²ÍID2   */
+   * å¥—é¤ID2   */
   public java.lang.CharSequence getOfferId2() {
     return offer_id_2;
   }
 
   /**
    * Sets the value of the 'offer_id_2' field.
-   * Ì×²ÍID2   * @param value the value to set.
+   * å¥—é¤ID2   * @param value the value to set.
    */
   public void setOfferId2(java.lang.CharSequence value) {
     this.offer_id_2 = value;
@@ -93,14 +93,14 @@ public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'offer_id_3' field.
-   * Ì×²ÍID3   */
+   * å¥—é¤ID3   */
   public java.lang.CharSequence getOfferId3() {
     return offer_id_3;
   }
 
   /**
    * Sets the value of the 'offer_id_3' field.
-   * Ì×²ÍID3   * @param value the value to set.
+   * å¥—é¤ID3   * @param value the value to set.
    */
   public void setOfferId3(java.lang.CharSequence value) {
     this.offer_id_3 = value;
@@ -108,14 +108,14 @@ public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'offer_id_4' field.
-   * Ì×²ÍID4   */
+   * å¥—é¤ID4   */
   public java.lang.CharSequence getOfferId4() {
     return offer_id_4;
   }
 
   /**
    * Sets the value of the 'offer_id_4' field.
-   * Ì×²ÍID4   * @param value the value to set.
+   * å¥—é¤ID4   * @param value the value to set.
    */
   public void setOfferId4(java.lang.CharSequence value) {
     this.offer_id_4 = value;
@@ -123,14 +123,14 @@ public class ProvOfferId extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'offer_id_5' field.
-   * Ì×²ÍID5   */
+   * å¥—é¤ID5   */
   public java.lang.CharSequence getOfferId5() {
     return offer_id_5;
   }
 
   /**
    * Sets the value of the 'offer_id_5' field.
-   * Ì×²ÍID5   * @param value the value to set.
+   * å¥—é¤ID5   * @param value the value to set.
    */
   public void setOfferId5(java.lang.CharSequence value) {
     this.offer_id_5 = value;

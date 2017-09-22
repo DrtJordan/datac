@@ -7,95 +7,95 @@ package com.raiyi.modelV2;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"Éè±¸ºÅÂë\",\"default\":\"\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"ÍÑÃôÉè±¸ID\"},{\"name\":\"mobile_md5\",\"type\":\"string\",\"doc\":\"Éè±¸ºÅÂëmd5¼ÓÃÜ\",\"default\":\"\"},{\"name\":\"mobile_imei\",\"type\":\"string\",\"doc\":\"Éè±¸»úÆ÷Âë\",\"default\":\"\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"Ê¡·İ´úÂë\",\"default\":-1},{\"name\":\"province_name\",\"type\":\"string\",\"doc\":\"Ê¡·İÃû³Æ\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"³ÇÊĞ´úÂë\",\"default\":-1},{\"name\":\"city_name\",\"type\":\"string\",\"doc\":\"³ÇÊĞÃû³Æ\",\"default\":\"\"},{\"name\":\"create_date\",\"type\":\"string\",\"doc\":\"´´½¨ÈÕÆÚ\",\"default\":\"\"},{\"name\":\"rowversion\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"query_date\",\"type\":\"string\",\"doc\":\"²éÑ¯ÈÕÆÚ\",\"default\":\"\"},{\"name\":\"lt_query_date\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"rtb_key\",\"type\":\"string\",\"doc\":\"ÔÆ¹«Ë¾key\",\"default\":\"\"},{\"name\":\"rtb_province\",\"type\":\"string\",\"doc\":\"Ê¡·İ£º8+Ê¡·İ±àÂëÇ°2Î»£¬ÀıÈç£º½­ËÕ832\",\"default\":\"\"},{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"ÔÆ¹«Ë¾¼ÆËãÈÕÆÚ\",\"default\":\"\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"ÔÆ¹«Ë¾¼ÆËãµÃ·Ö\",\"default\":-1},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"ÁªÍøÌìÊı\",\"default\":-1},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"ÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"ÁªÍøÊ±³¤\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"×Ê·Ñ£¬µ¥Î»£º·Ö\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"°İ·ÃµØµØÍ¼\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"Ã¿Ìì×Ê·Ñ³¬³öÓë·ñ\",\"default\":\"\"},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"·ÇÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"Ê¡ÄÚÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"Ê¡¼ÊÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"¹ú¼ÊÂşÓÎÁªÍø´ÎÊı\",\"default\":-1}]},\"doc\":\"ÂşÓÎÁªÍø´ÎÊı±È\"},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"·ÇÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"Ê¡ÄÚÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"Ê¡¼ÊÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"¹ú¼ÊÂşÓÎÁ÷Á¿\",\"default\":-1}]},\"doc\":\"ÂşÓÎÁ÷Á¿±È\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000Ö÷½Ğ´ÎÊı\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000±»½Ğ´ÎÊı\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300´ÎÊı\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321À¬»ø¶ÌĞÅÍ¶Ëß´ÎÊı\",\"default\":-1}]},\"doc\":\"Í¶Ëß±È, 10000Ö÷½Ğ£º10000±»½Ğ£º12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000×î´óÍ¨»°Ê±³¤\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300×î´óÍ¨»°Ê±³¤\",\"default\":-1}]},\"doc\":\"×î´óÍ¨»°Ê±³¤±È, 10000×î´óÍ¨»°Ê±³¤£º12300×î´óÍ¨»°Ê±³¤\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"Í¨»°Ê±³¤´óÓÚn´ÎµÄ´ÎÊı, ±êÖ¾Î»£º0£ºÕı³£  1£ºÍ»Ôö\",\"default\":-1},{\"name\":\"qmd\",\"type\":\"string\",\"doc\":\"ÀàĞÍ\",\"default\":\"\"},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666Ô­Ê¼±¨ÎÄ\",\"default\":\"\"},{\"name\":\"s_table\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"long\",\"doc\":\"¸½¼Ó·Ñ\",\"default\":-1},{\"name\":\"basicfee_area\",\"type\":\"string\",\"doc\":\"ÈÕ×Ê·ÑÊÇ·ñ³¬³ö¹ì¼£\",\"default\":\"\"},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"¼ÓÃÜ·½Ê½\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"ÈÕÁ÷Á¿Ê¹ÓÃ±È\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"Ô¤¼Æ³¬Á÷Á¿\",\"default\":-1},{\"name\":\"id\",\"type\":\"string\",\"doc\":\"id\",\"default\":\"\"},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"´øÈë×ÜÁ÷Á¿\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"Ê¹ÓÃÁ÷Á¿\",\"default\":-1},{\"name\":\"last_mydate_visitarea\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"LastVisit\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"×îºóÒ»´ÎÂşÓÎÈÕÆÚ\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"×îºóÒ»´ÎÂşÓÎµØ\",\"default\":\"\"}]}],\"doc\":\"×îºóÒ»´ÎÂşÓÎµØºÍÂşÓÎÈÕÆÚ\",\"default\":null},{\"name\":\"province_my_area\",\"type\":\"string\",\"doc\":\"Ê¡ÄÚÂşÓÎÈÕÍ³¼Æ\",\"default\":\"\"},{\"name\":\"country_my_area\",\"type\":\"string\",\"doc\":\"¹úÄÚÂşÓÎÈÕÍ³¼Æ\",\"default\":\"\"},{\"name\":\"imsi\",\"type\":\"string\",\"doc\":\"¹ú¼ÊÒÆ¶¯ÓÃ»§Ê¶±ğÂë\",\"default\":\"\"},{\"name\":\"prov_offer_id\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"ProvOfferId\",\"fields\":[{\"name\":\"offer_id_1\",\"type\":\"string\",\"doc\":\"Ì×²ÍID1\",\"default\":\"\"},{\"name\":\"offer_id_2\",\"type\":\"string\",\"doc\":\"Ì×²ÍID2\",\"default\":\"\"},{\"name\":\"offer_id_3\",\"type\":\"string\",\"doc\":\"Ì×²ÍID3\",\"default\":\"\"},{\"name\":\"offer_id_4\",\"type\":\"string\",\"doc\":\"Ì×²ÍID4\",\"default\":\"\"},{\"name\":\"offer_id_5\",\"type\":\"string\",\"doc\":\"Ì×²ÍID5\",\"default\":\"\"}]}],\"doc\":\"Ì×²ÍID\",\"default\":null},{\"name\":\"user_tag\",\"type\":\"string\",\"doc\":\"ÓÃ»§±êÇ©\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"FlowAnalysis\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"mobile\",\"type\":\"string\",\"doc\":\"è®¾å¤‡å·ç \",\"default\":\"\"},{\"name\":\"device_id\",\"type\":\"string\",\"doc\":\"è„±æ•è®¾å¤‡ID\"},{\"name\":\"mobile_md5\",\"type\":\"string\",\"doc\":\"è®¾å¤‡å·ç md5åŠ å¯†\",\"default\":\"\"},{\"name\":\"mobile_imei\",\"type\":\"string\",\"doc\":\"è®¾å¤‡æœºå™¨ç \",\"default\":\"\"},{\"name\":\"province\",\"type\":\"int\",\"doc\":\"çœä»½ä»£ç \",\"default\":-1},{\"name\":\"province_name\",\"type\":\"string\",\"doc\":\"çœä»½åç§°\",\"default\":\"\"},{\"name\":\"city\",\"type\":\"int\",\"doc\":\"åŸå¸‚ä»£ç \",\"default\":-1},{\"name\":\"city_name\",\"type\":\"string\",\"doc\":\"åŸå¸‚åç§°\",\"default\":\"\"},{\"name\":\"create_date\",\"type\":\"string\",\"doc\":\"åˆ›å»ºæ—¥æœŸ\",\"default\":\"\"},{\"name\":\"rowversion\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"query_date\",\"type\":\"string\",\"doc\":\"æŸ¥è¯¢æ—¥æœŸ\",\"default\":\"\"},{\"name\":\"lt_query_date\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"rtb_key\",\"type\":\"string\",\"doc\":\"äº‘å…¬å¸key\",\"default\":\"\"},{\"name\":\"rtb_province\",\"type\":\"string\",\"doc\":\"çœä»½ï¼š8+çœä»½ç¼–ç å‰2ä½ï¼Œä¾‹å¦‚ï¼šæ±Ÿè‹832\",\"default\":\"\"},{\"name\":\"log_date\",\"type\":\"string\",\"doc\":\"äº‘å…¬å¸è®¡ç®—æ—¥æœŸ\",\"default\":\"\"},{\"name\":\"flow_score\",\"type\":\"int\",\"doc\":\"äº‘å…¬å¸è®¡ç®—å¾—åˆ†\",\"default\":-1},{\"name\":\"net_days\",\"type\":\"int\",\"doc\":\"è”ç½‘å¤©æ•°\",\"default\":-1},{\"name\":\"net_counts\",\"type\":\"int\",\"doc\":\"è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"net_duration\",\"type\":\"int\",\"doc\":\"è”ç½‘æ—¶é•¿\",\"default\":-1},{\"name\":\"basic_fee\",\"type\":\"string\",\"doc\":\"èµ„è´¹ï¼Œå•ä½ï¼šåˆ†\",\"default\":\"\"},{\"name\":\"visit_area\",\"type\":\"string\",\"doc\":\"æ‹œè®¿åœ°åœ°å›¾\",\"default\":\"\"},{\"name\":\"basic_fee_over_daily\",\"type\":\"string\",\"doc\":\"æ¯å¤©èµ„è´¹è¶…å‡ºä¸å¦\",\"default\":\"\"},{\"name\":\"roaming_num_count\",\"type\":{\"type\":\"record\",\"name\":\"RoamingCount\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"éæ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"çœå†…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"çœé™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"å›½é™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1}]},\"doc\":\"æ¼«æ¸¸è”ç½‘æ¬¡æ•°æ¯”\"},{\"name\":\"roaming_flow_ratio\",\"type\":{\"type\":\"record\",\"name\":\"RoamingFlow\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"éæ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"çœå†…æ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"çœé™…æ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"å›½é™…æ¼«æ¸¸æµé‡\",\"default\":-1}]},\"doc\":\"æ¼«æ¸¸æµé‡æ¯”\"},{\"name\":\"complaint_ratio\",\"type\":{\"type\":\"record\",\"name\":\"Complaint\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000ä¸»å«æ¬¡æ•°\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000è¢«å«æ¬¡æ•°\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300æ¬¡æ•°\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321åƒåœ¾çŸ­ä¿¡æŠ•è¯‰æ¬¡æ•°\",\"default\":-1}]},\"doc\":\"æŠ•è¯‰æ¯”, 10000ä¸»å«ï¼š10000è¢«å«ï¼š12300 :12321\"},{\"name\":\"max_calltime_ratio\",\"type\":{\"type\":\"record\",\"name\":\"MaxCallTime\",\"fields\":[{\"name\":\"tele_max_call_time\",\"type\":\"int\",\"doc\":\"10000æœ€å¤§é€šè¯æ—¶é•¿\",\"default\":-1},{\"name\":\"mit_max_call_time\",\"type\":\"int\",\"doc\":\"12300æœ€å¤§é€šè¯æ—¶é•¿\",\"default\":-1}]},\"doc\":\"æœ€å¤§é€šè¯æ—¶é•¿æ¯”, 10000æœ€å¤§é€šè¯æ—¶é•¿ï¼š12300æœ€å¤§é€šè¯æ—¶é•¿\"},{\"name\":\"is_call_times_normal\",\"type\":\"int\",\"doc\":\"é€šè¯æ—¶é•¿å¤§äºnæ¬¡çš„æ¬¡æ•°, æ ‡å¿—ä½ï¼š0ï¼šæ­£å¸¸  1ï¼šçªå¢\",\"default\":-1},{\"name\":\"qmd\",\"type\":\"string\",\"doc\":\"ç±»å‹\",\"default\":\"\"},{\"name\":\"result\",\"type\":\"string\",\"doc\":\"666åŸå§‹æŠ¥æ–‡\",\"default\":\"\"},{\"name\":\"s_table\",\"type\":\"string\",\"doc\":\"\",\"default\":\"\"},{\"name\":\"fee_add\",\"type\":\"long\",\"doc\":\"é™„åŠ è´¹\",\"default\":-1},{\"name\":\"basicfee_area\",\"type\":\"string\",\"doc\":\"æ—¥èµ„è´¹æ˜¯å¦è¶…å‡ºè½¨è¿¹\",\"default\":\"\"},{\"name\":\"op\",\"type\":\"int\",\"doc\":\"åŠ å¯†æ–¹å¼\",\"default\":-1},{\"name\":\"flow_ratio\",\"type\":\"string\",\"doc\":\"æ—¥æµé‡ä½¿ç”¨æ¯”\",\"default\":\"\"},{\"name\":\"flow_over\",\"type\":\"int\",\"doc\":\"é¢„è®¡è¶…æµé‡\",\"default\":-1},{\"name\":\"id\",\"type\":\"string\",\"doc\":\"id\",\"default\":\"\"},{\"name\":\"flow_size\",\"type\":\"double\",\"doc\":\"å¸¦å…¥æ€»æµé‡\",\"default\":-1},{\"name\":\"flow_use\",\"type\":\"double\",\"doc\":\"ä½¿ç”¨æµé‡\",\"default\":-1},{\"name\":\"last_mydate_visitarea\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"LastVisit\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"æœ€åä¸€æ¬¡æ¼«æ¸¸æ—¥æœŸ\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°\",\"default\":\"\"}]}],\"doc\":\"æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°å’Œæ¼«æ¸¸æ—¥æœŸ\",\"default\":null},{\"name\":\"province_my_area\",\"type\":\"string\",\"doc\":\"çœå†…æ¼«æ¸¸æ—¥ç»Ÿè®¡\",\"default\":\"\"},{\"name\":\"country_my_area\",\"type\":\"string\",\"doc\":\"å›½å†…æ¼«æ¸¸æ—¥ç»Ÿè®¡\",\"default\":\"\"},{\"name\":\"imsi\",\"type\":\"string\",\"doc\":\"å›½é™…ç§»åŠ¨ç”¨æˆ·è¯†åˆ«ç \",\"default\":\"\"},{\"name\":\"prov_offer_id\",\"type\":[\"null\",{\"type\":\"record\",\"name\":\"ProvOfferId\",\"fields\":[{\"name\":\"offer_id_1\",\"type\":\"string\",\"doc\":\"å¥—é¤ID1\",\"default\":\"\"},{\"name\":\"offer_id_2\",\"type\":\"string\",\"doc\":\"å¥—é¤ID2\",\"default\":\"\"},{\"name\":\"offer_id_3\",\"type\":\"string\",\"doc\":\"å¥—é¤ID3\",\"default\":\"\"},{\"name\":\"offer_id_4\",\"type\":\"string\",\"doc\":\"å¥—é¤ID4\",\"default\":\"\"},{\"name\":\"offer_id_5\",\"type\":\"string\",\"doc\":\"å¥—é¤ID5\",\"default\":\"\"}]}],\"doc\":\"å¥—é¤ID\",\"default\":null},{\"name\":\"user_tag\",\"type\":\"string\",\"doc\":\"ç”¨æˆ·æ ‡ç­¾\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** Éè±¸ºÅÂë */
+  /** è®¾å¤‡å·ç  */
   @Deprecated public java.lang.CharSequence mobile;
-  /** ÍÑÃôÉè±¸ID */
+  /** è„±æ•è®¾å¤‡ID */
   @Deprecated public java.lang.CharSequence device_id;
-  /** Éè±¸ºÅÂëmd5¼ÓÃÜ */
+  /** è®¾å¤‡å·ç md5åŠ å¯† */
   @Deprecated public java.lang.CharSequence mobile_md5;
-  /** Éè±¸»úÆ÷Âë */
+  /** è®¾å¤‡æœºå™¨ç  */
   @Deprecated public java.lang.CharSequence mobile_imei;
-  /** Ê¡·İ´úÂë */
+  /** çœä»½ä»£ç  */
   @Deprecated public int province;
-  /** Ê¡·İÃû³Æ */
+  /** çœä»½åç§° */
   @Deprecated public java.lang.CharSequence province_name;
-  /** ³ÇÊĞ´úÂë */
+  /** åŸå¸‚ä»£ç  */
   @Deprecated public int city;
-  /** ³ÇÊĞÃû³Æ */
+  /** åŸå¸‚åç§° */
   @Deprecated public java.lang.CharSequence city_name;
-  /** ´´½¨ÈÕÆÚ */
+  /** åˆ›å»ºæ—¥æœŸ */
   @Deprecated public java.lang.CharSequence create_date;
   /**  */
   @Deprecated public java.lang.CharSequence rowversion;
-  /** ²éÑ¯ÈÕÆÚ */
+  /** æŸ¥è¯¢æ—¥æœŸ */
   @Deprecated public java.lang.CharSequence query_date;
   /**  */
   @Deprecated public java.lang.CharSequence lt_query_date;
-  /** ÔÆ¹«Ë¾key */
+  /** äº‘å…¬å¸key */
   @Deprecated public java.lang.CharSequence rtb_key;
-  /** Ê¡·İ£º8+Ê¡·İ±àÂëÇ°2Î»£¬ÀıÈç£º½­ËÕ832 */
+  /** çœä»½ï¼š8+çœä»½ç¼–ç å‰2ä½ï¼Œä¾‹å¦‚ï¼šæ±Ÿè‹832 */
   @Deprecated public java.lang.CharSequence rtb_province;
-  /** ÔÆ¹«Ë¾¼ÆËãÈÕÆÚ */
+  /** äº‘å…¬å¸è®¡ç®—æ—¥æœŸ */
   @Deprecated public java.lang.CharSequence log_date;
-  /** ÔÆ¹«Ë¾¼ÆËãµÃ·Ö */
+  /** äº‘å…¬å¸è®¡ç®—å¾—åˆ† */
   @Deprecated public int flow_score;
-  /** ÁªÍøÌìÊı */
+  /** è”ç½‘å¤©æ•° */
   @Deprecated public int net_days;
-  /** ÁªÍø´ÎÊı */
+  /** è”ç½‘æ¬¡æ•° */
   @Deprecated public int net_counts;
-  /** ÁªÍøÊ±³¤ */
+  /** è”ç½‘æ—¶é•¿ */
   @Deprecated public int net_duration;
-  /** ×Ê·Ñ£¬µ¥Î»£º·Ö */
+  /** èµ„è´¹ï¼Œå•ä½ï¼šåˆ† */
   @Deprecated public java.lang.CharSequence basic_fee;
-  /** °İ·ÃµØµØÍ¼ */
+  /** æ‹œè®¿åœ°åœ°å›¾ */
   @Deprecated public java.lang.CharSequence visit_area;
-  /** Ã¿Ìì×Ê·Ñ³¬³öÓë·ñ */
+  /** æ¯å¤©èµ„è´¹è¶…å‡ºä¸å¦ */
   @Deprecated public java.lang.CharSequence basic_fee_over_daily;
-  /** ÂşÓÎÁªÍø´ÎÊı±È */
+  /** æ¼«æ¸¸è”ç½‘æ¬¡æ•°æ¯” */
   @Deprecated public com.raiyi.modelV2.RoamingCount roaming_num_count;
-  /** ÂşÓÎÁ÷Á¿±È */
+  /** æ¼«æ¸¸æµé‡æ¯” */
   @Deprecated public com.raiyi.modelV2.RoamingFlow roaming_flow_ratio;
-  /** Í¶Ëß±È, 10000Ö÷½Ğ£º10000±»½Ğ£º12300 :12321 */
+  /** æŠ•è¯‰æ¯”, 10000ä¸»å«ï¼š10000è¢«å«ï¼š12300 :12321 */
   @Deprecated public com.raiyi.modelV2.Complaint complaint_ratio;
-  /** ×î´óÍ¨»°Ê±³¤±È, 10000×î´óÍ¨»°Ê±³¤£º12300×î´óÍ¨»°Ê±³¤ */
+  /** æœ€å¤§é€šè¯æ—¶é•¿æ¯”, 10000æœ€å¤§é€šè¯æ—¶é•¿ï¼š12300æœ€å¤§é€šè¯æ—¶é•¿ */
   @Deprecated public com.raiyi.modelV2.MaxCallTime max_calltime_ratio;
-  /** Í¨»°Ê±³¤´óÓÚn´ÎµÄ´ÎÊı, ±êÖ¾Î»£º0£ºÕı³£  1£ºÍ»Ôö */
+  /** é€šè¯æ—¶é•¿å¤§äºnæ¬¡çš„æ¬¡æ•°, æ ‡å¿—ä½ï¼š0ï¼šæ­£å¸¸  1ï¼šçªå¢ */
   @Deprecated public int is_call_times_normal;
-  /** ÀàĞÍ */
+  /** ç±»å‹ */
   @Deprecated public java.lang.CharSequence qmd;
-  /** 666Ô­Ê¼±¨ÎÄ */
+  /** 666åŸå§‹æŠ¥æ–‡ */
   @Deprecated public java.lang.CharSequence result;
   /**  */
   @Deprecated public java.lang.CharSequence s_table;
-  /** ¸½¼Ó·Ñ */
+  /** é™„åŠ è´¹ */
   @Deprecated public long fee_add;
-  /** ÈÕ×Ê·ÑÊÇ·ñ³¬³ö¹ì¼£ */
+  /** æ—¥èµ„è´¹æ˜¯å¦è¶…å‡ºè½¨è¿¹ */
   @Deprecated public java.lang.CharSequence basicfee_area;
-  /** ¼ÓÃÜ·½Ê½ */
+  /** åŠ å¯†æ–¹å¼ */
   @Deprecated public int op;
-  /** ÈÕÁ÷Á¿Ê¹ÓÃ±È */
+  /** æ—¥æµé‡ä½¿ç”¨æ¯” */
   @Deprecated public java.lang.CharSequence flow_ratio;
-  /** Ô¤¼Æ³¬Á÷Á¿ */
+  /** é¢„è®¡è¶…æµé‡ */
   @Deprecated public int flow_over;
   /** id */
   @Deprecated public java.lang.CharSequence id;
-  /** ´øÈë×ÜÁ÷Á¿ */
+  /** å¸¦å…¥æ€»æµé‡ */
   @Deprecated public double flow_size;
-  /** Ê¹ÓÃÁ÷Á¿ */
+  /** ä½¿ç”¨æµé‡ */
   @Deprecated public double flow_use;
-  /** ×îºóÒ»´ÎÂşÓÎµØºÍÂşÓÎÈÕÆÚ */
+  /** æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°å’Œæ¼«æ¸¸æ—¥æœŸ */
   @Deprecated public com.raiyi.modelV2.LastVisit last_mydate_visitarea;
-  /** Ê¡ÄÚÂşÓÎÈÕÍ³¼Æ */
+  /** çœå†…æ¼«æ¸¸æ—¥ç»Ÿè®¡ */
   @Deprecated public java.lang.CharSequence province_my_area;
-  /** ¹úÄÚÂşÓÎÈÕÍ³¼Æ */
+  /** å›½å†…æ¼«æ¸¸æ—¥ç»Ÿè®¡ */
   @Deprecated public java.lang.CharSequence country_my_area;
-  /** ¹ú¼ÊÒÆ¶¯ÓÃ»§Ê¶±ğÂë */
+  /** å›½é™…ç§»åŠ¨ç”¨æˆ·è¯†åˆ«ç  */
   @Deprecated public java.lang.CharSequence imsi;
-  /** Ì×²ÍID */
+  /** å¥—é¤ID */
   @Deprecated public com.raiyi.modelV2.ProvOfferId prov_offer_id;
-  /** ÓÃ»§±êÇ© */
+  /** ç”¨æˆ·æ ‡ç­¾ */
   @Deprecated public java.lang.CharSequence user_tag;
 
   /**
@@ -258,14 +258,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'mobile' field.
-   * Éè±¸ºÅÂë   */
+   * è®¾å¤‡å·ç    */
   public java.lang.CharSequence getMobile() {
     return mobile;
   }
 
   /**
    * Sets the value of the 'mobile' field.
-   * Éè±¸ºÅÂë   * @param value the value to set.
+   * è®¾å¤‡å·ç    * @param value the value to set.
    */
   public void setMobile(java.lang.CharSequence value) {
     this.mobile = value;
@@ -273,14 +273,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'device_id' field.
-   * ÍÑÃôÉè±¸ID   */
+   * è„±æ•è®¾å¤‡ID   */
   public java.lang.CharSequence getDeviceId() {
     return device_id;
   }
 
   /**
    * Sets the value of the 'device_id' field.
-   * ÍÑÃôÉè±¸ID   * @param value the value to set.
+   * è„±æ•è®¾å¤‡ID   * @param value the value to set.
    */
   public void setDeviceId(java.lang.CharSequence value) {
     this.device_id = value;
@@ -288,14 +288,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'mobile_md5' field.
-   * Éè±¸ºÅÂëmd5¼ÓÃÜ   */
+   * è®¾å¤‡å·ç md5åŠ å¯†   */
   public java.lang.CharSequence getMobileMd5() {
     return mobile_md5;
   }
 
   /**
    * Sets the value of the 'mobile_md5' field.
-   * Éè±¸ºÅÂëmd5¼ÓÃÜ   * @param value the value to set.
+   * è®¾å¤‡å·ç md5åŠ å¯†   * @param value the value to set.
    */
   public void setMobileMd5(java.lang.CharSequence value) {
     this.mobile_md5 = value;
@@ -303,14 +303,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'mobile_imei' field.
-   * Éè±¸»úÆ÷Âë   */
+   * è®¾å¤‡æœºå™¨ç    */
   public java.lang.CharSequence getMobileImei() {
     return mobile_imei;
   }
 
   /**
    * Sets the value of the 'mobile_imei' field.
-   * Éè±¸»úÆ÷Âë   * @param value the value to set.
+   * è®¾å¤‡æœºå™¨ç    * @param value the value to set.
    */
   public void setMobileImei(java.lang.CharSequence value) {
     this.mobile_imei = value;
@@ -318,14 +318,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'province' field.
-   * Ê¡·İ´úÂë   */
+   * çœä»½ä»£ç    */
   public java.lang.Integer getProvince() {
     return province;
   }
 
   /**
    * Sets the value of the 'province' field.
-   * Ê¡·İ´úÂë   * @param value the value to set.
+   * çœä»½ä»£ç    * @param value the value to set.
    */
   public void setProvince(java.lang.Integer value) {
     this.province = value;
@@ -333,14 +333,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'province_name' field.
-   * Ê¡·İÃû³Æ   */
+   * çœä»½åç§°   */
   public java.lang.CharSequence getProvinceName() {
     return province_name;
   }
 
   /**
    * Sets the value of the 'province_name' field.
-   * Ê¡·İÃû³Æ   * @param value the value to set.
+   * çœä»½åç§°   * @param value the value to set.
    */
   public void setProvinceName(java.lang.CharSequence value) {
     this.province_name = value;
@@ -348,14 +348,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'city' field.
-   * ³ÇÊĞ´úÂë   */
+   * åŸå¸‚ä»£ç    */
   public java.lang.Integer getCity() {
     return city;
   }
 
   /**
    * Sets the value of the 'city' field.
-   * ³ÇÊĞ´úÂë   * @param value the value to set.
+   * åŸå¸‚ä»£ç    * @param value the value to set.
    */
   public void setCity(java.lang.Integer value) {
     this.city = value;
@@ -363,14 +363,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'city_name' field.
-   * ³ÇÊĞÃû³Æ   */
+   * åŸå¸‚åç§°   */
   public java.lang.CharSequence getCityName() {
     return city_name;
   }
 
   /**
    * Sets the value of the 'city_name' field.
-   * ³ÇÊĞÃû³Æ   * @param value the value to set.
+   * åŸå¸‚åç§°   * @param value the value to set.
    */
   public void setCityName(java.lang.CharSequence value) {
     this.city_name = value;
@@ -378,14 +378,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'create_date' field.
-   * ´´½¨ÈÕÆÚ   */
+   * åˆ›å»ºæ—¥æœŸ   */
   public java.lang.CharSequence getCreateDate() {
     return create_date;
   }
 
   /**
    * Sets the value of the 'create_date' field.
-   * ´´½¨ÈÕÆÚ   * @param value the value to set.
+   * åˆ›å»ºæ—¥æœŸ   * @param value the value to set.
    */
   public void setCreateDate(java.lang.CharSequence value) {
     this.create_date = value;
@@ -408,14 +408,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'query_date' field.
-   * ²éÑ¯ÈÕÆÚ   */
+   * æŸ¥è¯¢æ—¥æœŸ   */
   public java.lang.CharSequence getQueryDate() {
     return query_date;
   }
 
   /**
    * Sets the value of the 'query_date' field.
-   * ²éÑ¯ÈÕÆÚ   * @param value the value to set.
+   * æŸ¥è¯¢æ—¥æœŸ   * @param value the value to set.
    */
   public void setQueryDate(java.lang.CharSequence value) {
     this.query_date = value;
@@ -438,14 +438,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'rtb_key' field.
-   * ÔÆ¹«Ë¾key   */
+   * äº‘å…¬å¸key   */
   public java.lang.CharSequence getRtbKey() {
     return rtb_key;
   }
 
   /**
    * Sets the value of the 'rtb_key' field.
-   * ÔÆ¹«Ë¾key   * @param value the value to set.
+   * äº‘å…¬å¸key   * @param value the value to set.
    */
   public void setRtbKey(java.lang.CharSequence value) {
     this.rtb_key = value;
@@ -453,14 +453,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'rtb_province' field.
-   * Ê¡·İ£º8+Ê¡·İ±àÂëÇ°2Î»£¬ÀıÈç£º½­ËÕ832   */
+   * çœä»½ï¼š8+çœä»½ç¼–ç å‰2ä½ï¼Œä¾‹å¦‚ï¼šæ±Ÿè‹832   */
   public java.lang.CharSequence getRtbProvince() {
     return rtb_province;
   }
 
   /**
    * Sets the value of the 'rtb_province' field.
-   * Ê¡·İ£º8+Ê¡·İ±àÂëÇ°2Î»£¬ÀıÈç£º½­ËÕ832   * @param value the value to set.
+   * çœä»½ï¼š8+çœä»½ç¼–ç å‰2ä½ï¼Œä¾‹å¦‚ï¼šæ±Ÿè‹832   * @param value the value to set.
    */
   public void setRtbProvince(java.lang.CharSequence value) {
     this.rtb_province = value;
@@ -468,14 +468,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'log_date' field.
-   * ÔÆ¹«Ë¾¼ÆËãÈÕÆÚ   */
+   * äº‘å…¬å¸è®¡ç®—æ—¥æœŸ   */
   public java.lang.CharSequence getLogDate() {
     return log_date;
   }
 
   /**
    * Sets the value of the 'log_date' field.
-   * ÔÆ¹«Ë¾¼ÆËãÈÕÆÚ   * @param value the value to set.
+   * äº‘å…¬å¸è®¡ç®—æ—¥æœŸ   * @param value the value to set.
    */
   public void setLogDate(java.lang.CharSequence value) {
     this.log_date = value;
@@ -483,14 +483,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_score' field.
-   * ÔÆ¹«Ë¾¼ÆËãµÃ·Ö   */
+   * äº‘å…¬å¸è®¡ç®—å¾—åˆ†   */
   public java.lang.Integer getFlowScore() {
     return flow_score;
   }
 
   /**
    * Sets the value of the 'flow_score' field.
-   * ÔÆ¹«Ë¾¼ÆËãµÃ·Ö   * @param value the value to set.
+   * äº‘å…¬å¸è®¡ç®—å¾—åˆ†   * @param value the value to set.
    */
   public void setFlowScore(java.lang.Integer value) {
     this.flow_score = value;
@@ -498,14 +498,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_days' field.
-   * ÁªÍøÌìÊı   */
+   * è”ç½‘å¤©æ•°   */
   public java.lang.Integer getNetDays() {
     return net_days;
   }
 
   /**
    * Sets the value of the 'net_days' field.
-   * ÁªÍøÌìÊı   * @param value the value to set.
+   * è”ç½‘å¤©æ•°   * @param value the value to set.
    */
   public void setNetDays(java.lang.Integer value) {
     this.net_days = value;
@@ -513,14 +513,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_counts' field.
-   * ÁªÍø´ÎÊı   */
+   * è”ç½‘æ¬¡æ•°   */
   public java.lang.Integer getNetCounts() {
     return net_counts;
   }
 
   /**
    * Sets the value of the 'net_counts' field.
-   * ÁªÍø´ÎÊı   * @param value the value to set.
+   * è”ç½‘æ¬¡æ•°   * @param value the value to set.
    */
   public void setNetCounts(java.lang.Integer value) {
     this.net_counts = value;
@@ -528,14 +528,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'net_duration' field.
-   * ÁªÍøÊ±³¤   */
+   * è”ç½‘æ—¶é•¿   */
   public java.lang.Integer getNetDuration() {
     return net_duration;
   }
 
   /**
    * Sets the value of the 'net_duration' field.
-   * ÁªÍøÊ±³¤   * @param value the value to set.
+   * è”ç½‘æ—¶é•¿   * @param value the value to set.
    */
   public void setNetDuration(java.lang.Integer value) {
     this.net_duration = value;
@@ -543,14 +543,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'basic_fee' field.
-   * ×Ê·Ñ£¬µ¥Î»£º·Ö   */
+   * èµ„è´¹ï¼Œå•ä½ï¼šåˆ†   */
   public java.lang.CharSequence getBasicFee() {
     return basic_fee;
   }
 
   /**
    * Sets the value of the 'basic_fee' field.
-   * ×Ê·Ñ£¬µ¥Î»£º·Ö   * @param value the value to set.
+   * èµ„è´¹ï¼Œå•ä½ï¼šåˆ†   * @param value the value to set.
    */
   public void setBasicFee(java.lang.CharSequence value) {
     this.basic_fee = value;
@@ -558,14 +558,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'visit_area' field.
-   * °İ·ÃµØµØÍ¼   */
+   * æ‹œè®¿åœ°åœ°å›¾   */
   public java.lang.CharSequence getVisitArea() {
     return visit_area;
   }
 
   /**
    * Sets the value of the 'visit_area' field.
-   * °İ·ÃµØµØÍ¼   * @param value the value to set.
+   * æ‹œè®¿åœ°åœ°å›¾   * @param value the value to set.
    */
   public void setVisitArea(java.lang.CharSequence value) {
     this.visit_area = value;
@@ -573,14 +573,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'basic_fee_over_daily' field.
-   * Ã¿Ìì×Ê·Ñ³¬³öÓë·ñ   */
+   * æ¯å¤©èµ„è´¹è¶…å‡ºä¸å¦   */
   public java.lang.CharSequence getBasicFeeOverDaily() {
     return basic_fee_over_daily;
   }
 
   /**
    * Sets the value of the 'basic_fee_over_daily' field.
-   * Ã¿Ìì×Ê·Ñ³¬³öÓë·ñ   * @param value the value to set.
+   * æ¯å¤©èµ„è´¹è¶…å‡ºä¸å¦   * @param value the value to set.
    */
   public void setBasicFeeOverDaily(java.lang.CharSequence value) {
     this.basic_fee_over_daily = value;
@@ -588,14 +588,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'roaming_num_count' field.
-   * ÂşÓÎÁªÍø´ÎÊı±È   */
+   * æ¼«æ¸¸è”ç½‘æ¬¡æ•°æ¯”   */
   public com.raiyi.modelV2.RoamingCount getRoamingNumCount() {
     return roaming_num_count;
   }
 
   /**
    * Sets the value of the 'roaming_num_count' field.
-   * ÂşÓÎÁªÍø´ÎÊı±È   * @param value the value to set.
+   * æ¼«æ¸¸è”ç½‘æ¬¡æ•°æ¯”   * @param value the value to set.
    */
   public void setRoamingNumCount(com.raiyi.modelV2.RoamingCount value) {
     this.roaming_num_count = value;
@@ -603,14 +603,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'roaming_flow_ratio' field.
-   * ÂşÓÎÁ÷Á¿±È   */
+   * æ¼«æ¸¸æµé‡æ¯”   */
   public com.raiyi.modelV2.RoamingFlow getRoamingFlowRatio() {
     return roaming_flow_ratio;
   }
 
   /**
    * Sets the value of the 'roaming_flow_ratio' field.
-   * ÂşÓÎÁ÷Á¿±È   * @param value the value to set.
+   * æ¼«æ¸¸æµé‡æ¯”   * @param value the value to set.
    */
   public void setRoamingFlowRatio(com.raiyi.modelV2.RoamingFlow value) {
     this.roaming_flow_ratio = value;
@@ -618,14 +618,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'complaint_ratio' field.
-   * Í¶Ëß±È, 10000Ö÷½Ğ£º10000±»½Ğ£º12300 :12321   */
+   * æŠ•è¯‰æ¯”, 10000ä¸»å«ï¼š10000è¢«å«ï¼š12300 :12321   */
   public com.raiyi.modelV2.Complaint getComplaintRatio() {
     return complaint_ratio;
   }
 
   /**
    * Sets the value of the 'complaint_ratio' field.
-   * Í¶Ëß±È, 10000Ö÷½Ğ£º10000±»½Ğ£º12300 :12321   * @param value the value to set.
+   * æŠ•è¯‰æ¯”, 10000ä¸»å«ï¼š10000è¢«å«ï¼š12300 :12321   * @param value the value to set.
    */
   public void setComplaintRatio(com.raiyi.modelV2.Complaint value) {
     this.complaint_ratio = value;
@@ -633,14 +633,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'max_calltime_ratio' field.
-   * ×î´óÍ¨»°Ê±³¤±È, 10000×î´óÍ¨»°Ê±³¤£º12300×î´óÍ¨»°Ê±³¤   */
+   * æœ€å¤§é€šè¯æ—¶é•¿æ¯”, 10000æœ€å¤§é€šè¯æ—¶é•¿ï¼š12300æœ€å¤§é€šè¯æ—¶é•¿   */
   public com.raiyi.modelV2.MaxCallTime getMaxCalltimeRatio() {
     return max_calltime_ratio;
   }
 
   /**
    * Sets the value of the 'max_calltime_ratio' field.
-   * ×î´óÍ¨»°Ê±³¤±È, 10000×î´óÍ¨»°Ê±³¤£º12300×î´óÍ¨»°Ê±³¤   * @param value the value to set.
+   * æœ€å¤§é€šè¯æ—¶é•¿æ¯”, 10000æœ€å¤§é€šè¯æ—¶é•¿ï¼š12300æœ€å¤§é€šè¯æ—¶é•¿   * @param value the value to set.
    */
   public void setMaxCalltimeRatio(com.raiyi.modelV2.MaxCallTime value) {
     this.max_calltime_ratio = value;
@@ -648,14 +648,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'is_call_times_normal' field.
-   * Í¨»°Ê±³¤´óÓÚn´ÎµÄ´ÎÊı, ±êÖ¾Î»£º0£ºÕı³£  1£ºÍ»Ôö   */
+   * é€šè¯æ—¶é•¿å¤§äºnæ¬¡çš„æ¬¡æ•°, æ ‡å¿—ä½ï¼š0ï¼šæ­£å¸¸  1ï¼šçªå¢   */
   public java.lang.Integer getIsCallTimesNormal() {
     return is_call_times_normal;
   }
 
   /**
    * Sets the value of the 'is_call_times_normal' field.
-   * Í¨»°Ê±³¤´óÓÚn´ÎµÄ´ÎÊı, ±êÖ¾Î»£º0£ºÕı³£  1£ºÍ»Ôö   * @param value the value to set.
+   * é€šè¯æ—¶é•¿å¤§äºnæ¬¡çš„æ¬¡æ•°, æ ‡å¿—ä½ï¼š0ï¼šæ­£å¸¸  1ï¼šçªå¢   * @param value the value to set.
    */
   public void setIsCallTimesNormal(java.lang.Integer value) {
     this.is_call_times_normal = value;
@@ -663,14 +663,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'qmd' field.
-   * ÀàĞÍ   */
+   * ç±»å‹   */
   public java.lang.CharSequence getQmd() {
     return qmd;
   }
 
   /**
    * Sets the value of the 'qmd' field.
-   * ÀàĞÍ   * @param value the value to set.
+   * ç±»å‹   * @param value the value to set.
    */
   public void setQmd(java.lang.CharSequence value) {
     this.qmd = value;
@@ -678,14 +678,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'result' field.
-   * 666Ô­Ê¼±¨ÎÄ   */
+   * 666åŸå§‹æŠ¥æ–‡   */
   public java.lang.CharSequence getResult() {
     return result;
   }
 
   /**
    * Sets the value of the 'result' field.
-   * 666Ô­Ê¼±¨ÎÄ   * @param value the value to set.
+   * 666åŸå§‹æŠ¥æ–‡   * @param value the value to set.
    */
   public void setResult(java.lang.CharSequence value) {
     this.result = value;
@@ -708,14 +708,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'fee_add' field.
-   * ¸½¼Ó·Ñ   */
+   * é™„åŠ è´¹   */
   public java.lang.Long getFeeAdd() {
     return fee_add;
   }
 
   /**
    * Sets the value of the 'fee_add' field.
-   * ¸½¼Ó·Ñ   * @param value the value to set.
+   * é™„åŠ è´¹   * @param value the value to set.
    */
   public void setFeeAdd(java.lang.Long value) {
     this.fee_add = value;
@@ -723,14 +723,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'basicfee_area' field.
-   * ÈÕ×Ê·ÑÊÇ·ñ³¬³ö¹ì¼£   */
+   * æ—¥èµ„è´¹æ˜¯å¦è¶…å‡ºè½¨è¿¹   */
   public java.lang.CharSequence getBasicfeeArea() {
     return basicfee_area;
   }
 
   /**
    * Sets the value of the 'basicfee_area' field.
-   * ÈÕ×Ê·ÑÊÇ·ñ³¬³ö¹ì¼£   * @param value the value to set.
+   * æ—¥èµ„è´¹æ˜¯å¦è¶…å‡ºè½¨è¿¹   * @param value the value to set.
    */
   public void setBasicfeeArea(java.lang.CharSequence value) {
     this.basicfee_area = value;
@@ -738,14 +738,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'op' field.
-   * ¼ÓÃÜ·½Ê½   */
+   * åŠ å¯†æ–¹å¼   */
   public java.lang.Integer getOp() {
     return op;
   }
 
   /**
    * Sets the value of the 'op' field.
-   * ¼ÓÃÜ·½Ê½   * @param value the value to set.
+   * åŠ å¯†æ–¹å¼   * @param value the value to set.
    */
   public void setOp(java.lang.Integer value) {
     this.op = value;
@@ -753,14 +753,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_ratio' field.
-   * ÈÕÁ÷Á¿Ê¹ÓÃ±È   */
+   * æ—¥æµé‡ä½¿ç”¨æ¯”   */
   public java.lang.CharSequence getFlowRatio() {
     return flow_ratio;
   }
 
   /**
    * Sets the value of the 'flow_ratio' field.
-   * ÈÕÁ÷Á¿Ê¹ÓÃ±È   * @param value the value to set.
+   * æ—¥æµé‡ä½¿ç”¨æ¯”   * @param value the value to set.
    */
   public void setFlowRatio(java.lang.CharSequence value) {
     this.flow_ratio = value;
@@ -768,14 +768,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_over' field.
-   * Ô¤¼Æ³¬Á÷Á¿   */
+   * é¢„è®¡è¶…æµé‡   */
   public java.lang.Integer getFlowOver() {
     return flow_over;
   }
 
   /**
    * Sets the value of the 'flow_over' field.
-   * Ô¤¼Æ³¬Á÷Á¿   * @param value the value to set.
+   * é¢„è®¡è¶…æµé‡   * @param value the value to set.
    */
   public void setFlowOver(java.lang.Integer value) {
     this.flow_over = value;
@@ -798,14 +798,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_size' field.
-   * ´øÈë×ÜÁ÷Á¿   */
+   * å¸¦å…¥æ€»æµé‡   */
   public java.lang.Double getFlowSize() {
     return flow_size;
   }
 
   /**
    * Sets the value of the 'flow_size' field.
-   * ´øÈë×ÜÁ÷Á¿   * @param value the value to set.
+   * å¸¦å…¥æ€»æµé‡   * @param value the value to set.
    */
   public void setFlowSize(java.lang.Double value) {
     this.flow_size = value;
@@ -813,14 +813,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'flow_use' field.
-   * Ê¹ÓÃÁ÷Á¿   */
+   * ä½¿ç”¨æµé‡   */
   public java.lang.Double getFlowUse() {
     return flow_use;
   }
 
   /**
    * Sets the value of the 'flow_use' field.
-   * Ê¹ÓÃÁ÷Á¿   * @param value the value to set.
+   * ä½¿ç”¨æµé‡   * @param value the value to set.
    */
   public void setFlowUse(java.lang.Double value) {
     this.flow_use = value;
@@ -828,14 +828,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'last_mydate_visitarea' field.
-   * ×îºóÒ»´ÎÂşÓÎµØºÍÂşÓÎÈÕÆÚ   */
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°å’Œæ¼«æ¸¸æ—¥æœŸ   */
   public com.raiyi.modelV2.LastVisit getLastMydateVisitarea() {
     return last_mydate_visitarea;
   }
 
   /**
    * Sets the value of the 'last_mydate_visitarea' field.
-   * ×îºóÒ»´ÎÂşÓÎµØºÍÂşÓÎÈÕÆÚ   * @param value the value to set.
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°å’Œæ¼«æ¸¸æ—¥æœŸ   * @param value the value to set.
    */
   public void setLastMydateVisitarea(com.raiyi.modelV2.LastVisit value) {
     this.last_mydate_visitarea = value;
@@ -843,14 +843,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'province_my_area' field.
-   * Ê¡ÄÚÂşÓÎÈÕÍ³¼Æ   */
+   * çœå†…æ¼«æ¸¸æ—¥ç»Ÿè®¡   */
   public java.lang.CharSequence getProvinceMyArea() {
     return province_my_area;
   }
 
   /**
    * Sets the value of the 'province_my_area' field.
-   * Ê¡ÄÚÂşÓÎÈÕÍ³¼Æ   * @param value the value to set.
+   * çœå†…æ¼«æ¸¸æ—¥ç»Ÿè®¡   * @param value the value to set.
    */
   public void setProvinceMyArea(java.lang.CharSequence value) {
     this.province_my_area = value;
@@ -858,14 +858,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'country_my_area' field.
-   * ¹úÄÚÂşÓÎÈÕÍ³¼Æ   */
+   * å›½å†…æ¼«æ¸¸æ—¥ç»Ÿè®¡   */
   public java.lang.CharSequence getCountryMyArea() {
     return country_my_area;
   }
 
   /**
    * Sets the value of the 'country_my_area' field.
-   * ¹úÄÚÂşÓÎÈÕÍ³¼Æ   * @param value the value to set.
+   * å›½å†…æ¼«æ¸¸æ—¥ç»Ÿè®¡   * @param value the value to set.
    */
   public void setCountryMyArea(java.lang.CharSequence value) {
     this.country_my_area = value;
@@ -873,14 +873,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'imsi' field.
-   * ¹ú¼ÊÒÆ¶¯ÓÃ»§Ê¶±ğÂë   */
+   * å›½é™…ç§»åŠ¨ç”¨æˆ·è¯†åˆ«ç    */
   public java.lang.CharSequence getImsi() {
     return imsi;
   }
 
   /**
    * Sets the value of the 'imsi' field.
-   * ¹ú¼ÊÒÆ¶¯ÓÃ»§Ê¶±ğÂë   * @param value the value to set.
+   * å›½é™…ç§»åŠ¨ç”¨æˆ·è¯†åˆ«ç    * @param value the value to set.
    */
   public void setImsi(java.lang.CharSequence value) {
     this.imsi = value;
@@ -888,14 +888,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'prov_offer_id' field.
-   * Ì×²ÍID   */
+   * å¥—é¤ID   */
   public com.raiyi.modelV2.ProvOfferId getProvOfferId() {
     return prov_offer_id;
   }
 
   /**
    * Sets the value of the 'prov_offer_id' field.
-   * Ì×²ÍID   * @param value the value to set.
+   * å¥—é¤ID   * @param value the value to set.
    */
   public void setProvOfferId(com.raiyi.modelV2.ProvOfferId value) {
     this.prov_offer_id = value;
@@ -903,14 +903,14 @@ public class FlowAnalysis extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'user_tag' field.
-   * ÓÃ»§±êÇ©   */
+   * ç”¨æˆ·æ ‡ç­¾   */
   public java.lang.CharSequence getUserTag() {
     return user_tag;
   }
 
   /**
    * Sets the value of the 'user_tag' field.
-   * ÓÃ»§±êÇ©   * @param value the value to set.
+   * ç”¨æˆ·æ ‡ç­¾   * @param value the value to set.
    */
   public void setUserTag(java.lang.CharSequence value) {
     this.user_tag = value;

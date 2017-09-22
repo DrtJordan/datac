@@ -7,15 +7,15 @@ package com.raiyi.model;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingFlow\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"·ÇÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"Ê¡ÄÚÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"Ê¡¼ÊÂşÓÎÁ÷Á¿\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"¹ú¼ÊÂşÓÎÁ÷Á¿\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingFlow\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_flow\",\"type\":\"int\",\"doc\":\"éæ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"in_province_roaming_flow\",\"type\":\"int\",\"doc\":\"çœå†…æ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"inter_province_roaming_flow\",\"type\":\"int\",\"doc\":\"çœé™…æ¼«æ¸¸æµé‡\",\"default\":-1},{\"name\":\"international_roaming_flow\",\"type\":\"int\",\"doc\":\"å›½é™…æ¼«æ¸¸æµé‡\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** ·ÇÂşÓÎÁ÷Á¿ */
+  /** éæ¼«æ¸¸æµé‡ */
   @Deprecated public int not_roaming_flow;
-  /** Ê¡ÄÚÂşÓÎÁ÷Á¿ */
+  /** çœå†…æ¼«æ¸¸æµé‡ */
   @Deprecated public int in_province_roaming_flow;
-  /** Ê¡¼ÊÂşÓÎÁ÷Á¿ */
+  /** çœé™…æ¼«æ¸¸æµé‡ */
   @Deprecated public int inter_province_roaming_flow;
-  /** ¹ú¼ÊÂşÓÎÁ÷Á¿ */
+  /** å›½é™…æ¼«æ¸¸æµé‡ */
   @Deprecated public int international_roaming_flow;
 
   /**
@@ -58,14 +58,14 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'not_roaming_flow' field.
-   * ·ÇÂşÓÎÁ÷Á¿   */
+   * éæ¼«æ¸¸æµé‡   */
   public java.lang.Integer getNotRoamingFlow() {
     return not_roaming_flow;
   }
 
   /**
    * Sets the value of the 'not_roaming_flow' field.
-   * ·ÇÂşÓÎÁ÷Á¿   * @param value the value to set.
+   * éæ¼«æ¸¸æµé‡   * @param value the value to set.
    */
   public void setNotRoamingFlow(java.lang.Integer value) {
     this.not_roaming_flow = value;
@@ -73,14 +73,14 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'in_province_roaming_flow' field.
-   * Ê¡ÄÚÂşÓÎÁ÷Á¿   */
+   * çœå†…æ¼«æ¸¸æµé‡   */
   public java.lang.Integer getInProvinceRoamingFlow() {
     return in_province_roaming_flow;
   }
 
   /**
    * Sets the value of the 'in_province_roaming_flow' field.
-   * Ê¡ÄÚÂşÓÎÁ÷Á¿   * @param value the value to set.
+   * çœå†…æ¼«æ¸¸æµé‡   * @param value the value to set.
    */
   public void setInProvinceRoamingFlow(java.lang.Integer value) {
     this.in_province_roaming_flow = value;
@@ -88,14 +88,14 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'inter_province_roaming_flow' field.
-   * Ê¡¼ÊÂşÓÎÁ÷Á¿   */
+   * çœé™…æ¼«æ¸¸æµé‡   */
   public java.lang.Integer getInterProvinceRoamingFlow() {
     return inter_province_roaming_flow;
   }
 
   /**
    * Sets the value of the 'inter_province_roaming_flow' field.
-   * Ê¡¼ÊÂşÓÎÁ÷Á¿   * @param value the value to set.
+   * çœé™…æ¼«æ¸¸æµé‡   * @param value the value to set.
    */
   public void setInterProvinceRoamingFlow(java.lang.Integer value) {
     this.inter_province_roaming_flow = value;
@@ -103,14 +103,14 @@ public class RoamingFlow extends org.apache.avro.specific.SpecificRecordBase imp
 
   /**
    * Gets the value of the 'international_roaming_flow' field.
-   * ¹ú¼ÊÂşÓÎÁ÷Á¿   */
+   * å›½é™…æ¼«æ¸¸æµé‡   */
   public java.lang.Integer getInternationalRoamingFlow() {
     return international_roaming_flow;
   }
 
   /**
    * Sets the value of the 'international_roaming_flow' field.
-   * ¹ú¼ÊÂşÓÎÁ÷Á¿   * @param value the value to set.
+   * å›½é™…æ¼«æ¸¸æµé‡   * @param value the value to set.
    */
   public void setInternationalRoamingFlow(java.lang.Integer value) {
     this.international_roaming_flow = value;

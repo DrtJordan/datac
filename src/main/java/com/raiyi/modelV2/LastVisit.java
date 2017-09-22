@@ -7,11 +7,11 @@ package com.raiyi.modelV2;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class LastVisit extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LastVisit\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"×îºóÒ»´ÎÂşÓÎÈÕÆÚ\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"×îºóÒ»´ÎÂşÓÎµØ\",\"default\":\"\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"LastVisit\",\"namespace\":\"com.raiyi.modelV2\",\"fields\":[{\"name\":\"last_visit_date\",\"type\":\"string\",\"doc\":\"æœ€åä¸€æ¬¡æ¼«æ¸¸æ—¥æœŸ\",\"default\":\"\"},{\"name\":\"last_visit_area\",\"type\":\"string\",\"doc\":\"æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°\",\"default\":\"\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** ×îºóÒ»´ÎÂşÓÎÈÕÆÚ */
+  /** æœ€åä¸€æ¬¡æ¼«æ¸¸æ—¥æœŸ */
   @Deprecated public java.lang.CharSequence last_visit_date;
-  /** ×îºóÒ»´ÎÂşÓÎµØ */
+  /** æœ€åä¸€æ¬¡æ¼«æ¸¸åœ° */
   @Deprecated public java.lang.CharSequence last_visit_area;
 
   /**
@@ -48,14 +48,14 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'last_visit_date' field.
-   * ×îºóÒ»´ÎÂşÓÎÈÕÆÚ   */
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸æ—¥æœŸ   */
   public java.lang.CharSequence getLastVisitDate() {
     return last_visit_date;
   }
 
   /**
    * Sets the value of the 'last_visit_date' field.
-   * ×îºóÒ»´ÎÂşÓÎÈÕÆÚ   * @param value the value to set.
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸æ—¥æœŸ   * @param value the value to set.
    */
   public void setLastVisitDate(java.lang.CharSequence value) {
     this.last_visit_date = value;
@@ -63,14 +63,14 @@ public class LastVisit extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'last_visit_area' field.
-   * ×îºóÒ»´ÎÂşÓÎµØ   */
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°   */
   public java.lang.CharSequence getLastVisitArea() {
     return last_visit_area;
   }
 
   /**
    * Sets the value of the 'last_visit_area' field.
-   * ×îºóÒ»´ÎÂşÓÎµØ   * @param value the value to set.
+   * æœ€åä¸€æ¬¡æ¼«æ¸¸åœ°   * @param value the value to set.
    */
   public void setLastVisitArea(java.lang.CharSequence value) {
     this.last_visit_area = value;

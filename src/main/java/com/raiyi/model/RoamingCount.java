@@ -7,15 +7,15 @@ package com.raiyi.model;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingCount\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"·ÇÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"Ê¡ÄÚÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"Ê¡¼ÊÂşÓÎÁªÍø´ÎÊı\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"¹ú¼ÊÂşÓÎÁªÍø´ÎÊı\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"RoamingCount\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"not_roaming_count\",\"type\":\"int\",\"doc\":\"éæ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"in_province_roaming_count\",\"type\":\"int\",\"doc\":\"çœå†…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"inter_province_roaming_count\",\"type\":\"int\",\"doc\":\"çœé™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1},{\"name\":\"international_roaming_count\",\"type\":\"int\",\"doc\":\"å›½é™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** ·ÇÂşÓÎÁªÍø´ÎÊı */
+  /** éæ¼«æ¸¸è”ç½‘æ¬¡æ•° */
   @Deprecated public int not_roaming_count;
-  /** Ê¡ÄÚÂşÓÎÁªÍø´ÎÊı */
+  /** çœå†…æ¼«æ¸¸è”ç½‘æ¬¡æ•° */
   @Deprecated public int in_province_roaming_count;
-  /** Ê¡¼ÊÂşÓÎÁªÍø´ÎÊı */
+  /** çœé™…æ¼«æ¸¸è”ç½‘æ¬¡æ•° */
   @Deprecated public int inter_province_roaming_count;
-  /** ¹ú¼ÊÂşÓÎÁªÍø´ÎÊı */
+  /** å›½é™…æ¼«æ¸¸è”ç½‘æ¬¡æ•° */
   @Deprecated public int international_roaming_count;
 
   /**
@@ -58,14 +58,14 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'not_roaming_count' field.
-   * ·ÇÂşÓÎÁªÍø´ÎÊı   */
+   * éæ¼«æ¸¸è”ç½‘æ¬¡æ•°   */
   public java.lang.Integer getNotRoamingCount() {
     return not_roaming_count;
   }
 
   /**
    * Sets the value of the 'not_roaming_count' field.
-   * ·ÇÂşÓÎÁªÍø´ÎÊı   * @param value the value to set.
+   * éæ¼«æ¸¸è”ç½‘æ¬¡æ•°   * @param value the value to set.
    */
   public void setNotRoamingCount(java.lang.Integer value) {
     this.not_roaming_count = value;
@@ -73,14 +73,14 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'in_province_roaming_count' field.
-   * Ê¡ÄÚÂşÓÎÁªÍø´ÎÊı   */
+   * çœå†…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   */
   public java.lang.Integer getInProvinceRoamingCount() {
     return in_province_roaming_count;
   }
 
   /**
    * Sets the value of the 'in_province_roaming_count' field.
-   * Ê¡ÄÚÂşÓÎÁªÍø´ÎÊı   * @param value the value to set.
+   * çœå†…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   * @param value the value to set.
    */
   public void setInProvinceRoamingCount(java.lang.Integer value) {
     this.in_province_roaming_count = value;
@@ -88,14 +88,14 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'inter_province_roaming_count' field.
-   * Ê¡¼ÊÂşÓÎÁªÍø´ÎÊı   */
+   * çœé™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   */
   public java.lang.Integer getInterProvinceRoamingCount() {
     return inter_province_roaming_count;
   }
 
   /**
    * Sets the value of the 'inter_province_roaming_count' field.
-   * Ê¡¼ÊÂşÓÎÁªÍø´ÎÊı   * @param value the value to set.
+   * çœé™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   * @param value the value to set.
    */
   public void setInterProvinceRoamingCount(java.lang.Integer value) {
     this.inter_province_roaming_count = value;
@@ -103,14 +103,14 @@ public class RoamingCount extends org.apache.avro.specific.SpecificRecordBase im
 
   /**
    * Gets the value of the 'international_roaming_count' field.
-   * ¹ú¼ÊÂşÓÎÁªÍø´ÎÊı   */
+   * å›½é™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   */
   public java.lang.Integer getInternationalRoamingCount() {
     return international_roaming_count;
   }
 
   /**
    * Sets the value of the 'international_roaming_count' field.
-   * ¹ú¼ÊÂşÓÎÁªÍø´ÎÊı   * @param value the value to set.
+   * å›½é™…æ¼«æ¸¸è”ç½‘æ¬¡æ•°   * @param value the value to set.
    */
   public void setInternationalRoamingCount(java.lang.Integer value) {
     this.international_roaming_count = value;

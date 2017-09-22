@@ -7,15 +7,15 @@ package com.raiyi.model;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Complaint extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Complaint\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000主叫次数\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000被叫次数\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300次数\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321垃圾短信投诉次数\",\"default\":-1}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Complaint\",\"namespace\":\"com.raiyi.model\",\"fields\":[{\"name\":\"call_from_tele\",\"type\":\"int\",\"doc\":\"10000涓诲彨娆℃暟\",\"default\":-1},{\"name\":\"call_to_tele\",\"type\":\"int\",\"doc\":\"10000琚彨娆℃暟\",\"default\":-1},{\"name\":\"call_to_MIT\",\"type\":\"int\",\"doc\":\"12300娆℃暟\",\"default\":-1},{\"name\":\"call_to_sms\",\"type\":\"int\",\"doc\":\"12321鍨冨溇鐭俊鎶曡瘔娆℃暟\",\"default\":-1}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
-  /** 10000主叫次数 */
+  /** 10000涓诲彨娆℃暟 */
   @Deprecated public int call_from_tele;
-  /** 10000被叫次数 */
+  /** 10000琚彨娆℃暟 */
   @Deprecated public int call_to_tele;
-  /** 12300次数 */
+  /** 12300娆℃暟 */
   @Deprecated public int call_to_MIT;
-  /** 12321垃圾短信投诉次数 */
+  /** 12321鍨冨溇鐭俊鎶曡瘔娆℃暟 */
   @Deprecated public int call_to_sms;
 
   /**
@@ -58,14 +58,14 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'call_from_tele' field.
-   * 10000主叫次数   */
+   * 10000涓诲彨娆℃暟   */
   public java.lang.Integer getCallFromTele() {
     return call_from_tele;
   }
 
   /**
    * Sets the value of the 'call_from_tele' field.
-   * 10000主叫次数   * @param value the value to set.
+   * 10000涓诲彨娆℃暟   * @param value the value to set.
    */
   public void setCallFromTele(java.lang.Integer value) {
     this.call_from_tele = value;
@@ -73,14 +73,14 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'call_to_tele' field.
-   * 10000被叫次数   */
+   * 10000琚彨娆℃暟   */
   public java.lang.Integer getCallToTele() {
     return call_to_tele;
   }
 
   /**
    * Sets the value of the 'call_to_tele' field.
-   * 10000被叫次数   * @param value the value to set.
+   * 10000琚彨娆℃暟   * @param value the value to set.
    */
   public void setCallToTele(java.lang.Integer value) {
     this.call_to_tele = value;
@@ -88,14 +88,14 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'call_to_MIT' field.
-   * 12300次数   */
+   * 12300娆℃暟   */
   public java.lang.Integer getCallToMIT() {
     return call_to_MIT;
   }
 
   /**
    * Sets the value of the 'call_to_MIT' field.
-   * 12300次数   * @param value the value to set.
+   * 12300娆℃暟   * @param value the value to set.
    */
   public void setCallToMIT(java.lang.Integer value) {
     this.call_to_MIT = value;
@@ -103,14 +103,14 @@ public class Complaint extends org.apache.avro.specific.SpecificRecordBase imple
 
   /**
    * Gets the value of the 'call_to_sms' field.
-   * 12321垃圾短信投诉次数   */
+   * 12321鍨冨溇鐭俊鎶曡瘔娆℃暟   */
   public java.lang.Integer getCallToSms() {
     return call_to_sms;
   }
 
   /**
    * Sets the value of the 'call_to_sms' field.
-   * 12321垃圾短信投诉次数   * @param value the value to set.
+   * 12321鍨冨溇鐭俊鎶曡瘔娆℃暟   * @param value the value to set.
    */
   public void setCallToSms(java.lang.Integer value) {
     this.call_to_sms = value;
