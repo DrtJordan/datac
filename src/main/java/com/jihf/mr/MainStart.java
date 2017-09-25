@@ -75,7 +75,8 @@ public class MainStart {
             // hadoop jar datac-1.16.jar  matchMblDpiUAWithComplain <样本数据  移网DPi数据  输出目录>
             driver.addClass("matchMblDpiUAWithComplain", MatchMblDpiUAWithComplain.class, "getUa");
 
-
+            // hadoop jar datac-1.16.jar setUserTagForMblDpi <移网DPI数据 输出目录>
+            // out: insert sql
             driver.addClass("setUserTagForMblDpi",SetUserTagForMblDpi.class,"aaaa");
             driver.addClass("mblDpiPhoneMd5", MblDpiPhoneMd5.class, "filter the phone md5 from mobile Dpi data.");
             driver.addClass("copyFile", CopyFile.class, "copyFile from HDFS.");
