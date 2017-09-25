@@ -1,12 +1,19 @@
 package com.jihf.mr.java;
 
+import com.jihf.mr.mapReduce.SetUserTagForMblDpi;
+import com.jihf.mr.utils.DpiDataUtils;
 import com.jihf.mr.utils.Matcher;
 import com.jihf.mr.utils.StringUtils;
+import org.apache.hadoop.io.Text;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -20,12 +27,41 @@ public class ReadText {
     static List<String> urlList = new ArrayList<String>();
 
     public static void main(String[] args) {
-        File file = new File("E://excel/host1000.txt");
-        txt2String(file);
+//        File file = new File("E://excel/host1000.txt");
+//        txt2String(file);
+//        System.out.println(readTagDataFile(null));
+
+        filterUrlList();
 //        iteratorAddFiles("jihaifeng/testComplain/{20170824,20170909}/32");
 
     }
-
+    public static HashMap readTagDataFile(HashMap<String, String> map) {
+        if (null == map) {
+            map = new HashMap<>();
+        }
+        if (map.size() != 0) {
+            return null;
+        }
+        try {
+            InputStream in = SetUserTagForMblDpi.class.getClassLoader().getResourceAsStream("bd_tag_host.txt");
+            InputStreamReader isr = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(isr);
+            String lineNext = null;
+            while ((lineNext = br.readLine()) != null) {
+                String[] datas = DpiDataUtils.getSplitData(new Text(lineNext), 2);
+                if (null != datas) {
+                    String tagCode = StringUtils.strIsNotEmpty(datas[0]) ? datas[0] : null;
+                    String hostName = StringUtils.strIsNotEmpty(datas[1]) ? datas[1] : null;
+                    if (StringUtils.strIsNotEmpty(tagCode, hostName)) {
+                        map.put(String.format("%s%s%s", "*", hostName, "*"), tagCode);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return map;
+    }
 
     /**
      * 读取txt文件的内容
@@ -237,32 +273,31 @@ public class ReadText {
 
     private static List<String> filterUrlList() {
         Matcher matcher = new Matcher(true);
+        urlList.add("m.guazi.com/hello/sell");
         if (null == urlList || urlList.size() == 0) {
             return urlList;
         }
         List<String> tempUrlList = new ArrayList<String>();
         for (String url : urlList) {
             int index = -1;
-            String _tempUrl = null;
+            String _tempUrl = url;
             if (url.startsWith("http://")) {
                 index = 7;
             } else if (url.startsWith("https://")) {
                 index = 8;
             }
             if (index != -1) {
-                _tempUrl = url.substring(index, url.length());
+                _tempUrl = _tempUrl.substring(index, _tempUrl.length());
             }
             matcher.addPattern("sempage.guazi.com/*/sell*", 100);
             matcher.addPattern("m.guazi.com/*/sell*", 200);
             matcher.addPattern("sta.guazi.com/we_client*", 300);
             if (!StringUtils.strIsEmpty(_tempUrl)) {
                 Matcher.MatchResult[] a = matcher.match(_tempUrl);
-                if (a.length != 0) {
-                    tempUrlList.add(url);
-                }
+                System.out.println(a[0].pattern);
             }
         }
-        System.out.println("tempUrlList：" + tempUrlList.size());
+//        System.out.println("tempUrlList：" + tempUrlList.size());
         return tempUrlList;
     }
 

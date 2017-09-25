@@ -18,6 +18,9 @@ public class DpiDataUtils {
      * @return 数组数据
      */
     public static String[] getSplitData(Text value, int minLength) {
+        if (null == value){
+            return null;
+        }
         String data = value.toString();
         if (StringUtils.strIsEmpty(data)) {
             JobUtils.exit("input data is null.");
